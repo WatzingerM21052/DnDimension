@@ -53,7 +53,7 @@ Spieler-Aktion → Session-Durable-Object aktualisiert State → KI-DM (oder war
 
 Jedes Sub-Projekt bekommt eigenen Spec (`docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`) vor Implementierung.
 
-1. **Content-Foundation** — SRD 5.2 (+ später 5.1) strukturiert einlesen, Homebrew-Eingabe-UI, Lizenz-Flag pro Content-Eintrag
+1. **Content-Foundation** — SRD 5.2 (+ später 5.1) strukturiert einlesen (via Open5e), Lizenz-Flag pro Content-Eintrag, Datenmodell-Platz für Homebrew (Eingabe-UI folgt erst in Sub-Projekt 3)
 2. **Rules Engine** — Berechnungslogik (Modifier, AC, Zauberslots, Proficiency), reine/testbare Funktionen, ruleset-versioniert
 3. **Charaktererstellung & -verwaltung** — Char-Sheet-UI, Level-Up-Flow, Inventar
 4. **Kampagnen- & Weltverwaltung** — mehrere Kampagnen, NPCs, Orte, Fraktionen, Lore
