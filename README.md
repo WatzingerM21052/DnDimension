@@ -9,6 +9,10 @@ Eine Web-App, um D&D 5e zu spielen — solo mit KI-DM, in der Gruppe mit KI-DM, 
 - [Master Vision & Architektur](docs/superpowers/specs/2026-08-26-master-vision-design.md)
 - [Sub-Projekt 1: Content-Foundation](docs/superpowers/specs/2026-08-26-content-foundation-design.md)
 
+## Prompts
+
+- [D&D KI-DM System-Prompt](prompts/dnd-ai-dm-system-prompt.md) — sofort nutzbar, textbasiert in jedem Chat (unabhängig von der geplanten App)
+
 ## Lizenz-Hinweis
 
 Dieses Projekt nutzt SRD-5.1/5.2-Inhalte von Wizards of the Coast LLC unter CC-BY-4.0. Die PHB-PDFs (2014/2024) im Arbeitsverzeichnis sind proprietär und werden nie ins Repo committed (siehe `.gitignore`).
