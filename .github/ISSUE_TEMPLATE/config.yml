@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Planung und Arbeitsweise
+    url: https://github.com/WatzingerM21052/DnDimension/blob/main/docs/delivery/github-workflow.md
+    about: Anforderungen, Issue-Hierarchie, Labels und Definitionen

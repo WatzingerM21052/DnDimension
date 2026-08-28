@@ -1,5 +1,17 @@
-# Copyrighted reference PDFs — never commit these, regardless of repo visibility
+# Private reference library — never commit, regardless of repo visibility
+/private-library/
+/Bücher/
+
+# Reference-book and incomplete-download formats
 *.pdf
+*.epub
+*.mobi
+*.azw
+*.azw3
+*.crdownload
+*.part
+
+# Legacy location kept ignored in case old files are restored there
 /SRD 5.1 - Split and Bookmarked/
 
 # Dependencies

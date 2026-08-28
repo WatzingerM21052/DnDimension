@@ -1,0 +1,33 @@
+name: Epic
+description: Größeres Produktziel mit mehreren Stories
+title: "[EPIC] "
+labels: ["type:epic"]
+body:
+  - type: markdown
+    attributes:
+      value: "Ein Epic beschreibt ein messbares Ergebnis. Umsetzung erfolgt über Sub-Issues."
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Zielzustand
+      description: Welcher Produktzustand soll nach Abschluss erreicht sein?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope und Nicht-Ziele
+      placeholder: "Im Scope:\n- ...\n\nNicht im Scope:\n- ..."
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: Erfolgskriterien
+      description: Messbare Kriterien für den Abschluss des Epics
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Abhängigkeiten und Risiken

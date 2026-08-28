@@ -1,0 +1,40 @@
+name: Bug
+description: Reproduzierbare Abweichung vom erwarteten Verhalten
+title: "[BUG] "
+labels: ["type:bug"]
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: Beobachtetes Verhalten
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Erwartetes Verhalten
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduktionsschritte
+      placeholder: "1. ...\n2. ...\n3. ..."
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version / Commit
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs, Screenshots oder weitere Evidenz
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Abnahmekriterien
+    validations:
+      required: true

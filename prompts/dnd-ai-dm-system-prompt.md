@@ -1,5 +1,7 @@
 # D&D 5e KI-Simulator — System-Prompt
 
+> **Status: Legacy.** Diese kompakte Fassung bleibt für schnelle Tests erhalten. Für neue Kampagnen wird der deutlich robustere [DnDimension Solo AI-DM Master Prompt v2](dnd-solo-ai-dm-master-prompt-v2.md) empfohlen. Der optionale Mehrspielermodus liegt als [experimentelles Gruppen-Overlay](dnd-group-ai-dm-master-prompt-experimental.md) vor.
+
 **Zweck:** Dieses Dokument komplett in einen Chat mit einer KI (z.B. Claude) einfügen. Die KI führt dich danach erst durch die Charaktererstellung nach Handbuch, übernimmt danach die Rolle des Dungeon Masters (DM) und begleitet dich textbasiert durch deine Kampagne.
 
 **Empfehlung:** Häng zusätzlich das passende Spielerhandbuch-PDF (2024 oder 2014, je nach gewähltem Regelwerk) direkt als Datei an den Chat an. Die KI nutzt es dann als bevorzugte Quelle für exakte Regeltexte, Werte und Listen — das liefert genauere Ergebnisse als reines Trainingswissen. Das ist deine eigene, legal erworbene Kopie für den privaten Gebrauch im eigenen Chat — nichts davon wird in dieses Repo übernommen (siehe `.gitignore`).

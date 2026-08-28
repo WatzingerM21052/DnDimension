@@ -1,0 +1,41 @@
+name: User Story
+description: Nutzerwert mit testbaren Akzeptanzkriterien
+title: "[STORY] "
+labels: ["type:story"]
+body:
+  - type: textarea
+    id: user_story
+    attributes:
+      label: User Story
+      placeholder: "Als <Persona> möchte ich <Fähigkeit>, sodass <Nutzen>."
+    validations:
+      required: true
+  - type: input
+    id: requirements
+    attributes:
+      label: Requirement-IDs
+      placeholder: "FR-001, NFR-002"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Kontext
+      description: Problem, Quelle und relevante Entscheidungen
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Akzeptanzkriterien
+      placeholder: "- Given ... When ... Then ...\n- Given ... When ... Then ..."
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Nicht im Scope
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Abhängigkeiten, Risiken und Parent

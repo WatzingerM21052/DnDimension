@@ -1,0 +1,37 @@
+name: Task
+description: Konkretes technisches oder organisatorisches Arbeitspaket
+title: "[TASK] "
+labels: ["type:task"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Ziel
+      description: Konkretes überprüfbares Ergebnis
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Umsetzungshinweise
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Akzeptanzkriterien
+      placeholder: "- [ ] ...\n- [ ] ..."
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Parent-Issue / Requirements
+      placeholder: "#123; FR-001"
+    validations:
+      required: true
+  - type: textarea
+    id: test
+    attributes:
+      label: Verifikation
+      description: Welcher Test oder Nachweis belegt die Fertigstellung?
+    validations:
+      required: true

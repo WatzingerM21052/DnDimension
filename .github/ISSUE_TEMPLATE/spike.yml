@@ -1,0 +1,35 @@
+name: Spike
+description: Zeitlich begrenzte Untersuchung mit Entscheidungsartefakt
+title: "[SPIKE] "
+labels: ["type:spike", "needs:research"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Zu klärende Frage
+    validations:
+      required: true
+  - type: input
+    id: timebox
+    attributes:
+      label: Timebox
+      placeholder: "z. B. 4 Stunden oder 2 Arbeitstage"
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Zu prüfende Optionen und Kriterien
+    validations:
+      required: true
+  - type: textarea
+    id: deliverable
+    attributes:
+      label: Erwartetes Ergebnis
+      placeholder: "Decision Record, Prototype, Messwerte und Folge-Issues"
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Parent-Issue / Requirements
