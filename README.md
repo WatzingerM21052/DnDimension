@@ -14,6 +14,7 @@ Eine geplante Web-App zur Unterstützung von D&D-5e-Spielern und Dungeon Mastern
 - [Initialer Backlog und Issue-Hierarchie](docs/delivery/initial-backlog.md)
 - [Master Vision & Architektur](docs/spec-planning/2026-08-26-master-vision-design.md)
 - [Content-Foundation](docs/spec-planning/2026-08-26-content-foundation-design.md)
+- [v0.2 Portable Domain & Data Model Specification](docs/spec-planning/v0.2-domain-data-model-spec.md)
 - [v0.6 Play Session Specification](docs/spec-planning/v0.6-play-session-spec.md)
 - [Traceability- und Release-Review-Matrix](docs/delivery/traceability-matrix.md)
 - [Private Referenzbibliothek: Katalog & Ablageregeln](docs/research/reference-library-catalog.md)

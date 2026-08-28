@@ -9,7 +9,7 @@
 | R-02 | 2014- und 2024-Regeln werden unbemerkt vermischt. | Quality | Medium | High | High | Ruleset in allen Daten/Tests; Cross-Ruleset-Negativtests | Open |
 | R-03 | Proprietäre Inhalte gelangen in Repo oder veröffentlichte Daten. | Compliance | Medium | High | High | private-library ignorieren; Source-Registry; Content-Review im DoD | Mitigated |
 | R-04 | Drittanbieter-Content-API ändert Struktur oder Inhalt. | Technical | Medium | High | High | versionierter Import, Adapter, Snapshots und Prüfung gegen offizielles SRD | Open |
-| R-05 | Lokale Daten gehen durch Migration oder Fehler verloren. | Operational | Medium | High | High | versionierte Migration, automatischer Export, Restore-Tests | Open |
+| R-05 | Lokale Daten gehen durch Migration oder Fehler verloren. | Operational | Medium | High | High | DEC-006; schrittweise Migration, Pre-Migration-Backup, Checksummen, Recovery- und Restore-Tests | Open |
 | R-06 | Cloud-Sync erzeugt Konflikte oder Datenschutzprobleme. | Security/Compliance | Medium | High | High | erst ab v1.2; Datenminimierung, Rechteprüfung, Konfliktmodell, Löschweg | Open |
 | R-07 | Echtzeitgruppen verlieren oder überschreiben Zustand. | Technical | Medium | High | High | serverseitige Autorität, Sequenzen, Reconnect- und Lasttests | Open |
 | R-08 | Oberfläche ist für Neulinge weiterhin zu komplex. | Product | Medium | High | High | progressive Offenlegung, Usability-Tests ab v0.4, Metriken | Open |
@@ -25,7 +25,7 @@
 | R-18 | Änderungen am Kampagnen-Regelprofil machen Charaktere oder Sitzungszustände unbemerkt ungültig. | Data/Product | Medium | High | High | versionierte Regelprofile, Auswirkungsanalyse, explizite Migration und Kompatibilitätstests | Open |
 | R-19 | Technologien und Libraries werden vor stabilen Anforderungen festgeschrieben oder ohne Wartungs-/Lizenzprüfung übernommen. | Technical/Operational | Medium | High | High | Pre-Code Engineering Blueprint, aktuelle offizielle Quellen, Spikes und dokumentierter Fallback | Open |
 | R-20 | Der kleine v0.6-Alpha-Slice wird irrtümlich als ausreichender Endumfang behandelt und Social-, Exploration- oder komplexe Sitzungsfälle bleiben dauerhaft unvollständig. | Product/Quality | Medium | Critical | Critical | CON-014, Reifegradmatrix v0.6-v1.0, feature-complete Beta-Gate und Mehrsitzungs-Playtest | Open |
-| R-21 | Ereignislog und Snapshot widersprechen sich oder eine Korrektur überschreibt Historie, wodurch Sitzungen nicht zuverlässig fortgesetzt werden können. | Data/Technical | Medium | Critical | Critical | DEC-005, atomare Zustandsübergänge, Sequenzen, Recovery-/Replay-Tests und Migrationsprüfung | Open |
+| R-21 | Ereignislog und Snapshot widersprechen sich oder eine Korrektur überschreibt Historie, wodurch Sitzungen nicht zuverlässig fortgesetzt werden können. | Data/Technical | Medium | Critical | Critical | DEC-005/006, atomare Unit of Work, Eventsequenzen, Checksummen, Recovery-/Replay-Tests und Migrationsprüfung | Open |
 
 ## Eskalationsregel
 

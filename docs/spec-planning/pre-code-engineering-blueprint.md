@@ -39,6 +39,7 @@ Dieses Dokument wird ausgearbeitet, sobald Produktumfang, Capability-Specs und n
 - Character-, Campaign-, Session- und Content-/Rules-Specs der ersten Releases;
 - Ergebnisse der Persistenz- und SRD-Import-Spikes;
 - Datenmodell und relevante Security-/Lizenzanforderungen;
+- akzeptierte [v0.2 Domain & Data Model Specification](v0.2-domain-data-model-spec.md) und [DEC-006](../decisions/DEC-006-hybrid-aggregate-snapshot-audit-model.md);
 - aktuelle Laufzeit-, Tooling- und Hosting-Recherche unmittelbar vor der Entscheidung.
 
 ## Abnahmekriterien des Blueprint-Gates

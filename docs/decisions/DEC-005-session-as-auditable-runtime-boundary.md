@@ -34,7 +34,7 @@ Social, Exploration und Combat verwenden denselben Beschreiben–Handeln–Aufl�
 - Regelrelevante Handlungen, Würfe, Enthüllungen und Zustandsänderungen werden als geordnete, unveränderlich referenzierbare Ereignisse protokolliert.
 - Eine Korrektur löscht kein vorheriges Ereignis, sondern dokumentiert die Abweichung und den neuen Zustand.
 - Konsistente Snapshots ermöglichen schnelles Laden und Wiederherstellung.
-- Die technische Persistenz muss nicht als vollständiges Event Sourcing umgesetzt werden; Auditierbarkeit und deterministische Wiederaufnahme sind jedoch Produktanforderungen.
+- Die technische Persistenz muss nicht als vollständiges Event Sourcing umgesetzt werden; Auditierbarkeit und deterministische Wiederaufnahme sind jedoch Produktanforderungen. [DEC-006](DEC-006-hybrid-aggregate-snapshot-audit-model.md) konkretisiert dies als Hybrid aus revisionierten Aggregaten, Audit-Events und konsistenten Session-Snapshots.
 
 ### DM-Autorität und Automatisierung
 
@@ -79,4 +79,4 @@ v0.6 implementiert den kleinsten durchgängigen, säulenübergreifenden Ablauf u
 
 ## Ersetzt / ersetzt durch
 
-Keine vorherige Decision. Diese Entscheidung konkretisiert DEC-001, DEC-003 und DEC-004 für Adventure-, Session- und Laufzeitzustand.
+Keine vorherige Decision. Diese Entscheidung konkretisiert DEC-001, DEC-003 und DEC-004 für Adventure-, Session- und Laufzeitzustand; DEC-006 legt das dazugehörige portable Zustands- und Persistenzmodell fest.

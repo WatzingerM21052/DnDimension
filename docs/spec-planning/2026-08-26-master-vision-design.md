@@ -19,6 +19,8 @@ Nutzer:innen können mehrere Kampagnen parallel anlegen und verwalten, mit eigen
 
 **Sitzungsprinzip:** Gemäß [DEC-005](../decisions/DEC-005-session-as-auditable-runtime-boundary.md) gilt `Campaign -> Adventure -> Session -> Scene/Encounter -> Event`. v0.6 beweist einen kleinen, aber säulenübergreifenden Ablauf; dieser Alpha-Slice ist nicht das Endprodukt. v0.8 enthält den vollständigen v1-P0-Spielablauf, v0.9 stabilisiert ihn und v1.0 muss normalen lokalen Mehrsitzungsbetrieb über Social, Exploration und Combat ermöglichen.
 
+**Datenprinzip:** Gemäß [DEC-006](../decisions/DEC-006-hybrid-aggregate-snapshot-audit-model.md) bilden revisionierte Aggregate die operative Wahrheit. Idempotente Commands, append-orientierte Audit-Events, konsistente Session-Snapshots und bestätigte Transfer-Batches sichern Erklärbarkeit und Recovery, ohne vollständiges Event Sourcing vorzuschreiben. Die Details stehen in der [v0.2 Domain & Data Model Specification](v0.2-domain-data-model-spec.md).
+
 ## 2. Abgrenzung zum Markt
 
 | Plattform | Stärke | Lücke, die wir füllen |
@@ -50,7 +52,7 @@ Die Abgrenzung ist eine Produkt-Hypothese und wird vor v1.0 durch aktuelle Markt
 - **R2** für Dateien: Charakterbilder, Kartenbilder (relevant ab Battle-Map-Sub-Projekt).
 - **KI ab v3.0:** Provider-Adapter statt harter Bindung an ein einzelnes Modell. Kontext wird aus strukturiertem Zustand und zugelassenem Retrieval zusammengestellt.
 
-**Datenfluss local-first:** Nutzeraktion → validierter Domain-Command → lokaler State/Events → persistenter Snapshot/Export.<br>
+**Datenfluss local-first:** Nutzeraktion → idempotenter Domain-Command mit Revisionsprüfung → validiertes Aggregate/Audit-Event → persistenter Zustand/Snapshot/Export.<br>
 **Datenfluss Multiplayer:** Client-Command → serverseitig autorisierter Session-State → Live-Update → persistenter Snapshot.<br>
 **Datenfluss KI:** bestätigter Zustand → gezieltes Retrieval → Modellvorschlag → Validierung/Override → State-Änderung.
 
@@ -86,5 +88,5 @@ Die exakten Versionen und Exit-Kriterien stehen in der Roadmap. Capability-Specs
 
 - finaler [Pre-Code Engineering Blueprint](pre-code-engineering-blueprint.md) nach Capability-Specs und Architekturspikes
 - Auth- und Sync-Methode (v1.2-Spec)
-- genaues Datenmodell für Content-Einträge inkl. Lizenz-Flag (v0.2-Spec)
+- physischer lokaler Persistenzadapter und messbare Snapshot-/Performancebudgets nach dem v0.2-Domainvertrag
 - Summarization-, Retrieval- und Eval-Strategie (v3.0-Spec)

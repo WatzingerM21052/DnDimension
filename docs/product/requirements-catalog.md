@@ -3,6 +3,8 @@
 **Stand:** 2026-08-28<br>
 **Status:** v1.0-Scope gemäß [DEC-001](../decisions/DEC-001-v1-scope-baseline.md) akzeptiert; einzelne Anforderungen werden im laufenden Review verfeinert
 
+**Domain-Baseline:** Die [v0.2 Portable Domain & Data Model Specification](../spec-planning/v0.2-domain-data-model-spec.md) und [DEC-006](../decisions/DEC-006-hybrid-aggregate-snapshot-audit-model.md) definieren die gemeinsamen Identitäts-, Revisions-, Command-, Audit-, Snapshot-, Migrations- und Import-/Export-Verträge für die nachfolgenden Anforderungen.
+
 ## 1. Anforderungsmanagement
 
 Jede Anforderung besitzt:
@@ -118,6 +120,8 @@ Ziel → Requirement-ID → GitHub Story/Task → Pull Request → Test → Rele
 ```
 
 Eine Story verweist auf Requirement-IDs. Tests nennen die Story oder Requirement-ID. Release Reviews prüfen offene P0/P1-Anforderungen und bekannte Abweichungen.
+
+Querschnittsarbeit am Domainmodell darf mehrere spätere Requirements vorbereiten, ohne deren Zielrelease vorzuziehen. GitHub-Story #24 weist deshalb primäre betroffene Requirements und nachgelagerte Capability-Beziehungen getrennt aus.
 
 ## 7. Definition of Ready
 

@@ -33,7 +33,8 @@ Diese Matrix ersetzt keine Tests oder GitHub-Statuspflege. Sie definiert die ver
 
 | Capability | Ziele/Entscheidungen | Requirements | Fachliche Spec | GitHub-Epic | primärer Release-Nachweis |
 |---|---|---|---|---|---|
-| Content & Data | Z-07; DEC-001/002 | FR-009; CON-001/002/009 | Content Foundation | [#2](https://github.com/WatzingerM21052/DnDimension/issues/2) | Source Registry, Lizenzprüfung, Schema- und Importtests |
+| Content & Sources | Z-07; DEC-001/002/006 | FR-009; CON-001/002/009 | [Content Foundation](../spec-planning/2026-08-26-content-foundation-design.md) | [#23](https://github.com/WatzingerM21052/DnDimension/issues/23), [#25](https://github.com/WatzingerM21052/DnDimension/issues/25) | Source Registry, Lizenzprüfung, Schema- und Importtests |
+| Domain & Data | Z-01 bis Z-07; DEC-004/005/006 | FR-009/010/024/029/030/033/035/036; NFR-003/010/012-015 | [v0.2 Domain & Data Model](../spec-planning/v0.2-domain-data-model-spec.md) | [#24](https://github.com/WatzingerM21052/DnDimension/issues/24) | Aggregate-/Repository-Vertragstests, Migration, Recovery und Export-/Restore-Roundtrip |
 | Rules Engine | Z-02; DEC-002/003 | FR-006; NFR-010/011; CON-010 | Content Foundation und späterer Rules-Spec | [#3](https://github.com/WatzingerM21052/DnDimension/issues/3) | deterministische Unit- und Regelregressionstests |
 | Character Creator | Z-01/02; DEC-001/002/003 | FR-001 bis FR-003, FR-020/021 | [v0.4 Character Creator](../spec-planning/v0.4-character-creator-spec.md) | [#4](https://github.com/WatzingerM21052/DnDimension/issues/4) | gültiger SRD-Charakter, Persistenz- und Negativtests |
 | Campaign Creator | Z-03/05; DEC-001/004 | FR-004/005, FR-023 bis FR-028 | [v0.5 Campaign Creator](../spec-planning/v0.5-campaign-creator-spec.md) | [#5](https://github.com/WatzingerM21052/DnDimension/issues/5) | Draft/Activation, Regelrevision und Visibility-Negativtests |

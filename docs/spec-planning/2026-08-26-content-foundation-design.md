@@ -1,6 +1,6 @@
 # Sub-Projekt 1: Content-Foundation
 
-**Status:** Überarbeitung für v0.2 erforderlich<br>
+**Status:** Accepted Content Baseline; Domain-Verträge in der [v0.2 Domain & Data Model Specification](v0.2-domain-data-model-spec.md)<br>
 **Erstellt:** 2026-08-26<br>
 **Aktualisiert:** 2026-08-28
 **Vorgänger:** [Master Vision](2026-08-26-master-vision-design.md)
@@ -11,16 +11,16 @@ Die strukturierte Content-Basis für die gesamte App: SRD-Inhalte werden lizenzs
 
 Für den v1.0-Character-Creator gilt [DEC-002](../decisions/DEC-002-v1-character-content-boundary.md): Fest eingebaut wird ausschließlich veröffentlichbarer SRD-5.2.1-Content. Proprietäre Buchoptionen und private Dateien sind weder Build-Quelle noch Laufzeitvoraussetzung.
 
-**Bewusst außerhalb des Scopes dieses Sub-Projekts:** die Homebrew-**Eingabe-UI** (Formular zum Eintragen eigener Inhalte). Das Datenmodell lässt dafür von Anfang an Platz (`source: "homebrew"`), aber das UI-Slice kommt erst mit Sub-Projekt 3 (Charaktererstellung), wenn klar ist, was Spieler:innen tatsächlich selbst eintragen wollen.
+**Bewusst außerhalb des Scopes dieses Sub-Projekts:** die Homebrew-**Eingabe-UI** (Formular zum Eintragen eigener Inhalte). Das Datenmodell lässt dafür von Anfang an Platz (`source: "homebrew"` beziehungsweise kampagnengebundene Herkunft); die kontrollierte UI folgt gemäß Roadmap erst mit v1.1 Settings & Homebrew nach dem stabilen lokalen v1-Kern.
 
-## 2. Datenmodell (portables Domain-Schema; D1 erst ab Cloud-Ausbau)
+## 2. Fachliches Content-Modell
 
-Eine Tabelle pro Content-Typ, gemeinsames Grundschema:
+Die verbindlichen Identitäts-, Versions-, Referenz-, Migrations- und Adapterverträge stehen in der [v0.2 Domain & Data Model Specification](v0.2-domain-data-model-spec.md) und [DEC-006](../decisions/DEC-006-hybrid-aggregate-snapshot-audit-model.md). Die folgende Darstellung beschreibt die logischen Content-Typen und legt keine SQL-, IndexedDB- oder D1-Tabellen fest:
 
 ```
-content_source (
-  id, ruleset ('2024'|'2014'), origin ('srd-2024'|'srd-2014'|'homebrew'|'campaign:<id>'),
-  license ('CC-BY-4.0'|'private'), attribution_text, imported_at, import_snapshot_version
+source_manifest (
+  id, ruleset, origin, license, attribution_text,
+  import_snapshot_version, transform_version
 )
 
 spells (id, source_id, name, level, school, casting_time, range, components,
@@ -33,9 +33,9 @@ creatures (id, source_id, name, cr, stat_block_json, ...)
 rules_glossary (id, source_id, term, description)
 ```
 
-`source_id` verweist immer auf `content_source` — dort steht die Lizenz. Jede Abfrage der Content-API kann nach `origin`/`license` filtern, sodass proprietäre bzw. private Homebrew-Inhalte eines Nutzers nie versehentlich in einen "geteilten" Kontext (z.B. andere Kampagnen) durchsickern.
+Jeder `ContentEntry` verweist über eine versionierte `ContentRef` auf Source Manifest, Ruleset, Content-Typ und Content-Revision. Jede Repository-Abfrage kann nach `origin`/`license` filtern, sodass private beziehungsweise proprietäre Homebrew-Inhalte nie versehentlich in einen geteilten oder veröffentlichten Kontext gelangen.
 
-Für Kampagnen-spezifisches Homebrew: `origin = "campaign:<campaign_id>"` statt global `"homebrew"`, damit Inhalte sauber pro Kampagne isoliert sind.
+Für kampagnenspezifisches Homebrew gilt `origin = "campaign:<campaign_id>"` statt globalem `homebrew`, damit Inhalte sauber pro Kampagne isoliert sind. Veröffentlichte Content-Pakete sind unveränderlich; eine fachliche Änderung erzeugt eine neue Paket-/Content-Revision.
 
 ## 3. Import-Prozess
 
