@@ -9,6 +9,8 @@
 
 Die strukturierte Content-Basis für die gesamte App: SRD-Inhalte werden lizenzsauber getaggt, ruleset-versioniert und zunächst local-first verfügbar gemacht. Das offizielle SRD 5.2.1 beziehungsweise 5.1 ist fachlich maßgeblich. [Open5e](https://open5e.com) ist ein möglicher strukturierter Importkandidat, nicht die alleinige Quelle der Wahrheit.
 
+Für den v1.0-Character-Creator gilt [DEC-002](../decisions/DEC-002-v1-character-content-boundary.md): Fest eingebaut wird ausschließlich veröffentlichbarer SRD-5.2.1-Content. Proprietäre Buchoptionen und private Dateien sind weder Build-Quelle noch Laufzeitvoraussetzung.
+
 **Bewusst außerhalb des Scopes dieses Sub-Projekts:** die Homebrew-**Eingabe-UI** (Formular zum Eintragen eigener Inhalte). Das Datenmodell lässt dafür von Anfang an Platz (`source: "homebrew"`), aber das UI-Slice kommt erst mit Sub-Projekt 3 (Charaktererstellung), wenn klar ist, was Spieler:innen tatsächlich selbst eintragen wollen.
 
 ## 2. Datenmodell (portables Domain-Schema; D1 erst ab Cloud-Ausbau)

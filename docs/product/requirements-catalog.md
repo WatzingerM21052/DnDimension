@@ -30,7 +30,7 @@ Jede Anforderung besitzt:
 
 | ID | Anforderung | Release | Priorität | Abnahme auf hoher Ebene |
 |---|---|---|---|---|
-| FR-001 | Das System führt durch eine editionskorrekte Charaktererstellung. | v0.4 | P0 | gültiger 2024-Charakter ohne manuelle Nachrechnung |
+| FR-001 | Das System führt mit eingebautem, veröffentlichbarem SRD-5.2.1-Content durch eine editions- und quellenkorrekte Charaktererstellung. | v0.4 | P0 | gültiger 2024-Charakter ohne private Datei, Netzwerk oder manuelle Nachrechnung |
 | FR-002 | Nutzer können mehrere Charaktere speichern, laden, kopieren und archivieren. | v1.0 | P0 | Zustände bleiben nach Neustart identisch |
 | FR-003 | Spieler können Level-ups regelgeführt durchführen. | v1.0 | P0 | Voraussetzungen und abgeleitete Werte werden validiert |
 | FR-004 | DMs können Kampagnen mit Regeln, Ton und Fortschrittsart anlegen. | v0.5 | P0 | Kampagne ist speicher- und wiederöffbar |
@@ -77,6 +77,7 @@ Jede Anforderung besitzt:
 | CON-006 | v1.0 bleibt ohne Account, Cloud, Sharing, Realtime, VTT, KI und vollständigen Homebrew-Editor vollständig nutzbar. |
 | CON-007 | v1.0 führt verpflichtend nur 2024-Regeln aus; 2014-Kompatibilität wird vorbereitet, aber separat geplant und abgenommen. |
 | CON-008 | Nicht vollständig implementierte Regelstände erscheinen weder als auswählbare Einstellung noch werden sie automatisch mit aktiven Kampagnen vermischt. |
+| CON-009 | Fest eingebaute v1.0-Charakteroptionen stammen ausschließlich aus zulässigem SRD-5.2.1-Content; proprietäre und private Optionen folgen nur über getrennte spätere Mechanismen. |
 
 ## 6. Traceability
 

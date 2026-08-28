@@ -43,6 +43,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 ## Entscheidungen
 
 - [DEC-001: v1.0 Scope Baseline](decisions/DEC-001-v1-scope-baseline.md)
+- [DEC-002: v1.0 Character Content Boundary](decisions/DEC-002-v1-character-content-boundary.md)
 
 ## Forschung und Quellen
 
