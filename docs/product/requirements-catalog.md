@@ -50,8 +50,14 @@ Jede Anforderung besitzt:
 | FR-018 | Erweiterungen nutzen versionierte, beschränkte Schnittstellen. | v4.0 | P1 | Erweiterung kann deaktiviert werden, ohne Daten zu beschädigen |
 | FR-019 | Nach Freigabe eines zusätzlichen Regelstands können Nutzer ihn pro Kampagne in den Einstellungen auswählen. | Future, nach stabilem 2024-Kern | P2 | 2014 wird erst angeboten, wenn Content, Berechnungen, Migration und getrennte Tests vollständig abgenommen sind |
 | FR-020 | Der Character Creator unterstützt Standard Array, Point Buy, transparenten In-App-Wurf und manuelle Attributseingabe. | v0.4 | P0 | jede Methode ist validiert, persistierbar und zeigt Zuordnung beziehungsweise Berechnung nachvollziehbar |
-| FR-021 | Kampagnen können zulässige Attributsmethoden festlegen. | v0.5 | P1 | gesperrte Methoden sind für zugeordnete Charaktere nicht auswählbar; bestehende Abweichungen werden sichtbar markiert |
+| FR-021 | Kampagnen können zulässige Attributsmethoden festlegen. | v0.5 | P0 | gesperrte Methoden sind für zugeordnete Charaktere nicht auswählbar; bestehende Abweichungen werden sichtbar markiert |
 | FR-022 | Ein menschlicher DM kann automatisierte Zustände begründet korrigieren. | v0.6 | P1 | vorheriger/neuer Wert, Grund und Zeitpunkt bleiben im Sitzungslog nachvollziehbar |
+| FR-023 | Der Campaign Creator führt wahlweise geführt oder kompakt durch eine lokale Kampagnenerstellung. | v0.5 | P0 | Draft mit Prämisse, Format und Startpunkt kann offline angelegt, fortgesetzt und aktiviert werden |
+| FR-024 | Jede Kampagne speichert ein versioniertes Regelprofil aus Ruleset, Source Snapshot, unterstütztem Startlevel, Fortschrittsart und aktivierten Regeln. | v0.5 | P0 | Regelprofil bleibt nach Neustart identisch; Änderungen besitzen Revision und Auswirkungsanalyse |
+| FR-025 | DMs können Session-Zero-Erwartungen und gemeinsam vereinbarte Grenzen dokumentieren und revisionieren. | v0.5 | P0 | aktuelle Absprachen sind player-facing sichtbar und frühere Revisionen nachvollziehbar |
+| FR-026 | Kampagneninformationen werden fachlich in `player_facing` und `dm_only` getrennt. | v0.5 | P0 | Player Preview erhält in Negativtests keine DM-only Daten |
+| FR-027 | Lokale Charaktere können einer Kampagne zugeordnet und gegen deren Regelprofil geprüft werden. | v0.5 | P0 | Ergebnis zeigt kompatibel, Warnung oder Inkompatibilität mit Gründen ohne stille Mutation |
+| FR-028 | Kampagnen besitzen einen sicheren Lebenszyklus aus Draft, Active, Paused, Completed und Archived. | v0.5 | P0 | Zustandswechsel bleiben nach Neustart erhalten; Archivierung löscht keine abhängigen Daten |
 
 ## 4. Qualitätsanforderungen
 
@@ -68,6 +74,7 @@ Jede Anforderung besitzt:
 | NFR-009 | KI-Transparenz | Quellenstatus, Unsicherheit und Kostenlimit sind erkennbar | v3.0 |
 | NFR-010 | Wartbarkeit | Rules Engine und Content sind unabhängig von UI und KI testbar | v0.3 |
 | NFR-011 | Regelerklärbarkeit und Spielerautonomie | automatische Würfe, Modifikatoren und Zustandsänderungen zeigen Ursache; keine Spielerentscheidung wird still ersetzt | v0.4 |
+| NFR-012 | Wissensgrenzen | alle Kampagnenabfragen erzwingen Sichtbarkeit im Datenzugriff; neue Feldtypen benötigen Negativtests | v0.5 |
 
 ## 5. Constraints
 
@@ -84,6 +91,8 @@ Jede Anforderung besitzt:
 | CON-009 | Fest eingebaute v1.0-Charakteroptionen stammen ausschließlich aus zulässigem SRD-5.2.1-Content; proprietäre und private Optionen folgen nur über getrennte spätere Mechanismen. |
 | CON-010 | RAW 2024 ist der Standard; Varianten und Komfortregeln werden nur als explizite kampagnenspezifische Einstellungen aktiviert. |
 | CON-011 | Inspiration aus Videospielen oder Mods darf keine geschützten Assets/Texte/UI-Kompositionen übernehmen und keine abweichende Mechanik als offizielle Regel darstellen. |
+| CON-012 | Regel- oder Quellenänderungen einer aktiven Kampagne werden versioniert und niemals ohne Auswirkungsanalyse auf Charaktere und Sitzungszustand angewandt. |
+| CON-013 | Veröffentlichte Abenteuer dürfen als private Referenz registriert werden; proprietärer Volltext und Medien werden weder eingebaut noch automatisch aus privaten Dateien importiert. |
 
 ## 6. Traceability
 

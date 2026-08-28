@@ -31,6 +31,7 @@ Die Releases nach v1.0 sind zunächst als Milestones und Roadmap-Gates angelegt.
     - [#20 `[SPIKE] Local-first Persistenzarchitektur bewerten`](https://github.com/WatzingerM21052/DnDimension/issues/20)
     - [#21 `[SPIKE] Offiziellen SRD-Importpfad bewerten`](https://github.com/WatzingerM21052/DnDimension/issues/21)
     - [#22 `[TASK] Quality Gates und CI-Plan festlegen`](https://github.com/WatzingerM21052/DnDimension/issues/22)
+    - [#26 `[TASK] Pre-Code Engineering Blueprint finalisieren`](https://github.com/WatzingerM21052/DnDimension/issues/26) — nach dem initialen Bootstrap ergänzt; Backlog
 
 ## v0.2 - Content & Data Foundation
 

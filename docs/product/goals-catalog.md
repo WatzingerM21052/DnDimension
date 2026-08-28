@@ -15,6 +15,8 @@
 | Z-09 | Kontrollierbare KI | unbelegte Regelbehauptungen in Eval-Suite | definierter Grenzwert vor v3-Release, keine kritischen Halluzinationen | Muss für v3 |
 | Z-10 | Begrenzbare Betriebskosten | Budgetüberschreitung | harte Limits und Warnung vor v3-Release | Muss für v3 |
 | Z-11 | Glaubwürdige Tabletop-Erfahrung | nicht erklärbare Regel-/Zustandsänderungen in Kernflüssen | 0 kritische Änderungen ohne sichtbare Ursache, Quelle oder bestätigte Kampagnenregel | Muss |
+| Z-12 | Niedrige Einstiegshürde für neue DMs | Abschlussrate einer einfachen Kampagnenerstellung | ≥ 80 % ohne externe Hilfe in höchstens 15 Minuten im v0.5-Usability-Test | Muss |
+| Z-13 | Verlässliche DM-Geheimhaltung | kritische `dm_only`-Information in Player-Preview-Tests | 0 Offenlegungen | Muss |
 
 ## Zielkonflikte
 

@@ -12,11 +12,11 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 
 | Release | Produktzustand | Schwerpunkt | Exit-Kriterien |
 |---|---|---|---|
-| **v0.1 Project Foundation** | Planbares Vorhaben | Projektauftrag, Ziele, Stakeholder, Anforderungen, Risiken, GitHub-Prozess, Architekturrahmen | Governance-Dokumente konsistent; initialer Backlog priorisiert; Quality Gates und Entscheidungsweg definiert |
+| **v0.1 Project Foundation** | Planbares Vorhaben | Projektauftrag, Ziele, Stakeholder, Anforderungen, Risiken, GitHub-Prozess, Architekturrahmen und [Pre-Code Engineering Blueprint](../spec-planning/pre-code-engineering-blueprint.md) | Governance-Dokumente konsistent; initialer Backlog priorisiert; Quality Gates und Entscheidungsweg definiert; technische Projektanlage vor Produktcode entscheidungsreif |
 | **v0.2 Content & Data Foundation** | Belastbares Inhalts- und Datenmodell | SRD-Quellen, Lizenzmetadaten, Content-Schema, Kampagnen-/Charakter-Grundmodell, Import-Spike | Datenmodell reviewt; offizieller SRD-Datenweg nachweisbar; Edition und Herkunft jedes Inhalts abfragbar |
 | **v0.3 Rules Engine Foundation** | Testbarer Regelkern | Attribute, Proficiency, Checks, AC, Ressourcen und Ruleset-Versionierung | Kernfunktionen sind UI-unabhängig, deterministisch und automatisiert getestet |
 | **v0.4 Character Creator Slice** | Erster sichtbarer Nutzerfluss | geführte 2024-Charaktererstellung mit eingebautem SRD-5.2.1-Content, vier nachvollziehbaren Attributsmethoden, Validierung und lokalem Charakterbogen gemäß [Character Creator Spec](../spec-planning/v0.4-character-creator-spec.md) | gültiger Charakter kann ohne private Dateien, Netzwerk oder manuelle Nachrechnung erstellt und erneut geöffnet werden; Entscheidungen und abgeleitete Werte sind erklärbar |
-| **v0.5 First Local Alpha** | Erstmals nutzbare lokale App | Kampagne, einfache Welt-/DM-Notizen, Charakterzuordnung, grundlegende Navigation und Speicherung | Charakter und Kampagne funktionieren gemeinsam in einem vertikalen lokalen Ablauf |
+| **v0.5 First Local Alpha** | Erstmals nutzbare lokale App | Campaign Creator mit Prämisse, Regelprofil, Session Zero, Wissensgrenzen, Charakterzuordnung und Lebenszyklus gemäß [Campaign Creator Spec](../spec-planning/v0.5-campaign-creator-spec.md) | Charakter und Kampagne funktionieren gemeinsam in einem vertikalen lokalen Ablauf; Player Preview enthält keine DM-only Informationen |
 | **v0.6 Play Session Alpha** | Erste verwaltete Spielsitzung | Würfel, Encounter, Initiative, HP, Zustände und Sitzungsprotokoll | eine kleine Begegnung kann vom Start bis zum Abschluss verwaltet und gespeichert werden |
 | **v0.7 Integrated Local Alpha** | Zusammenhängende Single-User-App ohne KI | Charakter, Kampagne, Welt, Sitzung und Regeln integriert; robuste lokale Persistenz | zentraler End-to-End-Flow funktioniert ohne Account, Cloud oder KI; Daten überstehen Neustarts |
 | **v0.8 Feature-Complete Beta** | Inhaltlich vollständiger v1-Scope | Level-up, Inventar, Import/Export, homebrew-fähiges Datenmodell ohne vollständigen Editor, Onboarding, Accessibility und Fehlerfälle | alle v1-P0-Anforderungen implementiert; offene Fehler sind priorisiert; externe Playtests möglich |
@@ -55,6 +55,7 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 - Content-Foundation gegen offizielle SRD-Quellen validieren.
 - Architekturentscheidungen für lokalen Start und spätere Cloud-Fähigkeit treffen.
 - Technisches Grundgerüst und Quality Gates planen.
+- Vor Produktcode den Pre-Code Engineering Blueprint mit Projektanlage, Struktur, Modulen, Methoden, Technologien und externen Abhängigkeiten abnehmen.
 
 ### Next - v0.2 bis v0.5
 

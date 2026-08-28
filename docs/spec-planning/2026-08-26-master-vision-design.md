@@ -15,6 +15,8 @@ Eine Web-App, die Spieler und menschliche Dungeon Master beim vollständigen D&D
 
 Nutzer:innen können mehrere Kampagnen parallel anlegen und verwalten, mit eigener Welt und eigenen Charakteren. v1.0 ist fachlich **2024-first**. Jede Kampagne und jeder Content-Eintrag trägt trotzdem von Beginn an einen Regelstand. Eine spätere 2014-Kompatibilität wird erst nach Stabilisierung des 2024-Kerns als vollständig geprüfte, kampagnenspezifische Einstellung angeboten; ein halbfertiger Auswahlpunkt ist ausgeschlossen.
 
+**Kampagnenprinzip:** Eine Kampagne ist gemäß [DEC-004](../decisions/DEC-004-campaign-as-rules-and-knowledge-boundary.md) die versionierte Grenze für Regelprofil, Session-Zero-Absprachen, Charakterzuordnung und Wissenssichtbarkeit. Spätere Gruppen-, VTT- und KI-Funktionen verwenden diese Kampagnenwahrheit, statt konkurrierende Zustände einzuführen.
+
 ## 2. Abgrenzung zum Markt
 
 | Plattform | Stärke | Lücke, die wir füllen |
@@ -38,9 +40,9 @@ Die Abgrenzung ist eine Produkt-Hypothese und wird vor v1.0 durch aktuelle Markt
 
 ## 4. Architektur
 
-**v0.x-v1.1 Frontend:** React + TypeScript mit local-first Persistenz. Regeln und Domainlogik bleiben in eigenen Paketen; die App muss für Kernfunktionen nicht online sein.
+**Aktuell führender Frontend-Kandidat für v0.x-v1.1:** React + TypeScript mit local-first Persistenz. Regeln und Domainlogik bleiben in eigenen Paketen; die App muss für Kernfunktionen nicht online sein. Stack, Projektanlage und konkrete Libraries werden erst im [Pre-Code Engineering Blueprint](pre-code-engineering-blueprint.md) nach einem reproduzierbaren Spike verbindlich.
 
-**Backend ab v1.2:** Cloudflare Workers oder eine gleichwertige Adapterimplementierung.
+**Backend-Kandidat ab v1.2:** Cloudflare Workers oder eine gleichwertige Adapterimplementierung. Die endgültige Auswahl folgt einer eigenen Architekturentscheidung und darf den lokalen Kern nicht binden.
 - **Durable Object pro aktiver Session** = Quelle der Wahrheit für alles Live: Initiative, HP, verbundene Spieler, Chat-/Erzähl-Log. Ein "Raum" pro laufender Kampagnen-Sitzung.
 - **D1** (SQL) für dauerhafte Daten: User, Kampagnen, Charaktere, Welt-Einträge, Bestiary, Content-Bibliothek (SRD + Homebrew, mit Lizenz-Flag pro Eintrag).
 - **R2** für Dateien: Charakterbilder, Kartenbilder (relevant ab Battle-Map-Sub-Projekt).
@@ -78,6 +80,7 @@ Die exakten Versionen und Exit-Kriterien stehen in der Roadmap. Capability-Specs
 
 ## 7. Offene Punkte für spätere Sub-Projekt-Specs
 
+- finaler [Pre-Code Engineering Blueprint](pre-code-engineering-blueprint.md) nach Capability-Specs und Architekturspikes
 - Auth- und Sync-Methode (v1.2-Spec)
 - genaues Datenmodell für Content-Einträge inkl. Lizenz-Flag (v0.2-Spec)
 - Summarization-, Retrieval- und Eval-Strategie (v3.0-Spec)

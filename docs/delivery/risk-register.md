@@ -21,6 +21,9 @@
 | R-14 | GitHub-Backlog wird zu groß und ungepflegt. | Operational | Medium | Medium | Medium | regelmäßiges Refinement; Archive/Won't Do; nur Ready-Items schätzen | Open |
 | R-15 | Der Anspruch „möglichst detailgetreu mit allem“ führt zu unkontrolliertem Scope-Wachstum. | Product/Operational | High | High | Critical | Tabletop-Prinzip über Release-Slices liefern; Non-Goals und Exit-Gates beibehalten; neue v1-Funktion benötigt Scope-Tausch | Open |
 | R-16 | Videospiel-/Mod-Inspiration wird mit offiziellen Regeln verwechselt oder gestalterisch zu eng übernommen. | Product/Compliance | Medium | High | High | DEC-003, getrennte Variantenprofile sowie Regel-, Content- und Design-Review | Open |
+| R-17 | DM-Geheimnisse erscheinen durch neue Felder oder Exporte versehentlich in einer Spieleransicht. | Security/Product | Medium | Critical | Critical | fachliche Sichtbarkeitsfilter, deny-by-default, Negativtests je Feldtyp und DEC-004 | Open |
+| R-18 | Änderungen am Kampagnen-Regelprofil machen Charaktere oder Sitzungszustände unbemerkt ungültig. | Data/Product | Medium | High | High | versionierte Regelprofile, Auswirkungsanalyse, explizite Migration und Kompatibilitätstests | Open |
+| R-19 | Technologien und Libraries werden vor stabilen Anforderungen festgeschrieben oder ohne Wartungs-/Lizenzprüfung übernommen. | Technical/Operational | Medium | High | High | Pre-Code Engineering Blueprint, aktuelle offizielle Quellen, Spikes und dokumentierter Fallback | Open |
 
 ## Eskalationsregel
 

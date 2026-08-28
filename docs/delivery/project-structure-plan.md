@@ -7,13 +7,14 @@ Der Projektstrukturplan beschreibt die **Arbeitspakete**, mit denen der Objektst
 | 1.1 | Projektauftrag und Governance | freigegebener Scope, Ziele, Stakeholder und Arbeitsweise | keine |
 | 1.2 | Requirements Engineering | versionierter Anforderungskatalog und Traceability | 1.1 |
 | 1.3 | Risiko, Business Case und Kommunikation | Risk Register, Kostenmodell, Reporting | 1.1 |
+| 1.4 | Pre-Code Engineering Blueprint | reproduzierbare Projektanlage, Modul-/Methodenübersicht, Technologie- und Abhängigkeitsentscheidungen | 1.2, 2.1 und Architekturspikes |
 | 2.1 | Content- und Lizenzanalyse | zulässige Quellen und Attribution | 1.2 |
 | 2.2 | Domänen- und Datenmodell | Charakter-, Kampagnen-, Content- und Session-Schema | 2.1 |
 | 2.3 | Content-Import-Spike | wiederholbarer SRD-Datenweg | 2.1, 2.2 |
 | 3.1 | Rules Engine Kern | Attribute, Proficiency, Checks und Ressourcen | 2.2 |
 | 3.2 | Ruleset-Versionierung | 2014/2024-Trennung und Kompatibilität | 3.1 |
 | 3.3 | Regeltests | deterministische Testmatrix | 3.1, 3.2 |
-| 4.1 | App-Grundgerüst | Frontend, Backend, lokale Entwicklung und CI | 1.1 |
+| 4.1 | App-Grundgerüst | Frontend, Backend, lokale Entwicklung und CI | 1.4 |
 | 4.2 | Charakter-Slice | Erstellung, Validierung, Sheet und Persistenz | 2.2, 3.1, 4.1 |
 | 4.3 | Kampagnen-/DM-Slice | Kampagne, Welt und DM-Notizen | 2.2, 4.1 |
 | 4.4 | Play-Session-Slice | Würfel, Encounter, Combat und Log | 3.1, 4.2, 4.3 |
