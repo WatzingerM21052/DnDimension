@@ -38,12 +38,14 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 
 - [Master Vision und Architektur](spec-planning/2026-08-26-master-vision-design.md)
 - [Content-Foundation](spec-planning/2026-08-26-content-foundation-design.md)
+- [v0.4 Character Creator Specification](spec-planning/v0.4-character-creator-spec.md)
 - [AI-DM Prompt-System Design](spec-planning/2026-08-28-ai-dm-prompt-system-design.md)
 
 ## Entscheidungen
 
 - [DEC-001: v1.0 Scope Baseline](decisions/DEC-001-v1-scope-baseline.md)
 - [DEC-002: v1.0 Character Content Boundary](decisions/DEC-002-v1-character-content-boundary.md)
+- [DEC-003: Tabletop Authenticity and Inspiration Boundary](decisions/DEC-003-tabletop-authenticity-and-inspiration.md)
 
 ## Forschung und Quellen
 

@@ -14,6 +14,7 @@
 | Z-08 | Planbare Produktentwicklung | Issues mit Kriterien vor Sprint | 100 % der Ready-Issues erfüllen Definition of Ready | Muss |
 | Z-09 | Kontrollierbare KI | unbelegte Regelbehauptungen in Eval-Suite | definierter Grenzwert vor v3-Release, keine kritischen Halluzinationen | Muss für v3 |
 | Z-10 | Begrenzbare Betriebskosten | Budgetüberschreitung | harte Limits und Warnung vor v3-Release | Muss für v3 |
+| Z-11 | Glaubwürdige Tabletop-Erfahrung | nicht erklärbare Regel-/Zustandsänderungen in Kernflüssen | 0 kritische Änderungen ohne sichtbare Ursache, Quelle oder bestätigte Kampagnenregel | Muss |
 
 ## Zielkonflikte
 

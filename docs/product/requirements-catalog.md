@@ -49,6 +49,9 @@ Jede Anforderung besitzt:
 | FR-017 | Das VTT unterstützt Grid, Sicht, Fog und Flächeneffekte. | v2.5 | P0 | taktische Begegnung ist Ende-zu-Ende möglich |
 | FR-018 | Erweiterungen nutzen versionierte, beschränkte Schnittstellen. | v4.0 | P1 | Erweiterung kann deaktiviert werden, ohne Daten zu beschädigen |
 | FR-019 | Nach Freigabe eines zusätzlichen Regelstands können Nutzer ihn pro Kampagne in den Einstellungen auswählen. | Future, nach stabilem 2024-Kern | P2 | 2014 wird erst angeboten, wenn Content, Berechnungen, Migration und getrennte Tests vollständig abgenommen sind |
+| FR-020 | Der Character Creator unterstützt Standard Array, Point Buy, transparenten In-App-Wurf und manuelle Attributseingabe. | v0.4 | P0 | jede Methode ist validiert, persistierbar und zeigt Zuordnung beziehungsweise Berechnung nachvollziehbar |
+| FR-021 | Kampagnen können zulässige Attributsmethoden festlegen. | v0.5 | P1 | gesperrte Methoden sind für zugeordnete Charaktere nicht auswählbar; bestehende Abweichungen werden sichtbar markiert |
+| FR-022 | Ein menschlicher DM kann automatisierte Zustände begründet korrigieren. | v0.6 | P1 | vorheriger/neuer Wert, Grund und Zeitpunkt bleiben im Sitzungslog nachvollziehbar |
 
 ## 4. Qualitätsanforderungen
 
@@ -64,6 +67,7 @@ Jede Anforderung besitzt:
 | NFR-008 | Beobachtbarkeit | Fehler besitzen Korrelation und nutzerfreundliche Meldung ohne sensitive Daten | v1.2 |
 | NFR-009 | KI-Transparenz | Quellenstatus, Unsicherheit und Kostenlimit sind erkennbar | v3.0 |
 | NFR-010 | Wartbarkeit | Rules Engine und Content sind unabhängig von UI und KI testbar | v0.3 |
+| NFR-011 | Regelerklärbarkeit und Spielerautonomie | automatische Würfe, Modifikatoren und Zustandsänderungen zeigen Ursache; keine Spielerentscheidung wird still ersetzt | v0.4 |
 
 ## 5. Constraints
 
@@ -78,6 +82,8 @@ Jede Anforderung besitzt:
 | CON-007 | v1.0 führt verpflichtend nur 2024-Regeln aus; 2014-Kompatibilität wird vorbereitet, aber separat geplant und abgenommen. |
 | CON-008 | Nicht vollständig implementierte Regelstände erscheinen weder als auswählbare Einstellung noch werden sie automatisch mit aktiven Kampagnen vermischt. |
 | CON-009 | Fest eingebaute v1.0-Charakteroptionen stammen ausschließlich aus zulässigem SRD-5.2.1-Content; proprietäre und private Optionen folgen nur über getrennte spätere Mechanismen. |
+| CON-010 | RAW 2024 ist der Standard; Varianten und Komfortregeln werden nur als explizite kampagnenspezifische Einstellungen aktiviert. |
+| CON-011 | Inspiration aus Videospielen oder Mods darf keine geschützten Assets/Texte/UI-Kompositionen übernehmen und keine abweichende Mechanik als offizielle Regel darstellen. |
 
 ## 6. Traceability
 

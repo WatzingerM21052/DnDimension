@@ -11,6 +11,8 @@ Eine Web-App, die Spieler und menschliche Dungeon Master beim vollständigen D&D
 
 **Leitprinzip: Zugänglichkeit vor Regelkenntnis.** Jede Design-Entscheidung wird daran gemessen, ob sie jemandem ohne D&D-Erfahrung hilft, trotzdem ein regelkonformes Spiel zu erleben. Die App erklärt progressiv und übernimmt Rechen-/Zustandsarbeit; kreative Entscheidungen bleiben bei Spielern und DM. Spätere KI schlägt vor und führt, wird aber nie unbemerkt zur Quelle der Wahrheit.
 
+**Erlebnisprinzip: Tabletop first, digital clarity second.** DnDimension strebt gemäß [DEC-003](../decisions/DEC-003-tabletop-authenticity-and-inspiration.md) die Glaubwürdigkeit einer echten D&D-Sitzung an. Digitale Rollenspiele und Mods dürfen Klarheit, Feedback und Komfort inspirieren, aber keine Regeln unmarkiert verändern und keine geschützten Inhalte oder markanten Gestaltungen liefern.
+
 Nutzer:innen können mehrere Kampagnen parallel anlegen und verwalten, mit eigener Welt und eigenen Charakteren. v1.0 ist fachlich **2024-first**. Jede Kampagne und jeder Content-Eintrag trägt trotzdem von Beginn an einen Regelstand. Eine spätere 2014-Kompatibilität wird erst nach Stabilisierung des 2024-Kerns als vollständig geprüfte, kampagnenspezifische Einstellung angeboten; ein halbfertiger Auswahlpunkt ist ausgeschlossen.
 
 ## 2. Abgrenzung zum Markt

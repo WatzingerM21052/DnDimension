@@ -19,6 +19,8 @@
 | R-12 | Barrierefreiheit wird erst spät geprüft. | Product/Compliance | Medium | High | High | Accessibility-Kriterien ab v0.4, automatisierte und manuelle Checks | Open |
 | R-13 | Private Referenzbibliothek existiert nur auf einem Datenträger. | Operational | Medium | High | High | 3-2-1-Backup planen; Cloud-Streaming nur als Kopie, nicht einziges Backup | Open |
 | R-14 | GitHub-Backlog wird zu groß und ungepflegt. | Operational | Medium | Medium | Medium | regelmäßiges Refinement; Archive/Won't Do; nur Ready-Items schätzen | Open |
+| R-15 | Der Anspruch „möglichst detailgetreu mit allem“ führt zu unkontrolliertem Scope-Wachstum. | Product/Operational | High | High | Critical | Tabletop-Prinzip über Release-Slices liefern; Non-Goals und Exit-Gates beibehalten; neue v1-Funktion benötigt Scope-Tausch | Open |
+| R-16 | Videospiel-/Mod-Inspiration wird mit offiziellen Regeln verwechselt oder gestalterisch zu eng übernommen. | Product/Compliance | Medium | High | High | DEC-003, getrennte Variantenprofile sowie Regel-, Content- und Design-Review | Open |
 
 ## Eskalationsregel
 
