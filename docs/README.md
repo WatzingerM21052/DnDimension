@@ -44,7 +44,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [v0.4 Character Creator Specification](spec-planning/v0.4-character-creator-spec.md)
 - [v0.5 Campaign Creator Specification](spec-planning/v0.5-campaign-creator-spec.md)
 - [v0.6 Play Session Specification](spec-planning/v0.6-play-session-spec.md)
-- [Pre-Code Engineering Blueprint](spec-planning/pre-code-engineering-blueprint.md) — akzeptierte Startarchitektur; Bootstrap-Validierung ausständig
+- [Pre-Code Engineering Blueprint](spec-planning/pre-code-engineering-blueprint.md) — akzeptierte Startarchitektur; P-01 bestanden, weitere Foundation-Spikes offen
 - [AI-DM Prompt-System Design](spec-planning/2026-08-28-ai-dm-prompt-system-design.md)
 
 ## Ausführungspläne
@@ -67,6 +67,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 ## Forschung und Quellen
 
 - [Katalog der privaten Referenzbibliothek](research/reference-library-catalog.md)
+- [v0.1 Toolchain Validation Report](research/v0.1-toolchain-validation-report.md) — reproduzierbarer P-01-Nachweis mit Versionen, Tests und Speicherwerten
 - [AI-DM Quellenstrategie](research/ai-dm-source-strategy.md)
 
 ## Anleitungen und Vorlagen
@@ -78,7 +79,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 
 ## Vollständigkeitsgrenze
 
-Die Dokumentation ist für den aktuellen Pre-Code- und v0.1-Planungsstand vollständig: Produktvision, v1-Scope, Requirements, Release-Gates, Risiken, Governance, Architektur, Daten-/Rules-Verträge, Character-, Campaign- und erster Session-Slice sowie der erste ausführbare Bootstrap-Plan sind festgehalten und verknüpft.
+Die Dokumentation ist für den aktuellen v0.1-Foundation-Stand vollständig: Produktvision, v1-Scope, Requirements, Release-Gates, Risiken, Governance, Architektur, Daten-/Rules-Verträge, Character-, Campaign- und erster Session-Slice sowie Bootstrap-Plan und P-01-Evidenz sind festgehalten und verknüpft.
 
 „Vollständig“ bedeutet nicht, dass entfernte Releases bereits mit Scheingenauigkeit spezifiziert sind:
 

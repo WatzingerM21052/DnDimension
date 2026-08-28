@@ -2,7 +2,7 @@
 
 Eine geplante Web-App zur Unterstützung von D&D-5e-Spielern und Dungeon Mastern: Charaktere, Kampagnen, Adventures, Regeln und vollständiger Sitzungszustand in einem zugänglichen Ablauf. v1.0 soll normales lokales D&D-Spiel über mehrere Sitzungen mit Social, Exploration und Combat ermöglichen – ohne KI, aber nicht minimalistisch. Accounts/Gruppen, Visual/VTT und KI folgen bewusst in späteren Releases.
 
-**Status:** Planungsphase — noch keine Implementierung.
+**Status:** v0.1 Project Foundation — der ausführbare Workspace wird unter `code/` aufgebaut.
 
 ## Einstieg
 
@@ -25,6 +25,10 @@ Eine geplante Web-App zur Unterstützung von D&D-5e-Spielern und Dungeon Mastern
 - [Private Referenzbibliothek: Katalog & Ablageregeln](docs/research/reference-library-catalog.md)
 
 Weitere Projektmanagement-, Delivery-, Risiko- und Vorlagendokumente liegen unter `docs/product/`, `docs/delivery/` und `docs/templates/`.
+
+## Code
+
+Der speichereffiziente TypeScript-/React-/Vite-Workspace liegt vollständig in `code/`. Dadurch bleiben Quellcode, Dependencies, Caches und Builds klar von Dokumentation, Prompts und der privaten Referenzbibliothek getrennt. Alle App-Befehle werden aus diesem Ordner ausgeführt.
 
 ## Prompts
 

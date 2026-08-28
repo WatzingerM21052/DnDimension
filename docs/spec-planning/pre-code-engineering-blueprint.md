@@ -1,6 +1,6 @@
 # Pre-Code Engineering Blueprint
 
-**Status:** Accepted Design Baseline – Bootstrap Validation Pending<br>
+**Status:** Accepted Design Baseline – P-01 Passed, P-02 bis P-05 Pending<br>
 **Stand:** 2026-08-28<br>
 **Owner:** Technical Owner<br>
 **Gate:** v0.1 Project Foundation / Startfreigabe für das App-Grundgerüst<br>
@@ -121,8 +121,9 @@ Vor Aufnahme werden außerdem Maintaineraktivität, bekannte Advisories, direkte
 
 ```text
 DnDimension/
-|-- apps/
-|   `-- web/
+|-- code/                    # gesamter ausführbarer Workspace
+|   |-- apps/
+|   |   `-- web/
 |       |-- public/
 |       |   |-- fonts/
 |       |   `-- icons/
@@ -151,7 +152,7 @@ DnDimension/
 |       |   `-- vite-env.d.ts
 |       |-- index.html
 |       `-- vite.config.ts
-|-- packages/
+|   |-- packages/
 |   |-- core/
 |   |-- domain/
 |   |   `-- src/{character,campaign,adventure,session,journal}/
@@ -163,20 +164,22 @@ DnDimension/
 |   |-- ui/
 |   |   `-- src/{primitives,components,patterns,hooks}/
 |   `-- testkit/
-|-- tooling/
-|   |-- eslint/
-|   |-- typescript/
-|   `-- scripts/
+|   |-- tooling/
+|   |   |-- eslint/
+|   |   |-- typescript/
+|   |   `-- scripts/
+|   |-- package.json
+|   |-- pnpm-lock.yaml
+|   |-- pnpm-workspace.yaml
+|   `-- tsconfig.json
 |-- docs/
 |-- prompts/
 |-- private-library/          # immer ignoriert
 |-- tmp/                      # immer ignoriert
-|-- .github/
-|-- package.json
-|-- pnpm-lock.yaml
-|-- pnpm-workspace.yaml
-`-- tsconfig.json
+`-- .github/
 ```
+
+Alle Implementierungs-, Dependency-, Cache- und Buildpfade liegen damit unter `code/`. Dokumentation, Prompts und die private Referenzbibliothek bleiben bewusst getrennt. Befehle des App-Toolings werden aus `code/` ausgeführt; Git- und Dokumentationsbefehle weiterhin aus der Repositorywurzel.
 
 ### 5.1 Package-Verantwortungen
 
@@ -486,7 +489,7 @@ Schnelle Gates laufen auf jedem Pull Request. Teure Browsermatrix, längere Reco
 | Derived PDF-/Suchcache | Standardlimit 250 MB, nutzerseitig löschbar |
 | private Referenzbibliothek | außerhalb dieser Budgets; nie dupliziert |
 
-Diese Werte sind v0.1-Budgets und werden im Bootstrap-Spike gemessen. Ein überschrittenes Budget verlangt Ursache, Nutzen und Entscheidung; es wird nicht durch stilles Anheben „gelöst“.
+P-01 hat diese Budgets am 2026-08-28 bestätigt: Production Build 1,43 MiB, projektlokale Dependencies 178,87 MiB, gemeinsamer pnpm-Store 170,64 MiB sowie jeweils 0,00 MiB für Vite-/Transform-Caches und Testartefakte nach dem Neuaufbau. Einzelheiten und Befehle stehen im [Toolchain Validation Report](../research/v0.1-toolchain-validation-report.md). Ein künftig überschrittenes Budget verlangt Ursache, Nutzen und Entscheidung; es wird nicht durch stilles Anheben „gelöst“.
 
 ### 16.2 Bereinigungsbefehle
 
@@ -496,7 +499,7 @@ pnpm clean:test     # Reports, Videos, Screenshots, Coverage
 pnpm clean:cache    # projektlokale, reproduzierbare Toolcaches
 pnpm clean:deep     # alle reproduzierbaren lokalen Projektartefakte
 pnpm disk:report    # Größen je kontrolliertem Bereich
-pnpm doctor         # Versionen, Lockfile, Browser, Speicher und Konfiguration
+pnpm run doctor     # Versionen, Lockfile, Browser, Speicher und Konfiguration
 ```
 
 Keiner dieser Befehle darf Quellcode, `private-library`, Nutzerdaten oder nicht reproduzierbare Dateien löschen. Pfade werden explizit validiert.
@@ -527,15 +530,15 @@ Ab Cloud-/Account-Releases gilt:
 
 ## 18. Reproduzierbarer Bootstrap
 
-### 18.1 Voraussetzungen
+### 18.1 Validierte Voraussetzungen
 
 - Git;
-- eine im Spike festgelegte aktive Node-LTS-Version;
-- über Corepack exakt gepinntes pnpm;
+- Node.js 24.11.0 oder neuer innerhalb der Node-24-Linie; `.node-version` und CI referenzieren 24.20.0;
+- über Corepack exakt gepinntes pnpm 11.19.0;
 - ein vorhandener moderner Browser, lokal bevorzugt Microsoft Edge;
 - keine globale Installation projektspezifischer CLI-Pakete.
 
-### 18.2 Geplanter Ablauf
+### 18.2 Validierter Foundation-Ablauf
 
 Der Bootstrap erfolgt zunächst in einem leeren temporären Testverzeichnis und danach reproduzierbar im Repository:
 
@@ -552,13 +555,13 @@ Der Bootstrap erfolgt zunächst in einem leeren temporären Testverzeichnis und 
 10. Messergebnisse und exakt geprüfte Versionen in Blueprint/Lockfile übernehmen.
 ```
 
-Die tatsächlichen Initialisierungsbefehle und exakten Versionsnummern werden erst nach diesem sauberen Durchlauf als copy-paste-fähige Bootstrap-Anleitung akzeptiert. Dadurch verhindert das Dokument veraltete oder ungetestete Befehle.
+Die Schritte 1 bis 3 sowie 9 und 10 wurden in P-01 technisch bestätigt. Die Punkte 4 bis 8 bleiben absichtlich in P-04, P-02, P-03 und P-05 getrennt; sie sind keine stillschweigende Voraussetzung des nun nutzbaren Foundation-Workspaces. Die copy-paste-fähigen Befehle stehen in `code/README.md`, die vollständige Evidenz im [Toolchain Validation Report](../research/v0.1-toolchain-validation-report.md).
 
 ## 19. Verbindliche Spikes vor Produktcode
 
 | Spike | Frage | Exit-Kriterium |
 |---|---|---|
-| P-01 Toolchain | Lassen sich gepinnte Node/pnpm/Vite/React-Versionen sauber installieren, bauen und bereinigen? | frischer Install-, Test- und Buildlauf plus Größenreport |
+| P-01 Toolchain — **Passed 2026-08-28** | Lassen sich gepinnte Node/pnpm/Vite/React-Versionen sauber installieren, bauen und bereinigen? | erfüllt: Frozen Lockfile, 22 Tests, Build und alle Größenbudgets bestanden |
 | P-02 Persistenz | Erfüllen Dexie/IndexedDB Unit-of-Work-, Migration-, Crash- und Multi-Tab-Annahmen? | atomarer Referenzfall, simulierte Unterbrechung, Recovery und Contract Test |
 | P-03 PWA | Funktionieren Install, Offline-Start, sicherer Updatehinweis und Cachetrennung? | Browsernachweis für Website und installierte PWA |
 | P-04 UI/Quality | Bleiben React Aria, Motion, Fonts und Teststack innerhalb Bundle-/A11y-/Diskbudget? | UI-Lab-Minimum, Reduced Motion, Tastaturtest und Messbericht |
@@ -595,7 +598,7 @@ Der Blueprint ist erst vollständig operationalisiert, wenn:
 - lokale Speicherbudgets eingehalten oder ausdrücklich neu entschieden wurden;
 - GitHub-Issues aus dem Blueprint Definition of Ready erfüllen.
 
-Bis zu dieser technischen Validierung bleibt der Dokumentstatus `Bootstrap Validation Pending`. Das ist kein offener Architekturgrundsatz, sondern ein messbares v0.1-Ausführungsgate.
+P-01 ist bestanden; bis P-02 bis P-05 entschieden sind, bleibt das gesamte Blueprint-Gate teilweise offen. Das ist kein offener Architekturgrundsatz, sondern ein Satz messbarer v0.1-Ausführungsgates.
 
 ## 22. Offizielle Referenzen der Entscheidung
 
