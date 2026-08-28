@@ -7,10 +7,10 @@ Dieses Dokument erklärt die initiale Zerlegung. Status, Zuständigkeit und Sch�
 
 ## Umfang des Bootstrap-Backlogs
 
-- 44 angelegte Issues; im Snapshot 36 offen und 8 abgeschlossen;
+- 48 angelegte Issues; im Snapshot 35 offen und 13 abgeschlossen;
 - 10 Release-Epics von v0.1 bis v1.0;
 - 12 verfeinerte Stories für v0.1, v0.2 und den bestätigten v0.6-Sitzungsschnitt;
-- 22 Tasks beziehungsweise Spikes; v0.6-Tasks bleiben bis zu ihren fachlichen und technischen Abhängigkeiten im Backlog;
+- 26 Tasks beziehungsweise Spikes; v0.6-Tasks bleiben bis zu ihren fachlichen und technischen Abhängigkeiten im Backlog;
 - 24 Release-Milestones von v0.1 bis v4.0;
 - Parent-/Sub-Issue-Beziehungen zwischen Epics, Stories und Tasks/Spikes.
 
@@ -37,7 +37,11 @@ Die Releases nach v1.0 sind zunächst als Milestones und Roadmap-Gates angelegt.
 
 - [#2 `[EPIC] v0.2 Content & Data Foundation`](https://github.com/WatzingerM21052/DnDimension/issues/2)
   - [#23 `[STORY] Content-Quellen und Lizenzen registrieren`](https://github.com/WatzingerM21052/DnDimension/issues/23)
-  - [#24 `[STORY] Portables Domain-Datenmodell definieren`](https://github.com/WatzingerM21052/DnDimension/issues/24)
+  - [#24 `[STORY] Portables Domain-Datenmodell definieren`](https://github.com/WatzingerM21052/DnDimension/issues/24) — Done, 4 / 4 Sub-Issues
+    - [#46 `[TASK] Domain-Grenzen und Aggregate spezifizieren`](https://github.com/WatzingerM21052/DnDimension/issues/46) — Done, 3 SP
+    - [#48 `[TASK] Command-, Event- und Snapshot-Verträge definieren`](https://github.com/WatzingerM21052/DnDimension/issues/48) — Done, 2 SP
+    - [#47 `[TASK] Migration, Import und Recovery-Verträge definieren`](https://github.com/WatzingerM21052/DnDimension/issues/47) — Done, 2 SP
+    - [#45 `[TASK] Domain-Verträge und Testmatrix festlegen`](https://github.com/WatzingerM21052/DnDimension/issues/45) — Done, 1 SP
   - [#25 `[STORY] Reproduzierbaren SRD-Import bereitstellen`](https://github.com/WatzingerM21052/DnDimension/issues/25)
 
 ## Release-Epics v0.3 bis v1.0
