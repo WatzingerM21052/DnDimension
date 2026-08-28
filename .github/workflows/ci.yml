@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: code
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v2
+        with:
+          version: 11.19.0
+          runtime: node@24.20.0
+          cache: true
+          install: false
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Verify foundation
+        run: pnpm verify
