@@ -19,15 +19,15 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 | **v0.5 First Local Alpha** | Erstmals nutzbare lokale App | Kampagne, einfache Welt-/DM-Notizen, Charakterzuordnung, grundlegende Navigation und Speicherung | Charakter und Kampagne funktionieren gemeinsam in einem vertikalen lokalen Ablauf |
 | **v0.6 Play Session Alpha** | Erste verwaltete Spielsitzung | Würfel, Encounter, Initiative, HP, Zustände und Sitzungsprotokoll | eine kleine Begegnung kann vom Start bis zum Abschluss verwaltet und gespeichert werden |
 | **v0.7 Integrated Local Alpha** | Zusammenhängende Single-User-App ohne KI | Charakter, Kampagne, Welt, Sitzung und Regeln integriert; robuste lokale Persistenz | zentraler End-to-End-Flow funktioniert ohne Account, Cloud oder KI; Daten überstehen Neustarts |
-| **v0.8 Feature-Complete Beta** | Inhaltlich vollständiger v1-Scope | Level-up, Inventar, Import/Export, Homebrew-Grundlage, Onboarding, Accessibility und Fehlerfälle | alle v1-P0-Anforderungen implementiert; offene Fehler sind priorisiert; externe Playtests möglich |
+| **v0.8 Feature-Complete Beta** | Inhaltlich vollständiger v1-Scope | Level-up, Inventar, Import/Export, homebrew-fähiges Datenmodell ohne vollständigen Editor, Onboarding, Accessibility und Fehlerfälle | alle v1-P0-Anforderungen implementiert; offene Fehler sind priorisiert; externe Playtests möglich |
 | **v0.9 Release Candidate** | Stabilisierung statt neuer Features | Migrationen, Performance, Security, Accessibility, Dokumentation und Release-Prozess | keine offenen P0-Fehler; definierter P1-Rahmen; Backup/Restore und Upgrade-Pfad getestet |
-| **v1.0 Local Player & DM** | Erstes stabiles Produkt ohne KI | vollständige local-first Player-/DM-Kernanwendung | Release-Gates bestanden; Kernflüsse getestet und dokumentiert; Daten portabel und wiederherstellbar |
+| **v1.0 Local Player & DM** | Erstes stabiles 2024-first Produkt ohne KI | vollständige local-first Player-/DM-Kernanwendung gemäß [DEC-001](../decisions/DEC-001-v1-scope-baseline.md) | Release-Gates bestanden; Kernflüsse getestet und dokumentiert; Daten portabel und wiederherstellbar; kein Account oder Onlinedienst erforderlich |
 
 ### Ausbau nach v1.0
 
 | Release | Produktzustand | Schwerpunkt | Exit-Kriterien |
 |---|---|---|---|
-| **v1.1 Settings & Homebrew** | Anpassbare lokale App | Einstellungen, Hausregeln, eigene Inhalte, Vorlagen und erweiterte Im-/Exporte | Anpassungen sind quellenmarkiert, migrierbar und pro Kampagne isolierbar |
+| **v1.1 Settings & Homebrew** | Anpassbare lokale App | App-/Kampagneneinstellungen, Hausregeln, eigene Inhalte, Vorlagen und erweiterte Im-/Exporte | Anpassungen sind quellenmarkiert, migrierbar und pro Kampagne isolierbar |
 | **v1.2 Accounts & Cloud Sync** | Optionale persistente Identität | Auth, Nutzerprofil, Cloud-Speicher, Geräte-Sync, Export und Löschung | Account ist optional; Rechte, Datenschutz, Sync und Wiederherstellung sind getestet |
 | **v1.3 Sharing & Roles** | Geteilte Kampagnen ohne vollständiges Live-Spiel | Einladungen, DM-/Spielerrollen, Berechtigungen und asynchrone Freigabe | Nutzer sehen und ändern nur freigegebene Daten; Rollenwechsel und Entzug funktionieren |
 | **v1.4 Realtime Groups Beta** | Experimentelles gemeinsames Live-Spiel | Lobby, Präsenz, Live-Zustand, Reconnect und Konfliktauflösung | geschlossene Gruppentests ohne stillen Zustandsverlust; bekannte Grenzen dokumentiert |
@@ -41,6 +41,10 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 | **v3.2 AI Memory & Quality** | Belastbares Langzeitspiel | strukturierte Erinnerung, Zusammenfassung, Quellenkonflikte, Evals und Beobachtbarkeit | definierte Qualitäts- und Kostenmetriken bestehen über lange Tests |
 | **v3.5 Stable AI Game Master** | Stabiles Solo-KI-Erlebnis | produktionsreifer Solo-DM, menschlicher Override, experimenteller Gruppen-KI-Modus | kritische Halluzinations-, Sicherheits-, Zustands- und Kosten-Gates bestanden |
 | **v4.0 Platform & Ecosystem** | Optional erweiterbare Plattform | versionierte API, Integrationen, Erweiterungen und kontrolliertes Teilen eigener Inhalte | Erweiterungen sind isoliert; Herkunft/Lizenz und Moderationspfad sind durchgängig |
+
+### Bestätigte spätere Capability ohne Zielrelease
+
+**D&D-5e-2014-Kompatibilität** bleibt vorgemerkt, wird aber erst nach einem stabilen 2024-Kern terminiert. Sie wird später als kampagnenspezifische Regelwerkoption in den Einstellungen angeboten und benötigt zuvor einen vollständigen Content-Adapter, eine getrennte Rules Engine beziehungsweise Regeladaption, Migrationen sowie eigene Negativ- und Regressionstests. Eine unvollständige oder rein kosmetische 2014-Auswahl wird nicht veröffentlicht.
 
 ## Now / Next / Later
 

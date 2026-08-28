@@ -40,6 +40,10 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [Content-Foundation](spec-planning/2026-08-26-content-foundation-design.md)
 - [AI-DM Prompt-System Design](spec-planning/2026-08-28-ai-dm-prompt-system-design.md)
 
+## Entscheidungen
+
+- [DEC-001: v1.0 Scope Baseline](decisions/DEC-001-v1-scope-baseline.md)
+
 ## Forschung und Quellen
 
 - [Katalog der privaten Referenzbibliothek](research/reference-library-catalog.md)

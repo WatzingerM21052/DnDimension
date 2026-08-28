@@ -1,7 +1,7 @@
 # Requirements Engineering und Anforderungskatalog
 
 **Stand:** 2026-08-28<br>
-**Status:** High-Level Baseline; Feature-Spezifikationen verfeinern diese Anforderungen
+**Status:** v1.0-Scope gemäß [DEC-001](../decisions/DEC-001-v1-scope-baseline.md) akzeptiert; einzelne Anforderungen werden im laufenden Review verfeinert
 
 ## 1. Anforderungsmanagement
 
@@ -48,6 +48,7 @@ Jede Anforderung besitzt:
 | FR-016 | Ein menschlicher DM kann KI-Vorschläge prüfen, ändern oder verwerfen. | v3.0 | P1 | keine KI-Änderung wird ungefragt verbindlich |
 | FR-017 | Das VTT unterstützt Grid, Sicht, Fog und Flächeneffekte. | v2.5 | P0 | taktische Begegnung ist Ende-zu-Ende möglich |
 | FR-018 | Erweiterungen nutzen versionierte, beschränkte Schnittstellen. | v4.0 | P1 | Erweiterung kann deaktiviert werden, ohne Daten zu beschädigen |
+| FR-019 | Nach Freigabe eines zusätzlichen Regelstands können Nutzer ihn pro Kampagne in den Einstellungen auswählen. | Future, nach stabilem 2024-Kern | P2 | 2014 wird erst angeboten, wenn Content, Berechnungen, Migration und getrennte Tests vollständig abgenommen sind |
 
 ## 4. Qualitätsanforderungen
 
@@ -73,6 +74,9 @@ Jede Anforderung besitzt:
 | CON-003 | Kampagnen tragen ein explizites Ruleset; Konvertierungen werden nicht automatisch verborgen. |
 | CON-004 | KI ist kein technischer Zwang für v0.1-v2.0. |
 | CON-005 | Keine verbindlichen Termine ohne verfügbare Kapazität und geschätzte Ready-Issues. |
+| CON-006 | v1.0 bleibt ohne Account, Cloud, Sharing, Realtime, VTT, KI und vollständigen Homebrew-Editor vollständig nutzbar. |
+| CON-007 | v1.0 führt verpflichtend nur 2024-Regeln aus; 2014-Kompatibilität wird vorbereitet, aber separat geplant und abgenommen. |
+| CON-008 | Nicht vollständig implementierte Regelstände erscheinen weder als auswählbare Einstellung noch werden sie automatisch mit aktiven Kampagnen vermischt. |
 
 ## 6. Traceability
 

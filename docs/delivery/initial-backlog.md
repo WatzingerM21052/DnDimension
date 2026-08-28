@@ -7,7 +7,7 @@ Dieses Dokument erklärt die initiale Zerlegung. Status, Zuständigkeit und Sch�
 
 ## Umfang des Bootstrap-Backlogs
 
-- 25 offene Issues;
+- 25 initial angelegte Issues; im Snapshot 21 offen und 4 abgeschlossen;
 - 10 Release-Epics von v0.1 bis v1.0;
 - 6 verfeinerte Stories für v0.1 und v0.2;
 - 9 Tasks beziehungsweise Spikes für die unmittelbar anstehende Foundation-Arbeit;
@@ -19,10 +19,10 @@ Die Releases nach v1.0 sind zunächst als Milestones und Roadmap-Gates angelegt.
 ## v0.1 - Project Foundation
 
 - [#1 `[EPIC] v0.1 Project Foundation`](https://github.com/WatzingerM21052/DnDimension/issues/1)
-  - [#11 `[STORY] Projektgrundlagen nachvollziehbar verwalten`](https://github.com/WatzingerM21052/DnDimension/issues/11)
-    - [#12 `[TASK] Projektmanagement-Dokumentation konsolidieren`](https://github.com/WatzingerM21052/DnDimension/issues/12)
-    - [#13 `[TASK] GitHub Labels, Milestones und Project-Felder einrichten`](https://github.com/WatzingerM21052/DnDimension/issues/13)
-    - [#14 `[TASK] Issue- und Pull-Request-Templates bereitstellen`](https://github.com/WatzingerM21052/DnDimension/issues/14)
+  - [#11 `[STORY] Projektgrundlagen nachvollziehbar verwalten`](https://github.com/WatzingerM21052/DnDimension/issues/11) — Done
+    - [#12 `[TASK] Projektmanagement-Dokumentation konsolidieren`](https://github.com/WatzingerM21052/DnDimension/issues/12) — Done
+    - [#13 `[TASK] GitHub Labels, Milestones und Project-Felder einrichten`](https://github.com/WatzingerM21052/DnDimension/issues/13) — Done
+    - [#14 `[TASK] Issue- und Pull-Request-Templates bereitstellen`](https://github.com/WatzingerM21052/DnDimension/issues/14) — Done
   - [#15 `[STORY] Anforderungen und Release-Gates baselinen`](https://github.com/WatzingerM21052/DnDimension/issues/15)
     - [#16 `[TASK] Ziele- und Anforderungskatalog reviewen`](https://github.com/WatzingerM21052/DnDimension/issues/16)
     - [#17 `[TASK] Release-Roadmap mit Exit-Kriterien validieren`](https://github.com/WatzingerM21052/DnDimension/issues/17)
