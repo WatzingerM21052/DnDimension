@@ -17,11 +17,12 @@
 | Z-11 | Glaubwürdige Tabletop-Erfahrung | nicht erklärbare Regel-/Zustandsänderungen in Kernflüssen | 0 kritische Änderungen ohne sichtbare Ursache, Quelle oder bestätigte Kampagnenregel | Muss |
 | Z-12 | Niedrige Einstiegshürde für neue DMs | Abschlussrate einer einfachen Kampagnenerstellung | ≥ 80 % ohne externe Hilfe in höchstens 15 Minuten im v0.5-Usability-Test | Muss |
 | Z-13 | Verlässliche DM-Geheimhaltung | kritische `dm_only`-Information in Player-Preview-Tests | 0 Offenlegungen | Muss |
+| Z-14 | Vollständige lokale D&D-Sitzungsunterstützung | Mehrsitzungs-Playtest über Social, Exploration und Combat | v1.0-Testkampagne ohne blockierende Workflow-Lücke, Account, VTT oder KI | Muss |
 
 ## Zielkonflikte
 
 - **Regeltreue vs. Zugänglichkeit:** Oberfläche erklärt progressiv, die Rules Engine bleibt exakt.
-- **Funktionsumfang vs. Lieferfähigkeit:** v0.5 bildet einen vertikalen Slice; Vollständigkeit folgt in v1.0.
+- **Funktionsumfang vs. Lieferfähigkeit:** v0.5/v0.6 bilden kleine vertikale Alpha-Slices; v0.8 ist feature-complete und v1.0 stabilisiert den vollständigen bestätigten lokalen Spielablauf.
 - **Lokale Kontrolle vs. Multiplayer-Komfort:** local-first bis v1.0, optionale Accounts/Cloud ab v1.2 und Realtime-Gruppen ab v1.4.
 - **Immersion vs. Informationsdichte:** Spielansicht bleibt fokussiert; Details sind kontextuell abrufbar.
 - **KI-Qualität vs. Kosten:** Quellenabruf und Kontextbudget werden vor freien Langkontexten bevorzugt.

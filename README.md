@@ -1,6 +1,6 @@
 # DnDimension
 
-Eine geplante Web-App zur Unterstützung von D&D-5e-Spielern und Dungeon Mastern: Charaktere, Kampagnen, Regeln, Begegnungen und Sitzungszustand in einem zugänglichen Ablauf. v1.0 funktioniert local-first ohne KI; Accounts/Gruppen, Visual/VTT und KI folgen bewusst in späteren Releases.
+Eine geplante Web-App zur Unterstützung von D&D-5e-Spielern und Dungeon Mastern: Charaktere, Kampagnen, Adventures, Regeln und vollständiger Sitzungszustand in einem zugänglichen Ablauf. v1.0 soll normales lokales D&D-Spiel über mehrere Sitzungen mit Social, Exploration und Combat ermöglichen – ohne KI, aber nicht minimalistisch. Accounts/Gruppen, Visual/VTT und KI folgen bewusst in späteren Releases.
 
 **Status:** Planungsphase — noch keine Implementierung.
 
@@ -14,6 +14,8 @@ Eine geplante Web-App zur Unterstützung von D&D-5e-Spielern und Dungeon Mastern
 - [Initialer Backlog und Issue-Hierarchie](docs/delivery/initial-backlog.md)
 - [Master Vision & Architektur](docs/spec-planning/2026-08-26-master-vision-design.md)
 - [Content-Foundation](docs/spec-planning/2026-08-26-content-foundation-design.md)
+- [v0.6 Play Session Specification](docs/spec-planning/v0.6-play-session-spec.md)
+- [Traceability- und Release-Review-Matrix](docs/delivery/traceability-matrix.md)
 - [Private Referenzbibliothek: Katalog & Ablageregeln](docs/research/reference-library-catalog.md)
 
 Weitere Projektmanagement-, Delivery-, Risiko- und Vorlagendokumente liegen unter `docs/product/`, `docs/delivery/` und `docs/templates/`.

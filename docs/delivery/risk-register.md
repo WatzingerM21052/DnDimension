@@ -24,6 +24,8 @@
 | R-17 | DM-Geheimnisse erscheinen durch neue Felder oder Exporte versehentlich in einer Spieleransicht. | Security/Product | Medium | Critical | Critical | fachliche Sichtbarkeitsfilter, deny-by-default, Negativtests je Feldtyp und DEC-004 | Open |
 | R-18 | Änderungen am Kampagnen-Regelprofil machen Charaktere oder Sitzungszustände unbemerkt ungültig. | Data/Product | Medium | High | High | versionierte Regelprofile, Auswirkungsanalyse, explizite Migration und Kompatibilitätstests | Open |
 | R-19 | Technologien und Libraries werden vor stabilen Anforderungen festgeschrieben oder ohne Wartungs-/Lizenzprüfung übernommen. | Technical/Operational | Medium | High | High | Pre-Code Engineering Blueprint, aktuelle offizielle Quellen, Spikes und dokumentierter Fallback | Open |
+| R-20 | Der kleine v0.6-Alpha-Slice wird irrtümlich als ausreichender Endumfang behandelt und Social-, Exploration- oder komplexe Sitzungsfälle bleiben dauerhaft unvollständig. | Product/Quality | Medium | Critical | Critical | CON-014, Reifegradmatrix v0.6-v1.0, feature-complete Beta-Gate und Mehrsitzungs-Playtest | Open |
+| R-21 | Ereignislog und Snapshot widersprechen sich oder eine Korrektur überschreibt Historie, wodurch Sitzungen nicht zuverlässig fortgesetzt werden können. | Data/Technical | Medium | Critical | Critical | DEC-005, atomare Zustandsübergänge, Sequenzen, Recovery-/Replay-Tests und Migrationsprüfung | Open |
 
 ## Eskalationsregel
 

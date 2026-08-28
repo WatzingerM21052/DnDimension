@@ -16,10 +16,10 @@ Der Projektstrukturplan beschreibt die **Arbeitspakete**, mit denen der Objektst
 | 3.3 | Regeltests | deterministische Testmatrix | 3.1, 3.2 |
 | 4.1 | App-Grundgerüst | Frontend, Backend, lokale Entwicklung und CI | 1.4 |
 | 4.2 | Charakter-Slice | Erstellung, Validierung, Sheet und Persistenz | 2.2, 3.1, 4.1 |
-| 4.3 | Kampagnen-/DM-Slice | Kampagne, Welt und DM-Notizen | 2.2, 4.1 |
-| 4.4 | Play-Session-Slice | Würfel, Encounter, Combat und Log | 3.1, 4.2, 4.3 |
-| 5.1 | Lokale Integration | Navigation, Fehlerfälle, Migration und Backup | 4.2-4.4 |
-| 5.2 | Beta-Qualität | Level-up, Import/Export, Accessibility und Performance | 5.1 |
+| 4.3 | Kampagnen-/DM-Slice | Kampagne, Regelprofil, Session Zero, Welt und DM-Notizen | 2.2, 4.1 |
+| 4.4 | Play-Session-Alpha | Adventure Foundation, drei Säulen, Würfel, Referenzkampf, Audit-Log und Save/Resume | 3.1, 4.2, 4.3 |
+| 5.1 | Lokale Mehrsitzungsintegration | mehrere Adventures/Sitzungen, Welt-/NPC-/Hinweiszustand, Zeit/Reise/Rast, Journal, Fehlerfälle und Migration | 4.2-4.4 |
+| 5.2 | Feature-Complete Beta | vollständige v1-P0-Spielmatrix, Level-up, Inventar, Effekte, Import/Export, Accessibility und Performance | 5.1 |
 | 5.3 | v1 Release | Release Candidate, Abnahme und Dokumentation | 5.2 |
 | 6.1 | Settings und Homebrew | Anpassungen und eigene Inhalte | 5.3 |
 | 6.2 | Accounts und Cloud-Sync | Identität, Datenschutz und Sync | 5.3 |

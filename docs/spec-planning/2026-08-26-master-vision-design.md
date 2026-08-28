@@ -17,6 +17,8 @@ Nutzer:innen können mehrere Kampagnen parallel anlegen und verwalten, mit eigen
 
 **Kampagnenprinzip:** Eine Kampagne ist gemäß [DEC-004](../decisions/DEC-004-campaign-as-rules-and-knowledge-boundary.md) die versionierte Grenze für Regelprofil, Session-Zero-Absprachen, Charakterzuordnung und Wissenssichtbarkeit. Spätere Gruppen-, VTT- und KI-Funktionen verwenden diese Kampagnenwahrheit, statt konkurrierende Zustände einzuführen.
 
+**Sitzungsprinzip:** Gemäß [DEC-005](../decisions/DEC-005-session-as-auditable-runtime-boundary.md) gilt `Campaign -> Adventure -> Session -> Scene/Encounter -> Event`. v0.6 beweist einen kleinen, aber säulenübergreifenden Ablauf; dieser Alpha-Slice ist nicht das Endprodukt. v0.8 enthält den vollständigen v1-P0-Spielablauf, v0.9 stabilisiert ihn und v1.0 muss normalen lokalen Mehrsitzungsbetrieb über Social, Exploration und Combat ermöglichen.
+
 ## 2. Abgrenzung zum Markt
 
 | Plattform | Stärke | Lücke, die wir füllen |
@@ -75,6 +77,8 @@ Die exakten Versionen und Exit-Kriterien stehen in der Roadmap. Capability-Specs
 ## 6. Testing-Strategie (grob)
 
 - Rules Engine: reine Funktionen, isoliert unit-testbar (kein Infra-Bezug)
+- Session: atomare Zustandsübergänge, Audit-Log/Snapshot-Recovery und Mehrsitzungs-End-to-End-Tests über alle drei Säulen
+- Wissen: deny-by-default Sichtbarkeits- und Player-Preview-Negativtests für jeden neuen Feld-/Ereignistyp
 - Worker-Endpunkte: Vitest + Miniflare (lokale Cloudflare-Simulation)
 - KI-DM-Qualität: automatisierte Szenario-Evals plus manuelles Playtesting ab v3.0
 

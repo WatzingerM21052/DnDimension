@@ -58,6 +58,17 @@ Jede Anforderung besitzt:
 | FR-026 | Kampagneninformationen werden fachlich in `player_facing` und `dm_only` getrennt. | v0.5 | P0 | Player Preview erhält in Negativtests keine DM-only Daten |
 | FR-027 | Lokale Charaktere können einer Kampagne zugeordnet und gegen deren Regelprofil geprüft werden. | v0.5 | P0 | Ergebnis zeigt kompatibel, Warnung oder Inkompatibilität mit Gründen ohne stille Mutation |
 | FR-028 | Kampagnen besitzen einen sicheren Lebenszyklus aus Draft, Active, Paused, Completed und Archived. | v0.5 | P0 | Zustandswechsel bleiben nach Neustart erhalten; Archivierung löscht keine abhängigen Daten |
+| FR-029 | Adventures sind eigene Handlungsbögen innerhalb einer Kampagne und speichern Hook, Ziele, Konflikte, mögliche Endzustände, Fortschritt und Sitzungsreferenzen. | v0.6 | P0 | Adventure kann unabhängig vorbereitet, in einer Sitzung referenziert und ohne stille Vorlagenmutation fortgeschrieben werden |
+| FR-030 | Sitzungen besitzen den Lebenszyklus Draft, Prepared, Active, Paused, Completed und Archived und können exakt fortgesetzt werden. | v0.6 | P0 | Neustart aus Draft, Active und Paused stellt jeweils den letzten konsistenten Stand wieder her |
+| FR-031 | Sitzungen unterstützen soziale, erkundungsbezogene, kämpferische, gemischte und freie Szenen über denselben Beschreiben–Handeln–Auflösen–Folgen-Kern. | v0.6 | P0 | eine Testsitzung wechselt durch alle drei Säulen, ohne Teilnehmer-, Ressourcen- oder Wissenszustand zu verlieren |
+| FR-032 | Spielerabsichten, DM-Auflösung und Würfe werden mit Kontext, Würfeln, Modifikatoren, Ziel, Sichtbarkeit, Ergebnis und Quelle erfasst. | v0.6 | P0 | automatische und manuelle Würfe sind unterscheidbar und vollständig nachvollziehbar |
+| FR-033 | Bestätigte Sitzungsereignisse und konsistente Snapshots ermöglichen Audit, Korrektur und Wiederherstellung. | v0.6 | P0 | Korrekturen bewahren Historie; Crash-/Restore-Test rekonstruiert denselben bestätigten Zustand |
+| FR-034 | Der Combat Tracker verwaltet Initiative, Runden/Züge, Aktionsökonomie, HP, temporäre HP, Todesrettungen, Schaden, Heilung, Zustände, Konzentration, Effekte und generische Ressourcen. | v0.6 | P0 | ein kleiner Referenzkampf kann über mehrere Runden bis zu einem tödlichen oder nicht-tödlichen Ende durchgeführt werden |
+| FR-035 | Sitzungs-, Szenen- und Ereignisdaten erzwingen `dm_only`, `player_facing` und bewusstes `revealed`. | v0.6 | P0 | neue Feldtypen sind deny-by-default; Player-Preview-Negativtests decken alle DM-only Typen ab |
+| FR-036 | Der Sitzungsabschluss erzeugt getrennte Rückblicke und einen bestätigten Rückfluss in Adventure, Kampagnenjournal und Charakterfortschritt. | v0.6 | P0 | keine übergeordnete Vorlage wird ohne Vorschau und Bestätigung verändert; Herkunft zur Sitzung bleibt erhalten |
+| FR-037 | DMs verwalten mehrere Adventures und Sitzungen mit verknüpften Orten, NPCs, Hinweisen, Belohnungen, Zielen und offenen Folgen. | v0.7 | P0 | eine Kampagne kann zwei aufeinanderfolgende Sitzungen mit konsistentem Adventure- und Weltfortschritt durchführen |
+| FR-038 | Session und Rules Engine integrieren soziale Haltungen, Beziehungen, Zeit, Licht, Reiseabschnitte, Gefahren, Rasten und mehrere Encounters zwischen Rasten. | v0.7 | P0 | Social-/Exploration-/Ressourcenänderungen bleiben über Szenen und Sitzungen konsistent |
+| FR-039 | Der gesamte v1-P0-Spielablauf ist für den freigegebenen 2024/SRD-Umfang feature-complete; Sonderfälle sind berechnet, unterstützt oder transparent manuell protokollierbar. | v0.8 | P0 | externer Mehrsitzungs-Playtest benötigt für keinen Kernschritt Account, KI, VTT oder eine unmarkierte Regelannahme |
 
 ## 4. Qualitätsanforderungen
 
@@ -75,6 +86,9 @@ Jede Anforderung besitzt:
 | NFR-010 | Wartbarkeit | Rules Engine und Content sind unabhängig von UI und KI testbar | v0.3 |
 | NFR-011 | Regelerklärbarkeit und Spielerautonomie | automatische Würfe, Modifikatoren und Zustandsänderungen zeigen Ursache; keine Spielerentscheidung wird still ersetzt | v0.4 |
 | NFR-012 | Wissensgrenzen | alle Kampagnenabfragen erzwingen Sichtbarkeit im Datenzugriff; neue Feldtypen benötigen Negativtests | v0.5 |
+| NFR-013 | Atomare Sitzungsintegrität | bestätigte Zustandsänderungen sind vollständig oder gar nicht angewandt; Snapshot und Logposition werden gemeinsam validiert | v0.6 |
+| NFR-014 | Transparente Regelabdeckung | jeder regelrelevante Vorgang ist als `computed`, `assisted` oder `manual_recorded` erkennbar; kein unbekannter Fall wird still als berechnet dargestellt | v0.6 |
+| NFR-015 | Langzeitsitzung und Wiederaufnahme | definierte Teilnehmer-, Log- und Laufzeitbudgets sowie Crash-/Restore-Szenarien werden spätestens in der Beta nachgewiesen | v0.8 |
 
 ## 5. Constraints
 
@@ -93,6 +107,9 @@ Jede Anforderung besitzt:
 | CON-011 | Inspiration aus Videospielen oder Mods darf keine geschützten Assets/Texte/UI-Kompositionen übernehmen und keine abweichende Mechanik als offizielle Regel darstellen. |
 | CON-012 | Regel- oder Quellenänderungen einer aktiven Kampagne werden versioniert und niemals ohne Auswirkungsanalyse auf Charaktere und Sitzungszustand angewandt. |
 | CON-013 | Veröffentlichte Abenteuer dürfen als private Referenz registriert werden; proprietärer Volltext und Medien werden weder eingebaut noch automatisch aus privaten Dateien importiert. |
+| CON-014 | Der bewusst kleine v0.6-Alpha-Slice definiert nicht die Funktionsobergrenze; v0.8 muss den gesamten akzeptierten v1-P0-Umfang enthalten und v1.0 normalen lokalen Mehrsitzungsbetrieb ermöglichen. |
+| CON-015 | v1.0 darf für einen vollständigen Sitzungsablauf keine Battle Map oder VTT-Funktion voraussetzen; abstrakte Positionierung und manuelle Distanzeingabe bleiben möglich. |
+| CON-016 | Ein nicht automatisierter Regel- oder Content-Sonderfall muss transparent unterstützt oder manuell protokolliert werden; die App darf weder Spielerentscheidung noch Regelergebnis erfinden. |
 
 ## 6. Traceability
 

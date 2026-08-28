@@ -15,9 +15,10 @@ DnDimension
 │   └── Würfel und persönliche Notizen
 ├── Dungeon Master Tools
 │   ├── Kampagnen- und Weltverwaltung
+│   ├── Adventures, Szenen, Hinweise und Kampagnenjournal
 │   ├── NPCs, Fraktionen, Orte und Quests
 │   ├── Bestiary und Encounter Builder
-│   └── Session- und Combat-Tracker
+│   └── Session-, Event-, Ressourcen- und Combat-Tracker
 ├── Rules & Content
 │   ├── Content-Registry und Quellenmetadaten
 │   ├── Rules Engine 2024 (v1-Kern)

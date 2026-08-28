@@ -7,10 +7,10 @@ Dieses Dokument erklärt die initiale Zerlegung. Status, Zuständigkeit und Sch�
 
 ## Umfang des Bootstrap-Backlogs
 
-- 25 initial angelegte Issues; im Snapshot 21 offen und 4 abgeschlossen;
+- 44 angelegte Issues; im Snapshot 36 offen und 8 abgeschlossen;
 - 10 Release-Epics von v0.1 bis v1.0;
-- 6 verfeinerte Stories für v0.1 und v0.2;
-- 9 Tasks beziehungsweise Spikes für die unmittelbar anstehende Foundation-Arbeit;
+- 12 verfeinerte Stories für v0.1, v0.2 und den bestätigten v0.6-Sitzungsschnitt;
+- 22 Tasks beziehungsweise Spikes; v0.6-Tasks bleiben bis zu ihren fachlichen und technischen Abhängigkeiten im Backlog;
 - 24 Release-Milestones von v0.1 bis v4.0;
 - Parent-/Sub-Issue-Beziehungen zwischen Epics, Stories und Tasks/Spikes.
 
@@ -23,10 +23,10 @@ Die Releases nach v1.0 sind zunächst als Milestones und Roadmap-Gates angelegt.
     - [#12 `[TASK] Projektmanagement-Dokumentation konsolidieren`](https://github.com/WatzingerM21052/DnDimension/issues/12) — Done
     - [#13 `[TASK] GitHub Labels, Milestones und Project-Felder einrichten`](https://github.com/WatzingerM21052/DnDimension/issues/13) — Done
     - [#14 `[TASK] Issue- und Pull-Request-Templates bereitstellen`](https://github.com/WatzingerM21052/DnDimension/issues/14) — Done
-  - [#15 `[STORY] Anforderungen und Release-Gates baselinen`](https://github.com/WatzingerM21052/DnDimension/issues/15)
-    - [#16 `[TASK] Ziele- und Anforderungskatalog reviewen`](https://github.com/WatzingerM21052/DnDimension/issues/16)
-    - [#17 `[TASK] Release-Roadmap mit Exit-Kriterien validieren`](https://github.com/WatzingerM21052/DnDimension/issues/17)
-    - [#18 `[TASK] Traceability und Release-Review definieren`](https://github.com/WatzingerM21052/DnDimension/issues/18)
+  - [#15 `[STORY] Anforderungen und Release-Gates baselinen`](https://github.com/WatzingerM21052/DnDimension/issues/15) — Done
+    - [#16 `[TASK] Ziele- und Anforderungskatalog reviewen`](https://github.com/WatzingerM21052/DnDimension/issues/16) — Done
+    - [#17 `[TASK] Release-Roadmap mit Exit-Kriterien validieren`](https://github.com/WatzingerM21052/DnDimension/issues/17) — Done
+    - [#18 `[TASK] Traceability und Release-Review definieren`](https://github.com/WatzingerM21052/DnDimension/issues/18) — Done
   - [#19 `[STORY] Technische Foundation entscheidungsbereit machen`](https://github.com/WatzingerM21052/DnDimension/issues/19)
     - [#20 `[SPIKE] Local-first Persistenzarchitektur bewerten`](https://github.com/WatzingerM21052/DnDimension/issues/20)
     - [#21 `[SPIKE] Offiziellen SRD-Importpfad bewerten`](https://github.com/WatzingerM21052/DnDimension/issues/21)
@@ -50,6 +50,30 @@ Die Releases nach v1.0 sind zunächst als Milestones und Roadmap-Gates angelegt.
 - [#8 v0.8 Feature-Complete Beta](https://github.com/WatzingerM21052/DnDimension/issues/8)
 - [#9 v0.9 Release Candidate](https://github.com/WatzingerM21052/DnDimension/issues/9)
 - [#10 v1.0 Local Player & DM](https://github.com/WatzingerM21052/DnDimension/issues/10)
+
+## v0.6 - Play Session Alpha
+
+- [#6 `[EPIC] v0.6 Play Session Alpha`](https://github.com/WatzingerM21052/DnDimension/issues/6)
+  - [#27 `[STORY] Sitzung vorbereiten, starten und fortsetzen`](https://github.com/WatzingerM21052/DnDimension/issues/27) — 8 SP
+    - [#28 `[TASK] Adventure- und Session-Laufzeitmodell definieren`](https://github.com/WatzingerM21052/DnDimension/issues/28) — 5 SP
+    - [#29 `[TASK] Session-Lifecycle, Snapshot und Wiederaufnahme umsetzen`](https://github.com/WatzingerM21052/DnDimension/issues/29) — 3 SP
+  - [#30 `[STORY] Szenen aller drei D&D-Säulen verwalten`](https://github.com/WatzingerM21052/DnDimension/issues/30) — 8 SP
+    - [#31 `[TASK] Adventure- und Scene-Foundation implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/31) — 5 SP
+    - [#32 `[TASK] Social- und Exploration-Szenenablauf implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/32) — 3 SP
+  - [#33 `[STORY] Würfe und DM-Auflösung nachvollziehbar protokollieren`](https://github.com/WatzingerM21052/DnDimension/issues/33) — 5 SP
+    - [#34 `[TASK] Würfel- und Modifikatorauflösung implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/34) — 3 SP
+    - [#35 `[TASK] Intentionslog, Automatisierungsgrad und DM-Override implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/35) — 2 SP
+  - [#36 `[STORY] Kleine Kampfbegegnung vollständig durchführen`](https://github.com/WatzingerM21052/DnDimension/issues/36) — 13 SP; vor `Ready` weiter zu teilen
+    - [#37 `[TASK] Initiative, Runden und Aktionsökonomie implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/37) — 8 SP
+    - [#38 `[TASK] HP, Todeszustand, Effekte, Konzentration und Ressourcen implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/38) — 5 SP
+  - [#39 `[STORY] Sitzungswissen sicher trennen und enthüllen`](https://github.com/WatzingerM21052/DnDimension/issues/39) — 5 SP
+    - [#40 `[TASK] Session-Sichtbarkeitsmodell deny-by-default implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/40) — 3 SP
+    - [#41 `[TASK] Player Preview, Enthüllung und Visibility-Negativtests implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/41) — 2 SP
+  - [#42 `[STORY] Sitzung abschließen und Kampagnenfortschritt übernehmen`](https://github.com/WatzingerM21052/DnDimension/issues/42) — 5 SP
+    - [#43 `[TASK] Sitzungsrückblick und Adventure-Campaign-Rückfluss implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/43) — 3 SP
+    - [#44 `[TASK] Session-Abschluss, Archivierung und Restore absichern`](https://github.com/WatzingerM21052/DnDimension/issues/44) — 2 SP
+
+Alle v0.6-Items stehen im `Backlog`, tragen Milestone, Priority, Area, Work Type, Target Version, Risk und vorläufige Story Points. Sie werden erst nach v0.2/v0.3-Domain-, Persistenz- und Rules-Entscheidungen in `Ready` verschoben. #36 überschreitet bewusst die Ready-Grenze von 8 Punkten und muss im späteren Refinement in kleinere nutzerwertorientierte Stories zerlegt werden.
 
 ## Refinement-Regel
 

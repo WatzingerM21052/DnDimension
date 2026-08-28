@@ -17,11 +17,11 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 | **v0.3 Rules Engine Foundation** | Testbarer Regelkern | Attribute, Proficiency, Checks, AC, Ressourcen und Ruleset-Versionierung | Kernfunktionen sind UI-unabhängig, deterministisch und automatisiert getestet |
 | **v0.4 Character Creator Slice** | Erster sichtbarer Nutzerfluss | geführte 2024-Charaktererstellung mit eingebautem SRD-5.2.1-Content, vier nachvollziehbaren Attributsmethoden, Validierung und lokalem Charakterbogen gemäß [Character Creator Spec](../spec-planning/v0.4-character-creator-spec.md) | gültiger Charakter kann ohne private Dateien, Netzwerk oder manuelle Nachrechnung erstellt und erneut geöffnet werden; Entscheidungen und abgeleitete Werte sind erklärbar |
 | **v0.5 First Local Alpha** | Erstmals nutzbare lokale App | Campaign Creator mit Prämisse, Regelprofil, Session Zero, Wissensgrenzen, Charakterzuordnung und Lebenszyklus gemäß [Campaign Creator Spec](../spec-planning/v0.5-campaign-creator-spec.md) | Charakter und Kampagne funktionieren gemeinsam in einem vertikalen lokalen Ablauf; Player Preview enthält keine DM-only Informationen |
-| **v0.6 Play Session Alpha** | Erste verwaltete Spielsitzung | Würfel, Encounter, Initiative, HP, Zustände und Sitzungsprotokoll | eine kleine Begegnung kann vom Start bis zum Abschluss verwaltet und gespeichert werden |
-| **v0.7 Integrated Local Alpha** | Zusammenhängende Single-User-App ohne KI | Charakter, Kampagne, Welt, Sitzung und Regeln integriert; robuste lokale Persistenz | zentraler End-to-End-Flow funktioniert ohne Account, Cloud oder KI; Daten überstehen Neustarts |
-| **v0.8 Feature-Complete Beta** | Inhaltlich vollständiger v1-Scope | Level-up, Inventar, Import/Export, homebrew-fähiges Datenmodell ohne vollständigen Editor, Onboarding, Accessibility und Fehlerfälle | alle v1-P0-Anforderungen implementiert; offene Fehler sind priorisiert; externe Playtests möglich |
-| **v0.9 Release Candidate** | Stabilisierung statt neuer Features | Migrationen, Performance, Security, Accessibility, Dokumentation und Release-Prozess | keine offenen P0-Fehler; definierter P1-Rahmen; Backup/Restore und Upgrade-Pfad getestet |
-| **v1.0 Local Player & DM** | Erstes stabiles 2024-first Produkt ohne KI | vollständige local-first Player-/DM-Kernanwendung gemäß [DEC-001](../decisions/DEC-001-v1-scope-baseline.md) | Release-Gates bestanden; Kernflüsse getestet und dokumentiert; Daten portabel und wiederherstellbar; kein Account oder Onlinedienst erforderlich |
+| **v0.6 Play Session Alpha** | Kleinster echter, säulenübergreifender Sitzungsablauf | schlanke Adventure Foundation; Social-, Exploration-, Combat-, Mixed- und Freeform-Szenen; nachvollziehbare Würfe; vollständiger kleiner Referenzkampf; Audit-Log und Save/Resume gemäß [Play Session Spec](../spec-planning/v0.6-play-session-spec.md) | eine Testsitzung durchläuft alle drei Säulen, pausiert/fortsetzt identisch und schließt mit bestätigtem Journal-/Campaign-Rückfluss ab |
+| **v0.7 Integrated Local Alpha** | Zusammenhängende Mehrsitzungs-App ohne KI | mehrere Adventures/Sitzungen, Welt/NPC/Hinweise, vertiefte Social-/Exploration-Abläufe, Zeit/Reise/Rast, mehrere Encounter und robuste lokale Persistenz | zwei aufeinanderfolgende Sitzungen funktionieren Ende-zu-Ende ohne Account, Cloud, VTT oder KI; Welt-, Charakter- und Adventure-Zustand bleiben konsistent |
+| **v0.8 Feature-Complete Beta** | Funktional vollständiger v1-Scope | alle v1-P0-Spielabläufe und unterstützten SRD-Regelfälle; komplexere Kämpfe/Effekte/Ressourcen; Level-up, Inventar, Import/Export, Onboarding und Accessibility | keine bekannte blockierende Workflow-Lücke im v1-Scope; externe Mehrsitzungs-Playtests über Social, Exploration und Combat bestehen |
+| **v0.9 Release Candidate** | Stabilisierung statt neuer Capabilities | Migrationen, Recovery, Performance, Security, Accessibility, Regelregression, Dokumentation und Release-Prozess | keine offenen P0-Fehler; definierter P1-Rahmen; lange Sitzung, Backup/Restore und Upgrade-Pfad getestet; keine geplante Feature-Lücke wird als Bugfix versteckt |
+| **v1.0 Local Player & DM** | Stabile normale D&D-Unterstützung für Spieler und menschlichen DM | vollständige local-first 2024/SRD-Kernanwendung gemäß [DEC-001](../decisions/DEC-001-v1-scope-baseline.md) und [DEC-005](../decisions/DEC-005-session-as-auditable-runtime-boundary.md) | lokale Kampagne über mehrere Sitzungen mit Charakterfortschritt, Adventure-/Weltzustand, Social, Exploration und Combat ist getestet, dokumentiert, portabel und ohne Account, Onlinedienst, VTT oder KI vollständig nutzbar |
 
 ### Ausbau nach v1.0
 
@@ -46,6 +46,14 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 
 **D&D-5e-2014-Kompatibilität** bleibt vorgemerkt, wird aber erst nach einem stabilen 2024-Kern terminiert. Sie wird später als kampagnenspezifische Regelwerkoption in den Einstellungen angeboten und benötigt zuvor einen vollständigen Content-Adapter, eine getrennte Rules Engine beziehungsweise Regeladaption, Migrationen sowie eigene Negativ- und Regressionstests. Eine unvollständige oder rein kosmetische 2014-Auswahl wird nicht veröffentlicht.
 
+## Interpretation von Alpha, Beta und v1.0
+
+- **Alpha** bedeutet absichtlich begrenzte Szenarien zum Prüfen von Datenmodell, Spielschleife und Bedienung. Fehlende spätere P0-Fälle sind dokumentierte Ausbauarbeit, nicht der gewünschte Endzustand.
+- **Feature-Complete Beta** bedeutet, dass der akzeptierte v1-Funktionsumfang vorhanden ist. Beta-Feedback darf Fehler und Bedienprobleme zeigen, aber keine bewusst fehlende Kern-Säule kaschieren.
+- **Release Candidate** fügt keine geplanten Capabilities mehr hinzu. Er härtet einen bereits vollständigen Scope.
+- **v1.0** muss normales lokales D&D-Spiel im freigegebenen 2024/SRD-Umfang erlauben. „Ohne KI“ bedeutet menschlich geleitet, nicht minimalistisch.
+- **Inhaltsvollständigkeit und Funktionsvollständigkeit sind getrennt:** eingebaute Regeln/Inhalte bleiben lizenzkonform SRD-basiert; generische Ressourcen und transparente manuelle Auflösung verhindern, dass private oder seltene Sonderfälle den Sitzungsablauf blockieren oder als angeblich automatisch unterstützt erscheinen.
+
 ## Now / Next / Later
 
 ### Now - v0.1
@@ -64,7 +72,7 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 
 ### Later - v0.6 bis v4.0
 
-- Play Session, integrierte Alpha, Beta und Release Candidate führen kontrolliert zu v1.0.
+- Play Session Alpha, Mehrsitzungsintegration, feature-complete Beta und Release Candidate führen kontrolliert zu einer vollständigen lokalen v1.0-Sitzungsunterstützung.
 - Accounts und Gruppen erst nach dem stabilen local-first Release.
 - Visuelle Schicht erst nach validierten Kernflüssen systematisch ausbauen.
 - KI erst auf strukturierte, testbare Regeln und Kampagnendaten aufsetzen.

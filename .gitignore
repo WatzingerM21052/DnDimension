@@ -14,6 +14,9 @@
 # Legacy location kept ignored in case old files are restored there
 /SRD 5.1 - Split and Bookmarked/
 
+# Local research, PDF extraction and import workspace
+/tmp/
+
 # Dependencies
 node_modules/
 

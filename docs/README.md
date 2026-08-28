@@ -33,6 +33,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [Scrum- und Kanban-Playbook](delivery/scrum-kanban-playbook.md)
 - [GitHub-Issue- und Project-Workflow](delivery/github-workflow.md)
 - [Initialer GitHub-Backlog](delivery/initial-backlog.md)
+- [Traceability- und Release-Review-Matrix](delivery/traceability-matrix.md)
 
 ## Architektur und Capability-Specs
 
@@ -40,6 +41,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [Content-Foundation](spec-planning/2026-08-26-content-foundation-design.md)
 - [v0.4 Character Creator Specification](spec-planning/v0.4-character-creator-spec.md)
 - [v0.5 Campaign Creator Specification](spec-planning/v0.5-campaign-creator-spec.md)
+- [v0.6 Play Session Specification](spec-planning/v0.6-play-session-spec.md)
 - [Pre-Code Engineering Blueprint](spec-planning/pre-code-engineering-blueprint.md)
 - [AI-DM Prompt-System Design](spec-planning/2026-08-28-ai-dm-prompt-system-design.md)
 
@@ -49,6 +51,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [DEC-002: v1.0 Character Content Boundary](decisions/DEC-002-v1-character-content-boundary.md)
 - [DEC-003: Tabletop Authenticity and Inspiration Boundary](decisions/DEC-003-tabletop-authenticity-and-inspiration.md)
 - [DEC-004: Campaign as Rules and Knowledge Boundary](decisions/DEC-004-campaign-as-rules-and-knowledge-boundary.md)
+- [DEC-005: Session as Auditable Runtime Boundary](decisions/DEC-005-session-as-auditable-runtime-boundary.md)
 
 ## Forschung und Quellen
 

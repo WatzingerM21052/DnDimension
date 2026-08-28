@@ -3,7 +3,7 @@
 **Status:** Accepted<br>
 **Datum:** 2026-08-28<br>
 **Owner:** WatzingerM21052<br>
-**Betroffene Releases/Requirements:** v0.2-v3.5; Z-03, Z-05, Z-11 bis Z-13; FR-004, FR-021, FR-023 bis FR-028; NFR-012; CON-003, CON-010, CON-012, CON-013
+**Betroffene Releases/Requirements:** v0.2-v3.5; Z-03, Z-05, Z-11 bis Z-13; FR-004, FR-021, FR-023 bis FR-039; NFR-012 bis NFR-015; CON-003, CON-010, CON-012 bis CON-016
 
 ## Kontext
 
@@ -22,6 +22,7 @@ Jede Kampagne ist eine eigenständige, versionierte Fach- und Wissensgrenze mit 
 - **Session-Zero-Vereinbarung:** Ton, Themen, Spielschwerpunkte, Tischkonventionen, Grenzen und weitere gemeinsam getroffene Absprachen mit Revisionsstand.
 - **Wissenssichtbarkeit:** mindestens `player_facing` und `dm_only`; DM-Inhalte dürfen niemals allein durch UI-Konventionen geschützt sein.
 - **Lokale Gruppe:** Verweise auf lokale Charaktere und optionale Teilnehmerbezeichnungen, ohne Charakterdaten zu duplizieren.
+- **Adventures:** eigene spielbare Handlungsbögen mit Hook, Zielen, Konflikten, möglichen Endzuständen, Fortschritt und Sitzungsreferenzen.
 - **Lebenszyklus:** Draft, Active, Paused, Completed und Archived; Zustandswechsel sind bewusst und nachvollziehbar.
 
 ### Regel- und Änderungsprinzipien
@@ -36,6 +37,10 @@ Jede Kampagne ist eine eigenständige, versionierte Fach- und Wissensgrenze mit 
 
 Eine Kampagne darf Titel, eigene Zusammenfassung, Quellenkennung und privaten Ablagehinweis eines veröffentlichten Abenteuers speichern. Proprietärer Abenteuertext, Karten oder Handouts werden nicht in veröffentlichte App-Daten kopiert oder automatisch aus privaten PDFs importiert.
 
+### Adventure-, Session- und Ereignisgrenze
+
+Die Kampagne hält langfristige Regeln und Wissen. Ein Adventure hält vorbereitete Möglichkeiten und Fortschritt. Eine Session hält den tatsächlich gespielten Laufzeitzustand; Szenen und Encounter strukturieren konkrete Situationen, Ereignisse dokumentieren bestätigte Handlungen und Folgen. Sitzungsresultate verändern Adventure oder Kampagne erst durch einen bewussten, protokollierten Rückfluss gemäß [DEC-005](DEC-005-session-as-auditable-runtime-boundary.md).
+
 ### Vorbereitung späterer Capabilities
 
 - Accounts und Gruppen erhalten später Berechtigungen auf denselben Wissensgrenzen; sie definieren keine zweite Kampagnenwahrheit.
@@ -49,6 +54,7 @@ Eine Kampagne darf Titel, eigene Zusammenfassung, Quellenkennung und privaten Ab
 - Das Zuweisen eines inkompatiblen Charakters erzeugt eine verständliche Abweichungsliste und keine stille Mutation.
 - Eine Regelprofiländerung zeigt betroffene Charaktere und Einstellungen vor Bestätigung.
 - Archivieren erhält verknüpfte Charakter-, Notiz- und spätere Sitzungsreferenzen.
+- Adventure-Vorlagen bleiben beim Spielen unverändert; Session-Ergebnisse werden erst nach bestätigter Vorschau übernommen.
 - Export und Restore bewahren IDs, Revisionen und Wissensgrenzen.
 
 ## Folgen und Trade-offs

@@ -51,6 +51,8 @@ Die Spalten sind Planungsblöcke, keine zugesagten Sprints. Nach Schätzung wird
 | v0.8 Beta |  |  |  |  |  |  | █ | █ |  |
 | v0.9 RC / v1.0 |  |  |  |  |  |  |  | █ | █ |
 
+Die Balken bilden Reife, nicht einen dauerhaft reduzierten Funktionsumfang ab: v0.6 beweist einen kleinen säulenübergreifenden Sitzungsablauf, v0.7 integriert mehrere Sitzungen, v0.8 enthält den vollständigen v1-P0-Umfang, v0.9 stabilisiert und v1.0 nimmt normalen lokalen Kampagnenbetrieb ab. Eine Capability, die im bestätigten v1-Scope liegt, darf nicht allein wegen des kleinen v0.6-Alpha-Slices entfallen.
+
 ## Sprint-Zeremonien
 
 | Zeitpunkt | Termin | Zweck |

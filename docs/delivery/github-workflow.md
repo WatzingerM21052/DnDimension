@@ -32,7 +32,7 @@ Jedes Issue erhält:
 |---|---|
 | Type | `type:epic`, `type:story`, `type:task`, `type:bug`, `type:spike`, `type:docs`, `type:chore` |
 | Priority | `priority:P0` bis `priority:P3` |
-| Area | `area:product`, `content`, `rules`, `character`, `campaign`, `encounter`, `combat`, `data`, `platform`, `ux`, `auth`, `multiplayer`, `vtt`, `ai`, `docs` |
+| Area | `area:product`, `content`, `rules`, `character`, `campaign`, `session`, `encounter`, `combat`, `data`, `platform`, `ux`, `auth`, `multiplayer`, `vtt`, `ai`, `docs` |
 | State/Need | `status:blocked`, `needs:decision`, `needs:research`, `good first issue` |
 
 Milestones bilden Versionen ab und werden nicht zusätzlich als Versionslabel dupliziert.

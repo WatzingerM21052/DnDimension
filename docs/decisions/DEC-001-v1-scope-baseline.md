@@ -3,7 +3,7 @@
 **Status:** Accepted<br>
 **Datum:** 2026-08-28<br>
 **Owner:** WatzingerM21052<br>
-**Betroffene Releases/Requirements:** v0.1-v1.0; FR-001 bis FR-010; NFR-001 bis NFR-004 und NFR-010; CON-003, CON-004, CON-006, CON-007
+**Betroffene Releases/Requirements:** v0.1-v1.0; FR-001 bis FR-010, FR-020 bis FR-039; NFR-001 bis NFR-004 und NFR-010 bis NFR-015; CON-003, CON-004, CON-006, CON-007, CON-014 bis CON-016
 
 ## Kontext
 
@@ -19,9 +19,10 @@ v1.0 ist eine **local-first Player-/DM-Anwendung für D&D 5e 2024**, die ohne Ac
 
 - geführte Charaktererstellung nach dem Regelstand 2024;
 - Charakterbogen, Inventar, Ressourcen, Zauber und regelgeführter Level-up;
-- Kampagnenerstellung und Verwaltung von Orten, NPCs, Fraktionen, Quests, Lore und DM-Notizen;
-- Encounter Builder sowie Würfel-, Initiative-, HP-, Zustands-, Konzentrations- und Combat-Verwaltung;
-- Sitzungsprotokoll und Wiederaufnahme gespeicherter Zustände;
+- Kampagnenerstellung sowie Verwaltung von Adventures, Orten, NPCs, Fraktionen, Quests, Hinweisen, Lore und DM-Notizen;
+- Vorbereitung und Durchführung sozialer, erkundungsbezogener, kämpferischer und gemischter Szenen;
+- Encounter Builder sowie Würfel-, Initiative-, Aktions-, HP-, Ressourcen-, Zustands-, Effekt-, Konzentrations-, Zeit-, Rast- und Combat-Verwaltung;
+- auditierbares Sitzungsprotokoll, Kampagnenjournal und exakte Wiederaufnahme gespeicherter Zustände über mehrere Sitzungen;
 - lokale Speicherung mehrerer Charaktere und Kampagnen;
 - Export, Import, Backup und Restore ohne Informationsverlust;
 - Onboarding, verständliche Fehler-/Leerzustände und grundlegende Accessibility der Kernflüsse;
@@ -52,6 +53,8 @@ Die Scope-Baseline gilt als eingehalten, wenn:
 - kein v1.0-P0-Requirement eine ausgeschlossene Capability voraussetzt;
 - v1.0 vollständig offline beziehungsweise ohne Account nutzbar bleibt;
 - 2024-Regeln der einzige verpflichtend ausführbare Regelstand sind;
+- eine lokale Testkampagne mit menschlichem DM über mehrere Sitzungen soziale Interaktion, Erkundung und Kampf ohne blockierende Workflow-Lücke durchlaufen kann;
+- nicht automatisch abgedeckte Sonderfälle transparent unterstützt oder manuell protokolliert werden können, ohne als berechnete Regel ausgegeben zu werden;
 - Export und Restore alle für Kernflüsse benötigten Daten erhalten;
 - spätere Capabilities über klar getrennte Adapter oder Release-Slices ergänzt werden können.
 
@@ -65,6 +68,7 @@ Die Scope-Baseline gilt als eingehalten, wenn:
 ## Folgen und Trade-offs
 
 - v1.0 besitzt einen klaren, aber weiterhin umfangreichen vertikalen Produktumfang.
+- Frühe Alpha-Slices dürfen bewusst klein sein; ihre Non-Goals reduzieren nicht den bestätigten v1.0-Umfang.
 - Homebrew-, Cloud-, Visual- und KI-Wünsche werden späteren Releases zugeordnet; 2014-Kompatibilität bleibt als bestätigte spätere Capability ohne voreiligen Zielrelease vorgemerkt.
 - Architektur und Datenmodell müssen Erweiterbarkeit vorbereiten, dürfen spätere Infrastruktur aber nicht vorzeitig implementieren.
 - Scope-Erweiterungen für v1.0 benötigen eine explizite Änderung dieser Entscheidung sowie eine Auswirkungsanalyse auf Roadmap, Risiken und Requirements.

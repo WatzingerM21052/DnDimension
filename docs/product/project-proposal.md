@@ -38,7 +38,7 @@ Entwickelt wird eine Web-App, die Spieler und Dungeon Master durch Charaktere, K
 ## Erfolgskriterien
 
 1. Ein neuer Nutzer erreicht ohne externe Regelerfahrung einen gültigen Charakter und eine spielbare Kampagne.
-2. Ein menschlicher DM kann eine Sitzung mit weniger manueller Buchhaltung durchführen.
+2. Ein menschlicher DM kann eine Kampagne über mehrere Sitzungen mit Social, Exploration und Combat sowie weniger manueller Buchhaltung durchführen.
 3. Regeln, Datenquellen und Editionen bleiben nachvollziehbar getrennt.
 4. Lokale Daten können exportiert, gesichert und wiederhergestellt werden.
 5. Spätere Accounts, Visualisierung und KI können ergänzt werden, ohne die Kernmodelle neu zu erfinden.

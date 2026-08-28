@@ -10,15 +10,17 @@ Nach der Bereinigung enthält die Bibliothek:
 
 | Format | Anzahl | Größe |
 |---|---:|---:|
-| PDF | 59 | 2.216 MiB |
+| PDF | 100 | 6.933,7 MiB |
 | EPUB | 1 | 22 MiB |
 | DOCX | 1 | 1,4 MiB |
-| JPG | 7 | 12,5 MiB |
+| JPG | 8 | 25,1 MiB |
 | PNG | 2 | 5 MiB |
 | WebP | 5 | 1,2 MiB |
-| ZIP-Originalarchive | 2 | 23,4 MiB |
+| ZIP-Originalarchive | 5 | 5.191,7 MiB |
 
-Die ZIP-Inhalte wurden zusätzlich zur nutzbaren Bibliothek extrahiert. Die Originalarchive bleiben vorerst unter `98_Original_Archives/`, damit die ursprüngliche Paketstruktur nachvollziehbar bleibt.
+Die drei Archive aus `97_Original_Archives/DnD - Base/` wurden vollständig geprüft und 42 eindeutige Dateien in die fachliche Bibliotheksstruktur übernommen. Drei bitgenaue Dubletten zu bereits vorhandenen Werken wurden beim Import übersprungen. Zusammen mit den zwei früheren Archiven bleiben alle fünf Originalarchive unter `97_Original_Archives/`, damit Herkunft und ursprüngliche Paketstruktur nachvollziehbar sind.
+
+Die nutzbare Bibliothek außerhalb der Originalarchive enthält derzeit 117 Dateien. Eine SHA-256-Prüfung findet dort keine exakten Dubletten. Mehrere Fassungen desselben Werks bleiben nur erhalten, wenn sie sich praktisch unterscheiden, beispielsweise als schneller durchsuchbare Textfassung, hochauflösender Scan oder kompakte Ausgabe.
 
 Zwei leere Zukunftsordner werden bewusst lokal vorgehalten:
 
@@ -61,9 +63,19 @@ Offizielle Bezugsseite: <https://www.dndbeyond.com/srd>
 | Werk | Sprache | Seiten | Variante | Herkunftsnotiz |
 |---|---|---:|---|---|
 | Player's Handbook | EN | 387 | reguläre PDF-Fassung | vorheriger lokaler Bestand; genaue Downloadquelle unbekannt |
+| Player's Handbook | EN | 389 | komprimierte Fassung | DnD-Base-Originalarchiv; eigenständige Dateivariante |
+| Player's Handbook | EN | 802 | D&D-Beyond-Text-/Weblayout | DnD-Base-Originalarchiv; besonders gut durchsuchbar |
+| Player's Handbook | EN | 388 | AI-upscaled, bookmarked | DnD-Base-Originalarchiv; bildorientierte Alternativfassung |
+| Dungeon Master's Guide | EN | 383 | Printlayout, OCR, HiRes | DnD-Base-Originalarchiv |
+| Dungeon Master's Guide | EN | 484 | D&D-Beyond-Text-/Weblayout | DnD-Base-Originalarchiv; besonders gut durchsuchbar |
 | Monster Manual | EN | 390 | Alternate Cover, Scan | vorheriger lokaler Bestand; genaue Downloadquelle unbekannt |
+| Monster Manual | EN | 388 | AI-upscaled Scan | DnD-Base-Originalarchiv; eigenständige Bildfassung |
+| Monster Manual | EN | 929 | D&D-Beyond-Text-/Weblayout | DnD-Base-Originalarchiv; besonders gut durchsuchbar |
+| Dragon Delves | EN | 200 | Abenteueranthologie | DnD-Base-Originalarchiv |
+| Eberron: Forge of the Artificer | EN | 114 | Regelerweiterung/Setting | DnD-Base-Originalarchiv |
+| The Book of Dragons | EN | 685 | Lore-/Referenzbuch | DnD-Base-Originalarchiv |
 
-Noch nicht vorhanden: Dungeon Master's Guide 2024 und deutsche Fassungen der beiden vorhandenen Grundregelwerke.
+Die drei 2024-Kernregelwerke sind damit auf Englisch vorhanden. Deutsche Vollfassungen der Kernregelwerke sind weiterhin nicht vorhanden; das deutsche SRD 5.2.1 bleibt die maßgebliche offene und auslieferbare Regelquelle.
 
 ## 5. D&D 5e - Regelstand 2014
 
@@ -71,8 +83,12 @@ Noch nicht vorhanden: Dungeon Master's Guide 2024 und deutsche Fassungen der bei
 
 | Werk | Sprache | Seiten | Herkunftsnotiz |
 |---|---|---:|---|
+| Player's Handbook | EN | 322 | DnD-Base-Originalarchiv |
 | Spielerhandbuch | DE | 320 | vorheriger lokaler Bestand; genaue Downloadquelle unbekannt |
+| Dungeon Master's Guide | EN | 324 | DnD-Base-Originalarchiv |
+| Monster Manual, remastered 11th print | EN | 356 | DnD-Base-Originalarchiv |
 | Xanathars Ratgeber für Alles | DE | 192 | vorheriger Dateiname ohne eindeutige Herkunft |
+| Xanathar's Guide to Everything, Deluxe TOC | EN | 195 | DnD-Base-Originalarchiv |
 | Bigby Presents: Glory of the Giants | EN | 200 | bildbasierter Buchscan; genaue Downloadquelle unbekannt |
 | Fizban's Treasury of Dragons | EN | 227 | `dokumen.pub` laut ursprünglichem Dateinamen |
 | Mordenkainen's Tome of Foes | EN | 258 | `PDFCoffee` laut ursprünglichem Dateinamen |
@@ -85,6 +101,7 @@ Die 112-seitige textbasierte Bigby-Fassung liegt gemeinsam mit dem 200-seitigen 
 
 | Werk | Sprache | Seiten | Herkunftsnotiz |
 |---|---|---:|---|
+| Baldur's Gate: Descent into Avernus, ohne Posterkarten | EN | 258 | DnD-Base-Originalarchiv; Karten separat einsortiert |
 | Sword Coast Adventurer's Guide | EN | 161 | `PDFCoffee` laut ursprünglichem Dateinamen |
 | Van Richten's Guide to Ravenloft | EN | 259 | vorheriger Dateiname ohne eindeutige Herkunft |
 | Curse of Strahd | EN | 258 | vorheriger Dateiname ohne eindeutige Herkunft |
@@ -92,6 +109,7 @@ Die 112-seitige textbasierte Bigby-Fassung liegt gemeinsam mit dem 200-seitigen 
 | Dragons of Stormwreck Isle | EN | 93 | `PDFCoffee` laut ursprünglichem Dateinamen |
 | Keys from the Golden Vault | EN | 206 | `PDFCoffee` laut ursprünglichem Dateinamen |
 | Lost Mine of Phandelver | EN | 64 | vorheriger Dateiname ohne eindeutige Herkunft |
+| Phandelver and Below: The Shattered Obelisk | EN | 227 | DnD-Base-Originalarchiv |
 
 ### DM-Ressourcen und Homebrew
 
@@ -102,10 +120,24 @@ Die 112-seitige textbasierte Bigby-Fassung liegt gemeinsam mit dem 200-seitigen 
 | Waterdeep City Encounters v1.2 | EN | 38 Seiten | `PDFCoffee`; Werk nennt DMsGuild Community Content Agreement |
 | Sword Coast Adventurer's Guide Revised v1.71 | EN | 30 Seiten | Homebrew-/Revised-Fassung; `PDFCoffee` laut ursprünglichem Dateinamen |
 | Phandelver and Below - Cragmaw Hideout | EN | 5 Encounter-PDFs, 1 DOCX, 2 Karten | Google-Drive-Export einer „AAA Collection“ laut Archivname |
+| Curse of Strahd Organized-Play-/Death-House-Hilfen | EN | 3 PDFs | DnD-Base-Originalarchiv; beim Hauptabenteuer einsortiert |
 
 Die beiden Sword-Coast-Dateien sind unterschiedliche Werke: das 161-seitige offizielle Buch und eine 30-seitige überarbeitete Homebrew-Fassung.
 
 ## 6. Ältere Editionen
+
+### AD&D 1e
+
+| Gruppe | Enthaltene Werke | Variantenhinweis |
+|---|---|---|
+| Core Rulebooks | Player's Handbook, Dungeon Master's Guide, Monster Manual | PHB und DMG jeweils als kompakte und HiRes-Fassung |
+| Adventures | Against the Slave Lords A0-A4; Dungeons of Dread S1-S4 | eigenständige Sammelbände |
+| Rules Expansions | Dungeoneer's Survival Guide, Manual of the Planes, Unearthed Arcana, Wilderness Survival Guide | Unearthed Arcana als kompakte und HiRes-Fassung |
+| DM Resources | Dark and Hidden Ways Set zum Dungeoneer's Survival Guide | ergänzendes Material |
+
+Alle 13 AD&D-1e-Dateien stammen aus den DnD-Base-Originalarchiven. Varianten mit überlappendem Inhalt bleiben erhalten, wenn Auflösung, Dateigröße oder direkte Nutzbarkeit deutlich verschieden sind.
+
+### AD&D 2e und D&D 3.5e
 
 | Werk | Edition | Sprache | Seiten | Herkunftsnotiz |
 |---|---|---|---:|---|
@@ -131,6 +163,11 @@ Der extrahierte Seiteninhalt der 78-seitigen Standalone-Fassung von `Waterdeep a
 | The Lazy DM's Forge of Foes v1.2.4 | Sly Flourish | PDF | EN | `PDFCoffee` laut ursprünglichem Dateinamen |
 | Tome of Beasts | Kobold Press | PDF | EN | `PDFCoffee` laut ursprünglichem Dateinamen |
 | The Game Master's Book of Random Encounters | Diverse | PDF | EN | `PDFCoffee` laut ursprünglichem Dateinamen |
+| Monster Manual Expanded, Second Edition 5.5e | Dragonix | PDF | EN | DnD-Base-Originalarchiv |
+| Heliana's Guide to Monster Hunting v1.09 | Loot Tavern / Hit Point Press | PDF | EN | DnD-Base-Originalarchiv |
+| L'Arsene's Crafting Catalogue | Loot Tavern | PDF | EN | DnD-Base-Originalarchiv |
+| L'Arsene's Ledger of Treasure and Trinkets | Loot Tavern | PDF | EN | DnD-Base-Originalarchiv |
+| Xanathar's Lost Notes to Everything Else | DMs Guild / Drittanbieter | PDF | EN | DnD-Base-Originalarchiv |
 
 Herkunftsangaben dokumentieren nur den vorgefundenen Dateinamen beziehungsweise eingebettete Metadaten. Der Katalog speichert keine Links zu unbestätigten Downloadportalen.
 
@@ -142,6 +179,8 @@ Herkunftsangaben dokumentieren nur den vorgefundenen Dateinamen beziehungsweise 
 - Vier `Written in Blood`-Karten: Farmhaus/Höhle und Festival, jeweils Tag und Nacht; Reddit-Dateinamen und Morovoi-Wasserzeichen.
 - Sieben Siabsungkoh-Karten aus einem als Reddit-Ressource benannten Google-Drive-Archiv.
 - Zwei Cragmaw-Hideout-Karten aus dem Phandelver-Archiv.
+- Zwei player-facing Karten zu Avernus und Elturel aus dem DnD-Base-Originalarchiv.
+- Eine Death-House-Kartensammlung, eine 81-seitige Curse-of-Strahd-Digital-Map-Sammlung und eine einzelne digitale Death-House-Karte.
 - Eine Battle-Prawn-Challenge-Arenakarte; Reddit-Dateiname und Nesima-Wasserzeichen.
 
 ## 9. Duplikat- und Qualitätsregeln
@@ -163,6 +202,8 @@ Get-ChildItem private-library -Recurse -File |
 Zusätzlich werden semantische Überschneidungen geprüft, beispielsweise Einzel-PDFs, die vollständig in einer Sammlung enthalten sind. Wenn eine Variante einen praktischen Nutzen hat - etwa schnellere Suche, eingebetteten Text, eine andere Sprache oder den direkten Zugriff auf ein Einzelbuch - bleibt sie im passenden Fachordner und erhält einen erklärenden Varianten-Zusatz im Dateinamen. Dateien werden nicht allein wegen gleicher Titel oder überlappender Inhalte ausgesondert oder automatisch gelöscht.
 
 PDFs werden beim Einsortieren nicht komprimiert, neu exportiert oder anderweitig verändert. OCR und Kompression erfolgen nur an Arbeitskopien und erst nach visueller Qualitätskontrolle.
+
+Letzte Vollprüfung am 2026-08-28: 100 PDFs und 17 weitere nutzbare Dateien außerhalb von `97_Original_Archives/`; keine identischen SHA-256-Gruppen. Die fünf ZIP-Dateien werden als unveränderte Herkunftsarchive betrachtet und bewusst nicht gegen ihre extrahierten Inhalte als zu löschende Dubletten gewertet.
 
 ## 10. Speicherstrategie
 
