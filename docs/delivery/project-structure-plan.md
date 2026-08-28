@@ -12,7 +12,7 @@ Der Projektstrukturplan beschreibt die **Arbeitspakete**, mit denen der Objektst
 | 2.2 | Domänen- und Datenmodell | akzeptierte [portable Domain-/Data-Spezifikation](../spec-planning/v0.2-domain-data-model-spec.md) für Content, Character, Campaign, Adventure und Session | 2.1 |
 | 2.3 | Content-Import-Spike | wiederholbarer SRD-Datenweg | 2.1, 2.2 |
 | 3.1 | Rules Engine Kern | Attribute, Proficiency, Checks und Ressourcen | 2.2 |
-| 3.2 | Ruleset-Versionierung | 2014/2024-Trennung und Kompatibilität | 3.1 |
+| 3.2 | Ruleset-Versionierung | 2024-Regelprofil und strikte Editionsgrenzen; vollständige 2014-Kompatibilität erst nach eigenem späteren Release-Gate | 3.1 |
 | 3.3 | Regeltests | deterministische Testmatrix | 3.1, 3.2 |
 | 4.1 | App-Grundgerüst | PWA App Shell, Package-Grenzen, lokale Persistenz, Design Tokens, Entwicklung und CI ohne v1-Backendzwang | 1.4 |
 | 4.2 | Charakter-Slice | Erstellung, Validierung, Sheet und Persistenz | 2.2, 3.1, 4.1 |

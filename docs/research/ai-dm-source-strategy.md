@@ -26,8 +26,11 @@ Ein spezifischer Regeltext schlägt die allgemeine Regel. Kampagnenspezifische A
 
 - `DnD-5e-2024-SRD-5.2.1-DE.pdf`: freie, lokalisierte Referenz für Spielregeln, Charaktergrundlagen, Klassen, Zauber, Kreaturen und Glossar.
 - `DnD-5e-2024-Players-Handbook-EN.pdf`: private Referenz für vollständige Charakteroptionen und den offiziellen Erstellungsfluss.
+- `DnD-5e-2024-Dungeon-Masters-Guide-EN-DnDBeyond-Text-Weblayout.pdf`: bevorzugte durchsuchbare private Referenz für Kampagnenplanung, Spielleitung, Bastions, Schätze und DM-Werkzeuge.
+- `DnD-5e-2024-Dungeon-Masters-Guide-EN-Print-Layout-OCR-HiRes.pdf`: visuell originalnähere private Alternativfassung; OCR-Qualität bei konkreten Aussagen gegenprüfen.
 - `DnD-5e-2024-Monster-Manual-EN-Alternate-Cover-Scan.pdf`: private Monsterreferenz; bildbasierter Scan, daher Zugriff/Lesbarkeit ausdrücklich prüfen.
-- Ein lokales 2024 Dungeon Master's Guide ist derzeit nicht katalogisiert. Fehlende DMG-Inhalte dürfen nicht erfunden werden.
+
+Mehrere PHB-, DMG- und Monster-Manual-Fassungen sind bewusst als Such-, Scan- oder Layoutvarianten vorhanden. Eine Variante ist nur dann als verwendet zu protokollieren, wenn die aktuelle Umgebung genau diese Datei tatsächlich öffnen und lesen konnte.
 
 ### Regelkern und Erweiterungen 2014
 

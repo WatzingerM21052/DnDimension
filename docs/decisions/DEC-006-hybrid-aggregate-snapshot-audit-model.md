@@ -9,7 +9,7 @@
 
 DnDimension muss Charakter-, Kampagnen-, Adventure- und Sitzungszustand lokal zuverlässig speichern, nach Abstürzen fortsetzen, Regel- und Quellenstände erklären und später für Gruppen, VTT und KI erweitern können. Ein reines CRUD-Modell mit optionalem Aktivitätslog würde aktuellen Zustand und Historie leicht auseinanderlaufen lassen. Vollständiges Event Sourcing würde dagegen Event-Versionierung, Projektionen und Replay zu früh zur alleinigen Grundlage des gesamten Produkts machen.
 
-DEC-004 und DEC-005 verlangen getrennte langfristige und laufende Wahrheiten, bewussten Rückfluss, nachvollziehbare Korrekturen und Session-Recovery. Die Persistenztechnologie ist noch nicht entschieden und darf das Domainmodell nicht bestimmen.
+DEC-004 und DEC-005 verlangen getrennte langfristige und laufende Wahrheiten, bewussten Rückfluss, nachvollziehbare Korrekturen und Session-Recovery. Zum Zeitpunkt dieser fachlichen Entscheidung war die Persistenztechnologie noch nicht gewählt; unabhängig von der späteren Adapterentscheidung darf sie das Domainmodell nicht bestimmen. [DEC-009](DEC-009-local-persistence-backup-and-cloud-evolution.md) legt inzwischen IndexedDB über Dexie als zu validierende lokale Richtung fest.
 
 ## Entscheidung
 
@@ -93,7 +93,7 @@ Die vollständigen Verträge stehen in der [v0.2 Domain & Data Model Specificati
 
 Option A erfüllt die akzeptierten Produktanforderungen, ohne das technische Verfahren vollständigen Event Sourcings zum Selbstzweck zu machen. Sie ist komplexer als CRUD, aber diese Komplexität entsteht aus realen Anforderungen: lange Sitzungen, DM-Geheimnisse, Korrekturen, Regelherkunft, Save/Resume und bewusster Kampagnenfortschritt.
 
-Der konkrete lokale Adapter bleibt austauschbar. Spike #20 entscheidet anhand von Transaktionen, Recovery, Browserunterstützung, Performance, Migration und Export, welche Persistenz die Verträge am besten erfüllt.
+Der konkrete lokale Adapter bleibt austauschbar. DEC-009 wählt IndexedDB über Dexie als führende v1-Richtung; Spike #20 bestätigt oder widerlegt diese Wahl anhand von Transaktionen, Recovery, Browserunterstützung, Performance, Migration, Multi-Tab-Verhalten und Export.
 
 ## Abnahmekriterien
 
@@ -115,4 +115,4 @@ Der konkrete lokale Adapter bleibt austauschbar. Spike #20 entscheidet anhand vo
 
 ## Ersetzt / ersetzt durch
 
-Keine vorherige Decision. Diese Entscheidung konkretisiert DEC-004 und DEC-005 und löst deren offene Persistenzmodellfrage auf fachlicher Ebene. Die konkrete Persistenztechnologie bleibt in Spike #20 offen.
+Keine vorherige Decision. Diese Entscheidung konkretisiert DEC-004 und DEC-005 und löst deren offene Persistenzmodellfrage auf fachlicher Ebene. DEC-009 ergänzt die physische lokale Richtung; Spike #20 bleibt deren technisches Validierungsgate und kann bei negativem Nachweis eine neue Adapterentscheidung auslösen.

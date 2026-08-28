@@ -47,6 +47,10 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [Pre-Code Engineering Blueprint](spec-planning/pre-code-engineering-blueprint.md) — akzeptierte Startarchitektur; Bootstrap-Validierung ausständig
 - [AI-DM Prompt-System Design](spec-planning/2026-08-28-ai-dm-prompt-system-design.md)
 
+## Ausführungspläne
+
+- [v0.1 Toolchain Bootstrap Validation](superpowers/plans/2026-08-28-v0.1-toolchain-bootstrap-implementation.md) — erster ausführbarer Plan für Spike #70; nachgelagerte Spikes bleiben getrennt
+
 ## Entscheidungen
 
 - [DEC-001: v1.0 Scope Baseline](decisions/DEC-001-v1-scope-baseline.md)
@@ -71,6 +75,17 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [Statusbericht](templates/status-report.md)
 - [Projektbesprechung](templates/project-meeting.md)
 - [Decision Record](templates/decision-record.md)
+
+## Vollständigkeitsgrenze
+
+Die Dokumentation ist für den aktuellen Pre-Code- und v0.1-Planungsstand vollständig: Produktvision, v1-Scope, Requirements, Release-Gates, Risiken, Governance, Architektur, Daten-/Rules-Verträge, Character-, Campaign- und erster Session-Slice sowie der erste ausführbare Bootstrap-Plan sind festgehalten und verknüpft.
+
+„Vollständig“ bedeutet nicht, dass entfernte Releases bereits mit Scheingenauigkeit spezifiziert sind:
+
+- v0.7 bis v1.0 besitzen verbindliche Outcomes, Requirements und Release-Gates; ihre detaillierten Capability-Specs entstehen vor dem jeweiligen Refinement.
+- v1.1 und später bleiben Roadmap-Gates, bis der lokale v1-Kern und die davorliegenden Risiken validiert sind.
+- Der Engineering Blueprint ist als Design akzeptiert, aber erst nach #20, #21 und #69 bis #71 operational validiert.
+- Operativer Status, Owner und Schätzung werden ausschließlich im GitHub Project aktuell gehalten; Snapshot-Dokumente kennzeichnen ihr Datum.
 
 ## Pflegeauslöser
 

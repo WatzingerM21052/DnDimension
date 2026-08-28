@@ -36,7 +36,7 @@ Die Releases nach v1.0 sind zunächst als Milestones und Roadmap-Gates angelegt.
     - [#70 `[SPIKE] Toolchain und Speicherbudgets reproduzierbar validieren`](https://github.com/WatzingerM21052/DnDimension/issues/70) — Ready, 3 SP
     - [#71 `[SPIKE] PWA Offline- und Update-Verhalten validieren`](https://github.com/WatzingerM21052/DnDimension/issues/71) — Ready, 3 SP
 
-Die drei neuen Spikes sind native Sub-Issues von #19 und tragen Milestone v0.1, `type:spike`, `needs:research`, Priority P1, Area, Target Version v0.1, Risk Medium und jeweils 3 Story Points. #19 und #26 stehen während des Blueprint-Reviews in `In Progress`; #20/#21/#69-#71 sind klar abgegrenzt und `Ready`.
+Die drei neuen Spikes sind native Sub-Issues von #19 und tragen Milestone v0.1, `type:spike`, `needs:research`, Priority P1, Area, Target Version v0.1, Risk Medium und jeweils 3 Story Points. #19 und #26 stehen während der Bootstrap-Validierung in `In Progress`; #20/#21/#69-#71 sind klar abgegrenzt und `Ready`.
 
 ## v0.2 - Content & Data Foundation
 
