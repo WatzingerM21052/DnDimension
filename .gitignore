@@ -19,10 +19,29 @@
 
 # Dependencies
 node_modules/
+.pnpm-store/
 
 # Build output
 dist/
+dev-dist/
+.vite/
+.cache/
+*.tsbuildinfo
 .wrangler/
+
+# Tests and generated reports
+coverage/
+playwright-report/
+test-results/
+blob-report/
+playwright/.auth/
+.eslintcache
+
+# Package-manager and tool logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Env / secrets
 .env

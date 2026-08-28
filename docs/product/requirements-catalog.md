@@ -91,6 +91,11 @@ Jede Anforderung besitzt:
 | NFR-013 | Atomare Sitzungsintegrität | bestätigte Zustandsänderungen sind vollständig oder gar nicht angewandt; Snapshot und Logposition werden gemeinsam validiert | v0.6 |
 | NFR-014 | Transparente Regelabdeckung | jeder regelrelevante Vorgang ist als `computed`, `assisted` oder `manual_recorded` erkennbar; kein unbekannter Fall wird still als berechnet dargestellt | v0.6 |
 | NFR-015 | Langzeitsitzung und Wiederaufnahme | definierte Teilnehmer-, Log- und Laufzeitbudgets sowie Crash-/Restore-Szenarien werden spätestens in der Beta nachgewiesen | v0.8 |
+| NFR-016 | Speicher- und Bundleeffizienz | Production Build, Dependencies, Toolcaches, Testartefakte und Derived Caches besitzen gemessene Budgets sowie sichere Bereinigungswege gemäß Engineering Blueprint | v0.1 |
+| NFR-017 | Offline- und Installierbarkeit | Website und installierte PWA stammen aus demselben Build; nach initialer Installation funktionieren v1-Kernflüsse ohne Netzwerk und Updates gefährden keinen ungespeicherten Zustand | v0.8 |
+| NFR-018 | Architekturevolution | Modulgrenzen sind automatisiert geprüft; Domain, Rules und Application bleiben von React, Dexie, Cloud- und KI-Anbietern unabhängig und besitzen Contract Tests | v0.3 |
+| NFR-019 | Visuelle und interaktive Qualität | Kernkomponenten verwenden semantische Design Tokens, reagieren responsiv und berücksichtigen Fokus, Touch, Kontrast, Reduced Motion und Performancebudgets | v0.4 |
+| NFR-020 | Kostenkontrolle und Portabilität | v1 benötigt keinen bezahlten Dienst; spätere variable Cloud-/KI-Kosten besitzen Freigabe, Budget, Warnung, Kill Switch und exportierbare Daten | v0.1 / je Cloud-Release |
 
 ## 5. Constraints
 
@@ -112,6 +117,10 @@ Jede Anforderung besitzt:
 | CON-014 | Der bewusst kleine v0.6-Alpha-Slice definiert nicht die Funktionsobergrenze; v0.8 muss den gesamten akzeptierten v1-P0-Umfang enthalten und v1.0 normalen lokalen Mehrsitzungsbetrieb ermöglichen. |
 | CON-015 | v1.0 darf für einen vollständigen Sitzungsablauf keine Battle Map oder VTT-Funktion voraussetzen; abstrakte Positionierung und manuelle Distanzeingabe bleiben möglich. |
 | CON-016 | Ein nicht automatisierter Regel- oder Content-Sonderfall muss transparent unterstützt oder manuell protokolliert werden; die App darf weder Spielerentscheidung noch Regelergebnis erfinden. |
+| CON-017 | Website und lokale Installation verwenden bis zu einer eigenen Native-Decision dieselbe TypeScript/React/PWA-Codebasis; Tauri, Electron, Capacitor oder MAUI sind keine v1-Voraussetzung. |
+| CON-018 | Private Referenz-PDFs und daraus erzeugte OCR-/Suchdaten werden weder in Build noch App-Daten oder Standardbackups dupliziert; Derived Caches sind begrenzt und löschbar. |
+| CON-019 | Kein kostenpflichtiger Dienst, Account oder hinterlegte Zahlungsmethode ist Voraussetzung für Entwicklung oder Betrieb des v1-Kerns. |
+| CON-020 | Fachmodule kommunizieren über öffentliche Verträge; direkte Cross-Package-Interna, UI-Datenbankzugriffe und Anbieterabhängigkeiten in Domain oder Rules sind verboten. |
 
 ## 6. Traceability
 

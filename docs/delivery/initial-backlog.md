@@ -7,10 +7,10 @@ Dieses Dokument erklärt die initiale Zerlegung. Status, Zuständigkeit und Sch�
 
 ## Umfang des Bootstrap-Backlogs
 
-- 48 angelegte Issues; im Snapshot 35 offen und 13 abgeschlossen;
+- 71 angelegte Issues; im Snapshot 57 offen und 14 abgeschlossen;
 - 10 Release-Epics von v0.1 bis v1.0;
-- 12 verfeinerte Stories für v0.1, v0.2 und den bestätigten v0.6-Sitzungsschnitt;
-- 26 Tasks beziehungsweise Spikes; v0.6-Tasks bleiben bis zu ihren fachlichen und technischen Abhängigkeiten im Backlog;
+- 17 verfeinerte Stories für v0.1-v0.3 und den bestätigten v0.6-Sitzungsschnitt;
+- 38 Tasks, 5 Spikes und 1 Docs-Issue; v0.3-/v0.6-Tasks bleiben bis zu ihren fachlichen und technischen Abhängigkeiten im Backlog;
 - 24 Release-Milestones von v0.1 bis v4.0;
 - Parent-/Sub-Issue-Beziehungen zwischen Epics, Stories und Tasks/Spikes.
 
@@ -30,8 +30,13 @@ Die Releases nach v1.0 sind zunächst als Milestones und Roadmap-Gates angelegt.
   - [#19 `[STORY] Technische Foundation entscheidungsbereit machen`](https://github.com/WatzingerM21052/DnDimension/issues/19)
     - [#20 `[SPIKE] Local-first Persistenzarchitektur bewerten`](https://github.com/WatzingerM21052/DnDimension/issues/20)
     - [#21 `[SPIKE] Offiziellen SRD-Importpfad bewerten`](https://github.com/WatzingerM21052/DnDimension/issues/21)
-    - [#22 `[TASK] Quality Gates und CI-Plan festlegen`](https://github.com/WatzingerM21052/DnDimension/issues/22)
-    - [#26 `[TASK] Pre-Code Engineering Blueprint finalisieren`](https://github.com/WatzingerM21052/DnDimension/issues/26) — nach dem initialen Bootstrap ergänzt; Backlog
+    - [#22 `[TASK] Quality Gates und CI-Plan festlegen`](https://github.com/WatzingerM21052/DnDimension/issues/22) — Done, 2 SP
+    - [#26 `[TASK] Pre-Code Engineering Blueprint finalisieren`](https://github.com/WatzingerM21052/DnDimension/issues/26) — In Progress, 5 SP; Design akzeptiert, Abschluss nach Bootstrap-Messwerten
+    - [#69 `[SPIKE] UI- und Quality-Toolchain gegen Budgets validieren`](https://github.com/WatzingerM21052/DnDimension/issues/69) — Ready, 3 SP
+    - [#70 `[SPIKE] Toolchain und Speicherbudgets reproduzierbar validieren`](https://github.com/WatzingerM21052/DnDimension/issues/70) — Ready, 3 SP
+    - [#71 `[SPIKE] PWA Offline- und Update-Verhalten validieren`](https://github.com/WatzingerM21052/DnDimension/issues/71) — Ready, 3 SP
+
+Die drei neuen Spikes sind native Sub-Issues von #19 und tragen Milestone v0.1, `type:spike`, `needs:research`, Priority P1, Area, Target Version v0.1, Risk Medium und jeweils 3 Story Points. #19 und #26 stehen während des Blueprint-Reviews in `In Progress`; #20/#21/#69-#71 sind klar abgegrenzt und `Ready`.
 
 ## v0.2 - Content & Data Foundation
 

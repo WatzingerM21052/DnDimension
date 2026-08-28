@@ -44,9 +44,13 @@ Die Abgrenzung ist eine Produkt-Hypothese und wird vor v1.0 durch aktuelle Markt
 
 ## 4. Architektur
 
-**Aktuell führender Frontend-Kandidat für v0.x-v1.1:** React + TypeScript mit local-first Persistenz. Regeln und Domainlogik bleiben in eigenen Paketen; die App muss für Kernfunktionen nicht online sein. Stack, Projektanlage und konkrete Libraries werden erst im [Pre-Code Engineering Blueprint](pre-code-engineering-blueprint.md) nach einem reproduzierbaren Spike verbindlich.
+**Akzeptierte Plattformarchitektur für v0.x-v1.1:** TypeScript, React, Vite und pnpm als installierbare PWA und modularer Monolith gemäß [DEC-008](../decisions/DEC-008-typescript-pwa-modular-monolith.md). Regeln, Domainlogik und Application Layer bleiben in eigenen Packages; Modulgrenzen werden technisch geprüft. Website und lokale Installation verwenden denselben statischen Build und die App benötigt für Kernfunktionen kein Netzwerk. Der vollständige Stack, Ordnerbaum, öffentliche Verträge, Quality Gates und Bootstrap-Spikes stehen im [Pre-Code Engineering Blueprint](pre-code-engineering-blueprint.md).
 
-**Backend-Kandidat ab v1.2:** Cloudflare Workers oder eine gleichwertige Adapterimplementierung. Die endgültige Auswahl folgt einer eigenen Architekturentscheidung und darf den lokalen Kern nicht binden.
+**Lokale Persistenz:** v1 verwendet IndexedDB über einen isolierten Dexie-Adapter, portable Backups und begrenzte Derived Caches gemäß [DEC-009](../decisions/DEC-009-local-persistence-backup-and-cloud-evolution.md). Private PDFs werden weder in Appdaten noch in Builds oder Standardbackups dupliziert. Browserpersistenz ersetzt keinen bewusst überprüfbaren Backup-/Restore-Weg.
+
+**UI- und Qualitätsbasis:** Ein eigenes CSS-Token-Designsystem, React Aria und gezielte Motion-Unterstützung bilden gemäß [DEC-010](../decisions/DEC-010-custom-design-system-and-lean-quality-toolchain.md) die visuelle und zugängliche Grundlage. Material 3 dient als Interaktions- und Bewegungsreferenz, nicht als generischer Google-App-Look. Der lokale Toolchain vermeidet Docker, Electron, Android SDK, Storybook, Cypress und vollständige Browserdownloads, solange kein messbarer Bedarf besteht.
+
+**Backend-Kandidat ab v1.2:** Cloudflare Workers oder eine gleichwertige Adapterimplementierung. SQL bleibt hinter einem Port; D1 ist der führende Free-first-Kandidat und PostgreSQL der strategische Fallback. Die endgültige Auswahl folgt unmittelbar vor dem Cloud-Slice einer aktualisierten Architektur- und Kostenentscheidung und darf den lokalen Kern nicht binden.
 - **Durable Object pro aktiver Session** = Quelle der Wahrheit für alles Live: Initiative, HP, verbundene Spieler, Chat-/Erzähl-Log. Ein "Raum" pro laufender Kampagnen-Sitzung.
 - **D1** (SQL) für dauerhafte Daten: User, Kampagnen, Charaktere, Welt-Einträge, Bestiary, Content-Bibliothek (SRD + Homebrew, mit Lizenz-Flag pro Eintrag).
 - **R2** für Dateien: Charakterbilder, Kartenbilder (relevant ab Battle-Map-Sub-Projekt).
@@ -81,12 +85,14 @@ Die exakten Versionen und Exit-Kriterien stehen in der Roadmap. Capability-Specs
 - Rules Engine: reine Funktionen, isoliert unit-testbar (kein Infra-Bezug)
 - Session: atomare Zustandsübergänge, Audit-Log/Snapshot-Recovery und Mehrsitzungs-End-to-End-Tests über alle drei Säulen
 - Wissen: deny-by-default Sichtbarkeits- und Player-Preview-Negativtests für jeden neuen Feld-/Ereignistyp
+- Persistenz: gemeinsame Contract Tests für In-Memory- und IndexedDB-Adapter, Migration, Browser-Eviction-Warnung sowie Export-/Restore-Roundtrips
+- UI: React Testing Library, Accessibility-/Reduced-Motion-Prüfung und wenige stabile visuelle Regressionen; vollständige Browsermatrix primär in CI
 - Worker-Endpunkte: Vitest + Miniflare (lokale Cloudflare-Simulation)
 - KI-DM-Qualität: automatisierte Szenario-Evals plus manuelles Playtesting ab v3.0
 
-## 7. Offene Punkte für spätere Sub-Projekt-Specs
+## 7. Offene Validierungen und spätere Sub-Projekt-Specs
 
-- finaler [Pre-Code Engineering Blueprint](pre-code-engineering-blueprint.md) nach Capability-Specs und Architekturspikes
-- Auth- und Sync-Methode (v1.2-Spec)
-- physischer lokaler Persistenzadapter und messbare Snapshot-/Performancebudgets nach dem v0.2-Domainvertrag
-- Summarization-, Retrieval- und Eval-Strategie (v3.0-Spec)
+- Der [Pre-Code Engineering Blueprint](pre-code-engineering-blueprint.md) ist als Design akzeptiert; exakte Paketversionen, Installationsgrößen, IndexedDB-Transaktionsannahmen und PWA-Updateverhalten bleiben vor Produktcode durch die dort definierten Bootstrap-Spikes nachzuweisen.
+- Auth-, SQL-Provider- und Sync-Methode werden unmittelbar vor v1.2 gegen dann aktuelle Anforderungen, Free Tiers, Datenschutz und Anbietergrenzen entschieden.
+- Snapshotfrequenz, Multi-Tab-Koordination und konkrete Laufzeitbudgets werden im Persistenz-Spike gemessen.
+- Summarization-, Retrieval- und Eval-Strategie folgt in der v3.0-Spec.

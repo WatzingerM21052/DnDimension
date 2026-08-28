@@ -12,7 +12,7 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 
 | Release | Produktzustand | Schwerpunkt | Exit-Kriterien |
 |---|---|---|---|
-| **v0.1 Project Foundation** | Planbares Vorhaben | Projektauftrag, Ziele, Stakeholder, Anforderungen, Risiken, GitHub-Prozess, Architekturrahmen und [Pre-Code Engineering Blueprint](../spec-planning/pre-code-engineering-blueprint.md) | Governance-Dokumente konsistent; initialer Backlog priorisiert; Quality Gates und Entscheidungsweg definiert; technische Projektanlage vor Produktcode entscheidungsreif |
+| **v0.1 Project Foundation** | Planbares und technisch validiertes Vorhaben | Projektauftrag, Ziele, Stakeholder, Anforderungen, Risiken, GitHub-Prozess, akzeptierter [Pre-Code Engineering Blueprint](../spec-planning/pre-code-engineering-blueprint.md) und reproduzierbare Bootstrap-Spikes | Governance-Dokumente konsistent; Architekturentscheidungen DEC-008 bis DEC-010 akzeptiert; Toolchain, PWA, Persistenz und UI-/Quality-Basis reproduzierbar nachgewiesen; exakte Versionen und Speicherbudgets gemessen; initialer Backlog priorisiert |
 | **v0.2 Content & Data Foundation** | Belastbares Inhalts- und Datenmodell | SRD-Quellen, Lizenzmetadaten, Content-Schema, [portables Domainmodell](../spec-planning/v0.2-domain-data-model-spec.md), Kampagnen-/Charakter-/Session-Grundmodell, Import-Spike | Domain-Grenzen und Hybridmodell gemäß [DEC-006](../decisions/DEC-006-hybrid-aggregate-snapshot-audit-model.md) reviewt; offizieller SRD-Datenweg nachweisbar; Edition, Herkunft, Revision und Sichtbarkeit jedes relevanten Inhalts abfragbar |
 | **v0.3 Rules Engine Foundation** | Testbarer Regelkern | typisierter Hybridkern für Attribute, Proficiency/Expertise, AC, D20-Tests, Würfel und Ressourcen gemäß [Rules Engine Spec](../spec-planning/v0.3-rules-engine-foundation-spec.md) und [DEC-007](../decisions/DEC-007-typed-deterministic-rule-resolution-kernel.md) | Kernfunktionen sind UI-unabhängig und deterministisch; Regelprofil, Trace, Konflikte, Preview/Apply, Revisionsschutz und Sichtbarkeit bestehen automatisierte Referenz-, Property- und Vertragstests |
 | **v0.4 Character Creator Slice** | Erster sichtbarer Nutzerfluss | geführte 2024-Charaktererstellung mit eingebautem SRD-5.2.1-Content, vier nachvollziehbaren Attributsmethoden, Validierung und lokalem Charakterbogen gemäß [Character Creator Spec](../spec-planning/v0.4-character-creator-spec.md) | gültiger Charakter kann ohne private Dateien, Netzwerk oder manuelle Nachrechnung erstellt und erneut geöffnet werden; Entscheidungen und abgeleitete Werte sind erklärbar |
@@ -32,7 +32,7 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 | **v1.3 Sharing & Roles** | Geteilte Kampagnen ohne vollständiges Live-Spiel | Einladungen, DM-/Spielerrollen, Berechtigungen und asynchrone Freigabe | Nutzer sehen und ändern nur freigegebene Daten; Rollenwechsel und Entzug funktionieren |
 | **v1.4 Realtime Groups Beta** | Experimentelles gemeinsames Live-Spiel | Lobby, Präsenz, Live-Zustand, Reconnect und Konfliktauflösung | geschlossene Gruppentests ohne stillen Zustandsverlust; bekannte Grenzen dokumentiert |
 | **v1.5 Stable Multiplayer** | Stabiler Gruppenmodus | belastbarer Echtzeitbetrieb, Moderation, Sitzungswiederaufnahme und Gruppen-UX | Mehrbenutzersitzungen erfüllen Stabilitäts-, Rechte- und Wiederaufnahme-Gates |
-| **v2.0 Visual Foundation** | Neues konsistentes Erscheinungsbild | Designsystem, responsive Shell, Themes, Animation, Accessibility und visuelle Tests | alle Kernansichten nutzen stabile Tokens/Komponenten und bestehen Accessibility-Prüfungen |
+| **v2.0 Visual Experience Expansion** | Deutlich reichere, konsistente Präsentation auf der v1-Designbasis | vertiefte Themes, atmosphärische Oberflächen, Animation, Medien, responsive Arbeitsbereiche und visuelle Tests | alle Kernansichten nutzen das gehärtete Designsystem; Atmosphäre, Bewegung und Medien bestehen Accessibility-, Reduced-Motion- und Performance-Gates |
 | **v2.1 Visual Character & World** | Visuell reichere Kernbereiche | Charakterdarstellung, Weltbeziehungen, Timeline, Handouts und Medien | visuelle Elemente verbessern Entscheidungen und bleiben ohne Medien vollständig bedienbar |
 | **v2.2 Battle Map Beta** | Erste taktische Karte | Karten, Tokens, Raster, grundlegende Bewegung und Fog of War | kleine Begegnungen sind auf der Karte spielbar; Zustand synchronisiert mit Combat-Tracker |
 | **v2.5 Advanced VTT** | Stabiles virtuelles Spielbrett | Sichtlinien, Flächen, Ebenen, Messung, Medienverwaltung und Automatisierung | taktische Gruppenbegegnungen sind Ende-zu-Ende im VTT durchführbar |
@@ -62,8 +62,8 @@ Versionsnummern beschreiben einen überprüfbaren Produktzustand. Ein Release wi
 - GitHub-Backlog, Milestones, Issue-Hierarchie und Kanban etablieren.
 - Content-Foundation gegen offizielle SRD-Quellen validieren.
 - Architekturentscheidungen für lokalen Start und spätere Cloud-Fähigkeit treffen.
-- Technisches Grundgerüst und Quality Gates planen.
-- Vor Produktcode den Pre-Code Engineering Blueprint mit Projektanlage, Struktur, Modulen, Methoden, Technologien und externen Abhängigkeiten abnehmen.
+- Den akzeptierten Pre-Code Engineering Blueprint mit Projektanlage, Struktur, Modulen, Methoden, Technologien und externen Abhängigkeiten durch Toolchain-, Persistenz-, PWA- und UI-Spikes validieren.
+- Exakte Versionen, Quality Gates, Installations-/Buildgrößen und sichere Bereinigungsbefehle nach dem reproduzierbaren Spike pinnen.
 
 ### Next - v0.2 bis v0.5
 

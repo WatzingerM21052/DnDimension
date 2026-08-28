@@ -44,7 +44,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [v0.4 Character Creator Specification](spec-planning/v0.4-character-creator-spec.md)
 - [v0.5 Campaign Creator Specification](spec-planning/v0.5-campaign-creator-spec.md)
 - [v0.6 Play Session Specification](spec-planning/v0.6-play-session-spec.md)
-- [Pre-Code Engineering Blueprint](spec-planning/pre-code-engineering-blueprint.md)
+- [Pre-Code Engineering Blueprint](spec-planning/pre-code-engineering-blueprint.md) — akzeptierte Startarchitektur; Bootstrap-Validierung ausständig
 - [AI-DM Prompt-System Design](spec-planning/2026-08-28-ai-dm-prompt-system-design.md)
 
 ## Entscheidungen
@@ -56,6 +56,9 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [DEC-005: Session as Auditable Runtime Boundary](decisions/DEC-005-session-as-auditable-runtime-boundary.md)
 - [DEC-006: Hybrid Aggregate, Snapshot and Audit Model](decisions/DEC-006-hybrid-aggregate-snapshot-audit-model.md)
 - [DEC-007: Typed Deterministic Rule Resolution Kernel](decisions/DEC-007-typed-deterministic-rule-resolution-kernel.md)
+- [DEC-008: TypeScript-PWA als modularer Monolith](decisions/DEC-008-typescript-pwa-modular-monolith.md)
+- [DEC-009: Lokale Persistenz, Backups und spätere SQL-Cloud](decisions/DEC-009-local-persistence-backup-and-cloud-evolution.md)
+- [DEC-010: Eigenes Design-System und schlanker Qualitäts-Toolchain](decisions/DEC-010-custom-design-system-and-lean-quality-toolchain.md)
 
 ## Forschung und Quellen
 

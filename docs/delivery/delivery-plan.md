@@ -25,7 +25,7 @@ flowchart LR
   L --> M[v1.3 Sharing & Roles]
   M --> N[v1.4 Realtime Beta]
   N --> O[v1.5 Stable Multiplayer]
-  J --> P[v2.0 Visual Foundation]
+  J --> P[v2.0 Visual Experience Expansion]
   O --> Q[v2.2 Battle Map]
   P --> Q
   Q --> R[v2.5 Advanced VTT]

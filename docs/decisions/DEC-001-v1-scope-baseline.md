@@ -3,7 +3,7 @@
 **Status:** Accepted<br>
 **Datum:** 2026-08-28<br>
 **Owner:** WatzingerM21052<br>
-**Betroffene Releases/Requirements:** v0.1-v1.0; FR-001 bis FR-010, FR-020 bis FR-039; NFR-001 bis NFR-004 und NFR-010 bis NFR-015; CON-003, CON-004, CON-006, CON-007, CON-014 bis CON-016
+**Betroffene Releases/Requirements:** v0.1-v1.0; FR-001 bis FR-010, FR-020 bis FR-039; NFR-001 bis NFR-004 und NFR-010 bis NFR-020; CON-003, CON-004, CON-006, CON-007, CON-014 bis CON-020
 
 ## Kontext
 
