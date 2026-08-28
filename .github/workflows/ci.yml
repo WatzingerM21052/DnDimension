@@ -23,6 +23,8 @@ jobs:
           version: 11.19.0
           runtime: node@24.20.0
           cache: true
+          cache-dependency-path: code/pnpm-lock.yaml
+          package-json-file: code/package.json
           install: false
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
