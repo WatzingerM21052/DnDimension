@@ -6,7 +6,7 @@
 | ID | Risiko | Kategorie | Wkt. | Auswirkung | Level | Maßnahme | Status |
 |---|---|---|---|---|---|---|---|
 | R-01 | Scope wächst schneller als verfügbare Einzelentwickler-Kapazität. | Operational | High | High | Critical | Release-Gates, P0-Begrenzung, 20 % Puffer, WIP-Limit 1-2 | Open |
-| R-02 | 2014- und 2024-Regeln werden unbemerkt vermischt. | Quality | Medium | High | High | Ruleset in allen Daten/Tests; Cross-Ruleset-Negativtests | Open |
+| R-02 | 2014- und 2024-Regeln werden unbemerkt vermischt. | Quality | Medium | High | High | DEC-007; gepinntes `RuleProfileRef`; kein stiller Fallback; Cross-Ruleset-Negativtests | Open |
 | R-03 | Proprietäre Inhalte gelangen in Repo oder veröffentlichte Daten. | Compliance | Medium | High | High | private-library ignorieren; Source-Registry; Content-Review im DoD | Mitigated |
 | R-04 | Drittanbieter-Content-API ändert Struktur oder Inhalt. | Technical | Medium | High | High | versionierter Import, Adapter, Snapshots und Prüfung gegen offizielles SRD | Open |
 | R-05 | Lokale Daten gehen durch Migration oder Fehler verloren. | Operational | Medium | High | High | DEC-006; schrittweise Migration, Pre-Migration-Backup, Checksummen, Recovery- und Restore-Tests | Open |
@@ -21,11 +21,12 @@
 | R-14 | GitHub-Backlog wird zu groß und ungepflegt. | Operational | Medium | Medium | Medium | regelmäßiges Refinement; Archive/Won't Do; nur Ready-Items schätzen | Open |
 | R-15 | Der Anspruch „möglichst detailgetreu mit allem“ führt zu unkontrolliertem Scope-Wachstum. | Product/Operational | High | High | Critical | Tabletop-Prinzip über Release-Slices liefern; Non-Goals und Exit-Gates beibehalten; neue v1-Funktion benötigt Scope-Tausch | Open |
 | R-16 | Videospiel-/Mod-Inspiration wird mit offiziellen Regeln verwechselt oder gestalterisch zu eng übernommen. | Product/Compliance | Medium | High | High | DEC-003, getrennte Variantenprofile sowie Regel-, Content- und Design-Review | Open |
-| R-17 | DM-Geheimnisse erscheinen durch neue Felder oder Exporte versehentlich in einer Spieleransicht. | Security/Product | Medium | Critical | Critical | fachliche Sichtbarkeitsfilter, deny-by-default, Negativtests je Feldtyp und DEC-004 | Open |
+| R-17 | DM-Geheimnisse erscheinen durch neue Felder, Regel-Traces oder Exporte versehentlich in einer Spieleransicht. | Security/Product | Medium | Critical | Critical | DEC-004/007; fachliche Sichtbarkeitsfilter, deny-by-default und Negativtests je Feld-/Trace-/Issue-Typ | Open |
 | R-18 | Änderungen am Kampagnen-Regelprofil machen Charaktere oder Sitzungszustände unbemerkt ungültig. | Data/Product | Medium | High | High | versionierte Regelprofile, Auswirkungsanalyse, explizite Migration und Kompatibilitätstests | Open |
 | R-19 | Technologien und Libraries werden vor stabilen Anforderungen festgeschrieben oder ohne Wartungs-/Lizenzprüfung übernommen. | Technical/Operational | Medium | High | High | Pre-Code Engineering Blueprint, aktuelle offizielle Quellen, Spikes und dokumentierter Fallback | Open |
 | R-20 | Der kleine v0.6-Alpha-Slice wird irrtümlich als ausreichender Endumfang behandelt und Social-, Exploration- oder komplexe Sitzungsfälle bleiben dauerhaft unvollständig. | Product/Quality | Medium | Critical | Critical | CON-014, Reifegradmatrix v0.6-v1.0, feature-complete Beta-Gate und Mehrsitzungs-Playtest | Open |
 | R-21 | Ereignislog und Snapshot widersprechen sich oder eine Korrektur überschreibt Historie, wodurch Sitzungen nicht zuverlässig fortgesetzt werden können. | Data/Technical | Medium | Critical | Critical | DEC-005/006, atomare Unit of Work, Eventsequenzen, Checksummen, Recovery-/Replay-Tests und Migrationsprüfung | Open |
+| R-22 | Spezifische Ausnahmen oder gleichrangige Regeln werden aufgrund impliziter Reihenfolge falsch beziehungsweise still aufgelöst. | Quality/Technical | Medium | Critical | Critical | DEC-007; typisierte Prioritätspipeline, explizite Spezifität, `conflict`/`pending_decision`, vollständiger Trace und Interaktionsregressionen | Open |
 
 ## Eskalationsregel
 

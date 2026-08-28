@@ -44,9 +44,34 @@ Die Releases nach v1.0 sind zunächst als Milestones und Roadmap-Gates angelegt.
     - [#45 `[TASK] Domain-Verträge und Testmatrix festlegen`](https://github.com/WatzingerM21052/DnDimension/issues/45) — Done, 1 SP
   - [#25 `[STORY] Reproduzierbaren SRD-Import bereitstellen`](https://github.com/WatzingerM21052/DnDimension/issues/25)
 
-## Release-Epics v0.3 bis v1.0
+## v0.3 - Rules Engine Foundation
 
-- [#3 v0.3 Rules Engine Foundation](https://github.com/WatzingerM21052/DnDimension/issues/3)
+- [#3 `[EPIC] v0.3 Rules Engine Foundation`](https://github.com/WatzingerM21052/DnDimension/issues/3) — 28 SP
+  - [#49 `[STORY] Regelprofil und Auflösungsverträge eindeutig festlegen`](https://github.com/WatzingerM21052/DnDimension/issues/49) — 5 SP
+    - [#50 `[TASK] Typisierte Rules-Engine-Verträge implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/50) — 2 SP
+    - [#51 `[TASK] Regelprofil, Quellen und Priorität auflösen`](https://github.com/WatzingerM21052/DnDimension/issues/51) — 2 SP
+    - [#52 `[TASK] Status-, Fehler- und Trace-Pipeline implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/52) — 1 SP
+  - [#53 `[STORY] Abgeleitete Charakterwerte nachvollziehbar berechnen`](https://github.com/WatzingerM21052/DnDimension/issues/53) — 5 SP
+    - [#54 `[TASK] Attributsmodifikator, Proficiency und Expertise implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/54) — 2 SP
+    - [#55 `[TASK] Alternative AC-Grundberechnungen auflösen`](https://github.com/WatzingerM21052/DnDimension/issues/55) — 2 SP
+    - [#56 `[TASK] Invarianten und Regressionen abgeleiteter Werte absichern`](https://github.com/WatzingerM21052/DnDimension/issues/56) — 1 SP
+  - [#57 `[STORY] D20-Prüfungen transparent auflösen`](https://github.com/WatzingerM21052/DnDimension/issues/57) — 8 SP
+    - [#58 `[TASK] Begrenzte Würfelausdrücke und injizierbaren Resolver implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/58) — 3 SP
+    - [#59 `[TASK] D20-Pipeline mit Vorteil und Nachteil implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/59) — 3 SP
+    - [#60 `[TASK] Manuelle Würfe, Follow-ups und D20-Regressionen absichern`](https://github.com/WatzingerM21052/DnDimension/issues/60) — 2 SP
+  - [#61 `[STORY] Generische Ressourcen regelkonform verändern`](https://github.com/WatzingerM21052/DnDimension/issues/61) — 5 SP
+    - [#62 `[TASK] Generisches Ressourcenmodell implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/62) — 2 SP
+    - [#63 `[TASK] Ressourcen-Transitionen als Vorschläge auflösen`](https://github.com/WatzingerM21052/DnDimension/issues/63) — 2 SP
+    - [#64 `[TASK] Ressourceninvarianten und Auflade-Trigger testen`](https://github.com/WatzingerM21052/DnDimension/issues/64) — 1 SP
+  - [#65 `[STORY] Regelauflösungen sicher vorschauen und bestätigen`](https://github.com/WatzingerM21052/DnDimension/issues/65) — 5 SP
+    - [#66 `[TASK] Preview- und Apply-Vertrag implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/66) — 2 SP
+    - [#67 `[TASK] Revision, Idempotenz und atomare Anwendung absichern`](https://github.com/WatzingerM21052/DnDimension/issues/67) — 2 SP
+    - [#68 `[TASK] Sichtbarkeitssichere Resolution-Projektionen implementieren`](https://github.com/WatzingerM21052/DnDimension/issues/68) — 1 SP
+
+Alle v0.3-Items stehen im `Backlog` und tragen Milestone, Labels, Parent, Priority, Area, Work Type, Target Version, Risk und Story Points. Sie werden erst nach dem Pre-Code Engineering Blueprint und der Prüfung der Abhängigkeiten #20/#23/#25 in `Ready` verschoben.
+
+## Weitere Release-Epics v0.4 bis v1.0
+
 - [#4 v0.4 Character Creator Slice](https://github.com/WatzingerM21052/DnDimension/issues/4)
 - [#5 v0.5 First Local Alpha](https://github.com/WatzingerM21052/DnDimension/issues/5)
 - [#6 v0.6 Play Session Alpha](https://github.com/WatzingerM21052/DnDimension/issues/6)

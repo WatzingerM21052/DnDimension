@@ -85,7 +85,7 @@ Jede Anforderung besitzt:
 | NFR-007 | Verfügbarkeit | Reconnect und Wiederherstellung verhindern stillen Sitzungsverlust | v1.4 |
 | NFR-008 | Beobachtbarkeit | Fehler besitzen Korrelation und nutzerfreundliche Meldung ohne sensitive Daten | v1.2 |
 | NFR-009 | KI-Transparenz | Quellenstatus, Unsicherheit und Kostenlimit sind erkennbar | v3.0 |
-| NFR-010 | Wartbarkeit | Rules Engine und Content sind unabhängig von UI und KI testbar | v0.3 |
+| NFR-010 | Wartbarkeit | Rules Engine und Content sind unabhängig von UI, Persistenz und KI testbar; gleicher vollständiger Input, dasselbe Regelprofil und derselbe Seed liefern dasselbe fachliche Ergebnis und denselben Trace | v0.3 |
 | NFR-011 | Regelerklärbarkeit und Spielerautonomie | automatische Würfe, Modifikatoren und Zustandsänderungen zeigen Ursache; keine Spielerentscheidung wird still ersetzt | v0.4 |
 | NFR-012 | Wissensgrenzen | alle Kampagnenabfragen erzwingen Sichtbarkeit im Datenzugriff; neue Feldtypen benötigen Negativtests | v0.5 |
 | NFR-013 | Atomare Sitzungsintegrität | bestätigte Zustandsänderungen sind vollständig oder gar nicht angewandt; Snapshot und Logposition werden gemeinsam validiert | v0.6 |
