@@ -14,11 +14,11 @@ Das Design darf an einen echten Spieltisch, Kartographie, Feldnotizen und ein le
 
 ## 2. Bewertete Richtungen
 
-| Richtung | Stärke | Risiko | Entscheidung |
-|---|---|---|---|
-| **Arcane Cartographer** | moderner Kartographen- und Spielleitertisch; gute Balance aus Atmosphäre und langer Nutzbarkeit | benötigt disziplinierte Material- und Ornamentregeln | **gewählt** |
-| Scholarly Codex | warm, ruhig und sehr lesefreundlich | schnell generische Pergament-/Fantasy-Website | nicht als Hauptidentität; bleibt Theme-Kandidat |
-| Tactical Astral | starke Dynamik für spätere VTT- und Combat-Flächen | zu videospielartig und für lange Texte anstrengend | nur als spätere spezialisierte Theme-/Workspace-Inspiration |
+| Richtung                | Stärke                                                                                          | Risiko                                               | Entscheidung                                                |
+| ----------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------- |
+| **Arcane Cartographer** | moderner Kartographen- und Spielleitertisch; gute Balance aus Atmosphäre und langer Nutzbarkeit | benötigt disziplinierte Material- und Ornamentregeln | **gewählt**                                                 |
+| Scholarly Codex         | warm, ruhig und sehr lesefreundlich                                                             | schnell generische Pergament-/Fantasy-Website        | nicht als Hauptidentität; bleibt Theme-Kandidat             |
+| Tactical Astral         | starke Dynamik für spätere VTT- und Combat-Flächen                                              | zu videospielartig und für lange Texte anstrengend   | nur als spätere spezialisierte Theme-/Workspace-Inspiration |
 
 ## 3. Visuelle Identität
 
@@ -28,14 +28,14 @@ DnDimension ist ein **lebendiger Kartographentisch zwischen den Sitzungen**. Die
 
 ### 3.2 Basispalette
 
-| Name | Referenzwert | Semantische Hauptrolle |
-|---|---|---|
-| Cartographer Ink | `#0B1620` | App-Hintergrund und tiefste Fläche |
-| Slate Vault | `#132631` | erhöhte Arbeitsfläche und Navigation |
-| Moon Parchment | `#E8E0CF` | Primärtext auf dunklen Flächen und helle Lesefläche |
-| Brass Signal | `#D6A85F` | ausgewählte Struktur, wichtige Markierung, Ornament |
-| Wayfinder Teal | `#4FC3B5` | interaktive Hauptaktion, Fokus und positiver Status |
-| Crimson Warning | `#C96568` | Fehler, Gefahr und destruktive Aktion |
+| Name             | Referenzwert | Semantische Hauptrolle                              |
+| ---------------- | ------------ | --------------------------------------------------- |
+| Cartographer Ink | `#0B1620`    | App-Hintergrund und tiefste Fläche                  |
+| Slate Vault      | `#132631`    | erhöhte Arbeitsfläche und Navigation                |
+| Moon Parchment   | `#E8E0CF`    | Primärtext auf dunklen Flächen und helle Lesefläche |
+| Brass Signal     | `#D6A85F`    | ausgewählte Struktur, wichtige Markierung, Ornament |
+| Wayfinder Teal   | `#4FC3B5`    | interaktive Hauptaktion, Fokus und positiver Status |
+| Crimson Warning  | `#C96568`    | Fehler, Gefahr und destruktive Aktion               |
 
 Diese Werte sind Referenzfarben des Standard-Themes und keine in Komponenten erlaubten Direktwerte. Komponenten konsumieren ausschließlich semantische Tokens. Für Text werden Kontrastpaare mit mindestens 4,5:1 angestrebt; für zentrale Lesetexte 7:1, für UI-Grenzen und Fokus mindestens 3:1.
 
@@ -89,7 +89,7 @@ data-theme="night-chart"
   -> surface-workspace
   -> surface-reading
   -> text-primary / text-muted / text-on-reading
-  -> accent-action / accent-structure / status-danger
+  -> accent-action / accent-structure / status-danger / status-danger-text
   -> border-subtle / border-strong / border-focus
   -> shadow-raised / shadow-overlay
 ```
@@ -240,16 +240,16 @@ Das Constellation Ledger bewegt sein aktives Sigil bei einer bewusst ausgelöste
 
 Die bestehenden Blueprint-Grenzen bleiben verbindlich. Zusätzlich berichtet #69 getrennt:
 
-| Bereich | Spike-Grenze |
-|---|---:|
-| gesamtes Production-JavaScript, raw | maximal 650 KiB |
-| gesamtes Production-JavaScript, gzip | maximal 180 KiB |
-| Production-CSS | maximal 50 KiB |
-| lokale WOFF2-Fonts zusammen | maximal 500 KiB |
-| eigene SVG-Assets zusammen | maximal 25 KiB |
-| gesamter Production-Build | weiterhin maximal 50 MiB |
-| projektlokale Dependencies | weiterhin unter 1 GiB |
-| Testartefakte | weiterhin maximal 250 MiB und bereinigbar |
+| Bereich                              |                              Spike-Grenze |
+| ------------------------------------ | ----------------------------------------: |
+| gesamtes Production-JavaScript, raw  |                           maximal 650 KiB |
+| gesamtes Production-JavaScript, gzip |                           maximal 180 KiB |
+| Production-CSS                       |                            maximal 50 KiB |
+| lokale WOFF2-Fonts zusammen          |                           maximal 500 KiB |
+| eigene SVG-Assets zusammen           |                            maximal 25 KiB |
+| gesamter Production-Build            |                  weiterhin maximal 50 MiB |
+| projektlokale Dependencies           |                     weiterhin unter 1 GiB |
+| Testartefakte                        | weiterhin maximal 250 MiB und bereinigbar |
 
 Überschreitungen blockieren den Spike-Abschluss, bis Nutzen, Ursache und eine neue Entscheidung dokumentiert sind. Source Maps werden für die Messung separat ausgewiesen und nach dem Foundation-Spike für Production neu bewertet.
 
@@ -265,15 +265,15 @@ Die bestehenden Blueprint-Grenzen bleiben verbindlich. Zusätzlich berichtet #69
 
 ## 17. Akzeptanzabbildung für #69
 
-| Kriterium | Designnachweis |
-|---|---|
-| Token -> Primitive -> Component -> Pattern | Abschnitte 7 und 8; `WaypointDraftPattern` |
-| Tastatur, Fokus, Name, Kontrast, Touch | Abschnitt 12 und Component-/Browserchecks |
-| Reduced Motion | Abschnitt 10 und automatisierter MatchMedia-/Edge-Test |
-| UI-Lab nicht in Production | Abschnitt 9 plus Build-Inhaltsprüfung |
-| kein schweres UI-/Testtool | Abschnitte 13, 15 und 16 |
-| JS, CSS, Font, Asset, Test getrennt messen | Abschnitt 15 und Validation Report |
-| DEC-010 bestätigen oder anpassen | Abschlussreport vergleicht Messung und Verhalten mit DEC-010 |
+| Kriterium                                  | Designnachweis                                               |
+| ------------------------------------------ | ------------------------------------------------------------ |
+| Token -> Primitive -> Component -> Pattern | Abschnitte 7 und 8; `WaypointDraftPattern`                   |
+| Tastatur, Fokus, Name, Kontrast, Touch     | Abschnitt 12 und Component-/Browserchecks                    |
+| Reduced Motion                             | Abschnitt 10 und automatisierter MatchMedia-/Edge-Test       |
+| UI-Lab nicht in Production                 | Abschnitt 9 plus Build-Inhaltsprüfung                        |
+| kein schweres UI-/Testtool                 | Abschnitte 13, 15 und 16                                     |
+| JS, CSS, Font, Asset, Test getrennt messen | Abschnitt 15 und Validation Report                           |
+| DEC-010 bestätigen oder anpassen           | Abschlussreport vergleicht Messung und Verhalten mit DEC-010 |
 
 ## 18. Exit-Kriterium
 

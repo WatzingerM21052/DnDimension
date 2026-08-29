@@ -51,6 +51,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 ## Ausführungspläne
 
 - [v0.1 Toolchain Bootstrap Validation](superpowers/plans/2026-08-28-v0.1-toolchain-bootstrap-implementation.md) — erster ausführbarer Plan für Spike #70; nachgelagerte Spikes bleiben getrennt
+- [UI and Quality Foundation Implementation](superpowers/plans/2026-08-29-ui-quality-foundation-implementation.md) — ausführbarer TDD-Plan für Spike #69; Umsetzung noch offen
 
 ## Entscheidungen
 
@@ -91,11 +92,11 @@ Die Dokumentation ist für den aktuellen v0.1-Foundation-Stand vollständig: Pro
 
 ## Pflegeauslöser
 
-| Änderung | Mindestens aktualisieren |
-|---|---|
-| neues oder verschobenes Release | Roadmap, Requirements, Milestone, Delivery-Plan |
-| neues Feature | Requirement/Spec, Epic/Story, Testsicht |
-| Architekturentscheidung | Decision Record, betroffene Spec, Risiko |
-| neue Content-Quelle | Bibliothekskatalog, Source Registry/Strategie, Lizenzprüfung |
-| Sprint-/Statuswechsel | GitHub Project; Statusbericht nur zum Berichtszeitpunkt |
-| neues wesentliches Risiko | Risk Register und betroffene Issue/Release-Review |
+| Änderung                        | Mindestens aktualisieren                                     |
+| ------------------------------- | ------------------------------------------------------------ |
+| neues oder verschobenes Release | Roadmap, Requirements, Milestone, Delivery-Plan              |
+| neues Feature                   | Requirement/Spec, Epic/Story, Testsicht                      |
+| Architekturentscheidung         | Decision Record, betroffene Spec, Risiko                     |
+| neue Content-Quelle             | Bibliothekskatalog, Source Registry/Strategie, Lizenzprüfung |
+| Sprint-/Statuswechsel           | GitHub Project; Statusbericht nur zum Berichtszeitpunkt      |
+| neues wesentliches Risiko       | Risk Register und betroffene Issue/Release-Review            |
