@@ -51,6 +51,7 @@ export const createDiskReport = ({ root, storePath }) => {
       bytes: measurePaths([
         path.join(root, "apps/web/dist"),
         path.join(root, "packages/core/dist"),
+        path.join(root, "packages/ui/dist"),
       ]),
       budgetBytes: 50 * MIB,
     },
@@ -71,6 +72,7 @@ export const createDiskReport = ({ root, storePath }) => {
         path.join(root, ".cache"),
         path.join(root, "apps/web/.vite"),
         path.join(root, "apps/web/.cache"),
+        path.join(root, "packages/ui/.cache"),
       ]),
       budgetBytes: 300 * MIB,
     },

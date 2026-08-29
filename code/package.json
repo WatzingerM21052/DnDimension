@@ -18,6 +18,7 @@
     "test:unit": "vitest run",
     "test": "pnpm test:tooling && pnpm test:unit",
     "build": "pnpm --filter @dndimension/web build",
+    "budget:ui": "node tooling/scripts/ui-budget.mjs",
     "clean": "node tooling/scripts/clean.mjs build",
     "clean:test": "node tooling/scripts/clean.mjs test",
     "clean:cache": "node tooling/scripts/clean.mjs cache",

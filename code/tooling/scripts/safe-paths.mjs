@@ -12,13 +12,25 @@ const ROOT_GENERATED = new Set([
   "blob-report",
 ]);
 
+const PACKAGE_GENERATED = new Set([
+  "apps/web/dist",
+  "apps/web/dev-dist",
+  "apps/web/.vite",
+  "apps/web/.cache",
+  "packages/core/dist",
+  "packages/core/dev-dist",
+  "packages/core/.vite",
+  "packages/core/.cache",
+  "packages/ui/dist",
+  "packages/ui/.cache",
+]);
+
 const normalizeRelative = (relative) => relative.split(path.sep).join("/").toLowerCase();
 
 const isAllowedRelative = (relative) => {
   const normalized = normalizeRelative(relative);
   return (
-    ROOT_GENERATED.has(normalized) ||
-    /^(apps|packages)\/[^/]+\/(dist|dev-dist|\.vite|\.cache)$/.test(normalized)
+    ROOT_GENERATED.has(normalized) || PACKAGE_GENERATED.has(normalized)
   );
 };
 

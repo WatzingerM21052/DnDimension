@@ -16,6 +16,8 @@ test("accepts only known generated directories", () => {
     "test-results",
     "blob-report",
     "packages/core/dist",
+    "packages/ui/dist",
+    "packages/ui/.cache",
     "apps/web/dist",
   ];
 
