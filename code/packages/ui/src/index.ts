@@ -2,6 +2,10 @@ import "./styles/global.css";
 
 export { ActionButton } from "./components/ActionButton";
 export type { ActionButtonProps } from "./components/ActionButton";
+export { ModalDialog } from "./components/ModalDialog";
+export type { ModalDialogProps } from "./components/ModalDialog";
+export { TextField } from "./components/TextField";
+export type { TextFieldProps } from "./components/TextField";
 export { Icon } from "./primitives/Icon";
 export type { IconProps } from "./primitives/Icon";
 export { Stack } from "./primitives/Stack";
