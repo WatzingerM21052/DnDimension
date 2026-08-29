@@ -76,14 +76,12 @@ interface WaypointDraftFormProps {
 
 const WaypointDraftForm = ({ close, onSaved }: WaypointDraftFormProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const draftNameRef = useRef("");
   const [draftName, setDraftName] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>();
   const textFieldError = errorMessage === undefined ? {} : { errorMessage };
 
   const saveDraft = () => {
-    draftNameRef.current = inputRef.current?.value ?? draftNameRef.current;
-    const normalizedName = draftNameRef.current.trim();
+    const normalizedName = draftName.trim();
 
     if (normalizedName.length === 0) {
       setErrorMessage("Gib einen Namen für die Wegmarke ein.");
@@ -108,19 +106,15 @@ const WaypointDraftForm = ({ close, onSaved }: WaypointDraftFormProps) => {
         inputRef={inputRef}
         isInvalid={errorMessage !== undefined}
         label="Name der Wegmarke"
-        onChange={(value) => {
-          draftNameRef.current = value;
-          setDraftName(value);
-        }}
+        onChange={setDraftName}
+        validationBehavior="aria"
         value={draftName}
       />
       <div className={styles.actions}>
         <ActionButton onPress={close} type="button" variant="secondary">
           Abbrechen
         </ActionButton>
-        <ActionButton onPress={saveDraft} type="submit">
-          Wegmarke speichern
-        </ActionButton>
+        <ActionButton type="submit">Wegmarke speichern</ActionButton>
       </div>
     </form>
   );

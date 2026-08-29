@@ -44,6 +44,27 @@ describe("WaypointDraftPattern", () => {
     expect(screen.queryByRole("status")).not.toBeInTheDocument();
   });
 
+  it("submits a corrected waypoint through Enter in the name field", async () => {
+    const user = userEvent.setup();
+    render(<WaypointDraftPattern />);
+
+    await user.click(screen.getByRole("button", { name: "Wegmarke anlegen" }));
+    const input = screen.getByRole("textbox", { name: "Name der Wegmarke" });
+    await user.type(input, "   ");
+    await user.click(screen.getByRole("button", { name: "Wegmarke speichern" }));
+    expect(screen.getByText("Gib einen Namen für die Wegmarke ein.")).toBeInTheDocument();
+
+    await user.clear(input);
+    await user.type(input, " Sternenpfad ");
+    await user.keyboard("{Enter}");
+
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "Wegmarke „Sternenpfad“ wurde vorgemerkt.",
+    );
+    expect(screen.getByRole("button", { name: "Entwurf" })).toHaveAttribute("aria-pressed", "true");
+  });
+
   it("has no non-color accessibility violations", async () => {
     const { container } = render(<WaypointDraftPattern />);
 
