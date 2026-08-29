@@ -1,0 +1,43 @@
+.ledger {
+  inline-size: 100%;
+}
+
+.nodes {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.nodes::before {
+  position: absolute;
+  inset-block: var(--space-4);
+  inset-inline-start: calc(var(--space-4) + var(--space-2));
+  border-inline-start: var(--border-thin) solid var(--color-border-subtle);
+  content: "";
+}
+
+.node {
+  position: relative;
+  z-index: var(--layer-base);
+  justify-content: flex-start;
+  min-inline-size: var(--target-min);
+  min-block-size: var(--target-min);
+  color: var(--color-text-primary);
+  text-align: start;
+}
+
+.active {
+  border-color: var(--color-accent-structure);
+  color: var(--color-accent-structure);
+}
+
+.label {
+  position: relative;
+}
+
+.marker {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
