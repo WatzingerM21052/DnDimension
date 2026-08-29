@@ -46,6 +46,7 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 - [v0.6 Play Session Specification](spec-planning/v0.6-play-session-spec.md)
 - [Pre-Code Engineering Blueprint](spec-planning/pre-code-engineering-blueprint.md) — akzeptierte Startarchitektur; P-01 bestanden, weitere Foundation-Spikes offen
 - [AI-DM Prompt-System Design](spec-planning/2026-08-28-ai-dm-prompt-system-design.md)
+- [UI Design System Foundation](superpowers/specs/2026-08-29-ui-design-system-foundation-design.md) — freigegebene Arcane-Cartographer-Richtung für Spike #69; Umsetzung noch offen
 
 ## Ausführungspläne
 
