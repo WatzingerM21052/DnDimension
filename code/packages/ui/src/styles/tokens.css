@@ -1,0 +1,29 @@
+:root {
+  --font-display: "Alegreya Sans SC", "Segoe UI", sans-serif;
+  --font-body: "Atkinson Hyperlegible Next", "Segoe UI", sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: clamp(2rem, 6vw, 4.5rem);
+  --line-body: 1.55;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --target-min: 2.75rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --border-thin: 0.0625rem;
+  --border-focus: 0.1875rem;
+  --layer-base: 0;
+  --layer-overlay: 40;
+  --motion-fast: 120ms;
+  --motion-standard: 240ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --content-reading: 70ch;
+  --content-wide: 90rem;
+}
