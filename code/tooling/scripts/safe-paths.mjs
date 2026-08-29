@@ -22,6 +22,8 @@ const PACKAGE_GENERATED = new Set([
   "packages/core/.vite",
   "packages/core/.cache",
   "packages/ui/dist",
+  "packages/ui/dev-dist",
+  "packages/ui/.vite",
   "packages/ui/.cache",
 ]);
 
