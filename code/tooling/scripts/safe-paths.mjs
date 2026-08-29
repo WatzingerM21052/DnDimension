@@ -31,9 +31,7 @@ const normalizeRelative = (relative) => relative.split(path.sep).join("/").toLow
 
 const isAllowedRelative = (relative) => {
   const normalized = normalizeRelative(relative);
-  return (
-    ROOT_GENERATED.has(normalized) || PACKAGE_GENERATED.has(normalized)
-  );
+  return ROOT_GENERATED.has(normalized) || PACKAGE_GENERATED.has(normalized);
 };
 
 export const assertAllowedGeneratedPath = (root, target) => {

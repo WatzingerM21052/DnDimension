@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "sideEffects": ["./src/styles/global.css"],
+  "sideEffects": [
+    "./src/styles/global.css"
+  ],
   "exports": {
     ".": "./src/index.ts"
   },

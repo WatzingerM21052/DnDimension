@@ -12,8 +12,7 @@ export const UI_BUDGETS = Object.freeze({
   total: 50 * 1024 * 1024,
 });
 
-export const evaluateUiBudget = (bytes, budgetBytes) =>
-  bytes > budgetBytes ? "warning" : "pass";
+export const evaluateUiBudget = (bytes, budgetBytes) => (bytes > budgetBytes ? "warning" : "pass");
 
 const collectFiles = (root) => {
   const files = [];
@@ -30,18 +29,12 @@ const collectFiles = (root) => {
 };
 
 export const createUiBudgetReport = ({ distRoot, budgets = UI_BUDGETS }) => {
-  if (!fs.existsSync(distRoot))
-    throw new Error(`Production build is missing: ${distRoot}`);
+  if (!fs.existsSync(distRoot)) throw new Error(`Production build is missing: ${distRoot}`);
   const files = collectFiles(distRoot);
   const bytesFor = (predicate) =>
-    files
-      .filter(predicate)
-      .reduce((sum, file) => sum + fs.statSync(file).size, 0);
+    files.filter(predicate).reduce((sum, file) => sum + fs.statSync(file).size, 0);
   const javascriptFiles = files.filter((file) => file.endsWith(".js"));
-  const javascriptRaw = javascriptFiles.reduce(
-    (sum, file) => sum + fs.statSync(file).size,
-    0,
-  );
+  const javascriptRaw = javascriptFiles.reduce((sum, file) => sum + fs.statSync(file).size, 0);
   const javascriptGzip = javascriptFiles.reduce(
     (sum, file) => sum + gzipSync(fs.readFileSync(file)).byteLength,
     0,
