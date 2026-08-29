@@ -1,5 +1,7 @@
 import "./styles/global.css";
 
+export { ActionButton } from "./components/ActionButton";
+export type { ActionButtonProps } from "./components/ActionButton";
 export { Icon } from "./primitives/Icon";
 export type { IconProps } from "./primitives/Icon";
 export { Stack } from "./primitives/Stack";
