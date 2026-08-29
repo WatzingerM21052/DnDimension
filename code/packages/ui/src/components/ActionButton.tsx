@@ -1,4 +1,4 @@
-import { Button, type ButtonProps } from "react-aria-components";
+import { Button, type ButtonProps } from "react-aria-components/Button";
 
 import styles from "./ActionButton.module.css";
 import { mergeClassNames } from "../utils/merge-class-names";
