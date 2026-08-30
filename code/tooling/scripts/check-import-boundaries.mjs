@@ -3,6 +3,8 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import ts from "typescript";
 
+const publicWorkspaceSubpaths = new Set(["@dndimension/ui/styles.css"]);
+
 const workspaceUnit = (root, file) => {
   const relative = path.relative(root, path.resolve(file));
   const parts = relative.split(path.sep);
@@ -69,7 +71,7 @@ export const analyzeFiles = ({ root, sources }) => {
       const packageMatch = /^@dndimension\/([^/]+)(\/.*)?$/.exec(specifier);
       if (packageMatch) {
         const targetUnit = `@dndimension/${packageMatch[1]}`;
-        if (packageMatch[2]) {
+        if (packageMatch[2] && !publicWorkspaceSubpaths.has(specifier)) {
           violations.push({ code: "package_deep_import", file, specifier });
         }
         if (sourceUnit && sourceUnit !== targetUnit) {

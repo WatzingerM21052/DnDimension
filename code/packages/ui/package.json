@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "sideEffects": [
-    "./src/styles/global.css"
+    "**/*.css"
   ],
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles/global.css"
   },
   "dependencies": {
     "motion": "13.1.1",
