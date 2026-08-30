@@ -115,6 +115,68 @@ test("rejects body and display token prefixes instead of the exact token names",
   }
 });
 
+test("rejects a non-ASCII identifier suffix on the body font token", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace("var(--font-body)", "var(--font-bodyé, serif)"),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /body-font-usage-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects a non-ASCII identifier suffix on the display font token", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace("var(--font-display)", "var(--font-displayé, serif)"),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /display-font-usage-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects body text found only inside selector strings and comments", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace(
+      "body { font-family: var(--font-body); }",
+      `/* body.app { font-family: var(--font-body); } */
+      [data-label=" body.foo"], [data-path='html>body.app'] {
+        font-family: var(--font-body);
+      }`,
+    ),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /body-font-usage-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("accepts exact tokens with fallbacks in minified compound and comma-separated rules", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss
+      .replace(
+        "body { font-family: var(--font-body); }",
+        "html>body.app,html body#shell{font-family:var(--font-body,serif)}",
+      )
+      .replace(
+        ".title { font-family: var(--font-display); }",
+        '.title,.heading{font-family:var(--font-display,"Display Face")}',
+      ),
+  );
+
+  try {
+    assert.doesNotThrow(() => assertProductionUiFoundations(distRoot));
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
 test("rejects CSS when a token family has no matching font face", () => {
   const distRoot = createFoundationDist(
     completeFoundationCss.replace(
@@ -219,6 +281,72 @@ test("rejects a missing WOFF2 sibling even when another matching face target exi
       () => assertProductionUiFoundations(distRoot),
       /display-woff2-target-missing: assets\/display-missing\.woff2/,
     );
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects a local-only matching face even when another matching face has WOFF2", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace(
+      '@font-face { font-family: "Display Face"; src: url("/assets/display.woff2") format("woff2"); }',
+      `@font-face { font-family: "Display Face"; src: url("/assets/display.woff2") format("woff2"); }
+      @font-face { font-family: "Display Face"; src: local("Display Face Bold"); font-weight: 700; }`,
+    ),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /display-font-face-woff2-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects a face whose last src declaration is local-only", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace(
+      'src: url("/assets/body.woff2") format("woff2")',
+      'src: url("/assets/body.woff2") format("woff2"); src: local("Body Face")',
+    ),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /body-font-face-woff2-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects a face whose last src declaration points to a missing WOFF2", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace(
+      'src: url("/assets/body.woff2") format("woff2")',
+      `src: url("/assets/body.woff2") format("woff2");
+      src: url("/assets/body-missing.woff2") format("woff2")`,
+    ),
+  );
+
+  try {
+    assert.throws(
+      () => assertProductionUiFoundations(distRoot),
+      /body-woff2-target-missing: assets\/body-missing\.woff2/,
+    );
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("accepts a face whose last src declaration replaces an earlier missing target", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace(
+      'src: url("/assets/body.woff2") format("woff2")',
+      `src: url("/assets/body-missing.woff2") format("woff2");
+      src: url("/assets/body.woff2") format("woff2")`,
+    ),
+  );
+
+  try {
+    assert.doesNotThrow(() => assertProductionUiFoundations(distRoot));
   } finally {
     removeDist(distRoot);
   }

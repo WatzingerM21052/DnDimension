@@ -60,71 +60,425 @@ export const assertProductionUiLabExcluded = (distRoot) => {
   }
 };
 
-const themeFoundationChecks = Object.freeze([
-  [
-    "night-chart-theme",
-    (css) =>
-      /\[data-theme\s*=\s*["']?night-chart["']?\][^{]*\{[^}]*--color-surface-canvas\s*:/.test(css),
-  ],
-  [
-    "vellum-study-theme",
-    (css) =>
-      /\[data-theme\s*=\s*["']?vellum-study["']?\][^{]*\{[^}]*--color-surface-canvas\s*:/.test(css),
-  ],
-]);
+// Deliberately limited to the CSS constructs needed by the production font contract.
+const isCssWhitespace = (character) =>
+  character === " " ||
+  character === "\t" ||
+  character === "\n" ||
+  character === "\r" ||
+  character === "\f";
 
-const declarationValue = (declarations, property) => {
-  const escapedProperty = property.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const match = new RegExp(`(?:^|;)\\s*${escapedProperty}\\s*:\\s*([^;}]+)`, "i").exec(
-    declarations,
+const isCssHexDigit = (character) =>
+  character !== undefined &&
+  ((character >= "0" && character <= "9") ||
+    (character.toLowerCase() >= "a" && character.toLowerCase() <= "f"));
+
+const isCssNameCharacter = (character) => {
+  const codePoint = character?.codePointAt(0);
+  return (
+    character === "-" ||
+    character === "_" ||
+    (character >= "0" && character <= "9") ||
+    (character?.toLowerCase() >= "a" && character?.toLowerCase() <= "z") ||
+    (codePoint !== undefined && codePoint >= 0x80)
   );
-
-  return match?.[1].trim();
 };
 
-const normalizeFontFamily = (value) => {
-  const firstFamily = value.trim().split(",", 1)[0].trim();
-  const unquoted = firstFamily.replace(/^(["'])(.*)\1$/, "$2");
+const consumeCssComment = (source, start) => {
+  const closing = source.indexOf("*/", start + 2);
+  return closing === -1 ? source.length : closing + 2;
+};
 
-  return unquoted.toLowerCase();
+const consumeCssEscape = (source, start) => {
+  let cursor = start + 1;
+  if (cursor >= source.length) return { end: cursor, value: "" };
+
+  if (source[cursor] === "\r" || source[cursor] === "\n" || source[cursor] === "\f") {
+    if (source[cursor] === "\r" && source[cursor + 1] === "\n") cursor += 1;
+    return { end: cursor + 1, value: "" };
+  }
+
+  if (!isCssHexDigit(source[cursor])) {
+    return { end: cursor + 1, value: source[cursor] };
+  }
+
+  let hexadecimal = "";
+  while (cursor < source.length && hexadecimal.length < 6 && isCssHexDigit(source[cursor])) {
+    hexadecimal += source[cursor];
+    cursor += 1;
+  }
+  if (isCssWhitespace(source[cursor])) cursor += 1;
+
+  const codePoint = Number.parseInt(hexadecimal, 16);
+  const value =
+    codePoint === 0 || codePoint > 0x10ffff || (codePoint >= 0xd800 && codePoint <= 0xdfff)
+      ? "\uFFFD"
+      : String.fromCodePoint(codePoint);
+  return { end: cursor, value };
+};
+
+const consumeCssString = (source, start) => {
+  const quote = source[start];
+  let cursor = start + 1;
+  let value = "";
+
+  while (cursor < source.length && source[cursor] !== quote) {
+    if (source[cursor] === "\\") {
+      const escaped = consumeCssEscape(source, cursor);
+      value += escaped.value;
+      cursor = escaped.end;
+    } else {
+      value += source[cursor];
+      cursor += 1;
+    }
+  }
+
+  return { end: cursor < source.length ? cursor + 1 : cursor, value };
+};
+
+const readCssIdentifier = (source, start) => {
+  let cursor = start;
+  let value = "";
+
+  while (cursor < source.length) {
+    if (isCssNameCharacter(source[cursor])) {
+      value += source[cursor];
+      cursor += 1;
+    } else if (source[cursor] === "\\") {
+      const escaped = consumeCssEscape(source, cursor);
+      value += escaped.value;
+      cursor = escaped.end;
+    } else {
+      break;
+    }
+  }
+
+  return cursor === start ? undefined : { end: cursor, value };
+};
+
+const lexCss = (source) => {
+  const tokens = [];
+  let cursor = 0;
+
+  while (cursor < source.length) {
+    const start = cursor;
+    if (isCssWhitespace(source[cursor])) {
+      while (isCssWhitespace(source[cursor])) cursor += 1;
+      tokens.push({ type: "space", value: " ", start, end: cursor });
+    } else if (source.startsWith("/*", cursor)) {
+      cursor = consumeCssComment(source, cursor);
+      tokens.push({ type: "space", value: " ", start, end: cursor });
+    } else if (source[cursor] === '"' || source[cursor] === "'") {
+      const string = consumeCssString(source, cursor);
+      cursor = string.end;
+      tokens.push({ type: "string", value: string.value, start, end: cursor });
+    } else {
+      const identifier = readCssIdentifier(source, cursor);
+      if (identifier !== undefined) {
+        cursor = identifier.end;
+        tokens.push({ type: "ident", value: identifier.value, start, end: cursor });
+      } else {
+        cursor += 1;
+        tokens.push({ type: "symbol", value: source[start], start, end: cursor });
+      }
+    }
+  }
+
+  return tokens;
+};
+
+const significantTokens = (source) => lexCss(source).filter(({ type }) => type !== "space");
+
+const splitCssAtTopLevel = (source, delimiter) => {
+  const segments = [];
+  const depths = { "(": 0, "[": 0, "{": 0 };
+  const closingToOpening = { ")": "(", "]": "[", "}": "{" };
+  let start = 0;
+
+  for (const token of lexCss(source)) {
+    if (token.type !== "symbol") continue;
+    if (depths[token.value] !== undefined) depths[token.value] += 1;
+    else if (closingToOpening[token.value] !== undefined) {
+      const opening = closingToOpening[token.value];
+      depths[opening] = Math.max(0, depths[opening] - 1);
+    } else if (
+      token.value === delimiter &&
+      depths["("] === 0 &&
+      depths["["] === 0 &&
+      depths["{"] === 0
+    ) {
+      segments.push(source.slice(start, token.start));
+      start = token.end;
+    }
+  }
+
+  segments.push(source.slice(start));
+  return segments;
+};
+
+const parseCssDeclarations = (source) =>
+  splitCssAtTopLevel(source, ";").flatMap((candidate) => {
+    const [propertySource, ...valueParts] = splitCssAtTopLevel(candidate, ":");
+    const propertyTokens = significantTokens(propertySource);
+    if (propertyTokens.length !== 1 || propertyTokens[0].type !== "ident") return [];
+
+    return [{ property: propertyTokens[0].value, value: valueParts.join(":").trim() }];
+  });
+
+const atRuleName = (prelude) => {
+  const tokens = significantTokens(prelude);
+  return tokens[0]?.value === "@" && tokens[1]?.type === "ident"
+    ? tokens[1].value.toLowerCase()
+    : undefined;
+};
+
+const groupingAtRules = new Set([
+  "container",
+  "document",
+  "layer",
+  "media",
+  "scope",
+  "starting-style",
+  "supports",
+]);
+
+const closingTokenIndex = (tokens, start, opening, closing) => {
+  let depth = 0;
+  for (let index = start; index < tokens.length; index += 1) {
+    const token = tokens[index];
+    if (token.type !== "symbol") continue;
+    if (token.value === opening) depth += 1;
+    else if (token.value === closing && --depth === 0) return index;
+  }
+  return tokens.length;
+};
+
+const collectRulesFromCss = (source, file) => {
+  const rules = [];
+  const tokens = lexCss(source);
+  let statementStart = 0;
+
+  for (let index = 0; index < tokens.length; index += 1) {
+    const token = tokens[index];
+    if (token.type !== "symbol") continue;
+    if (token.value === ";") {
+      statementStart = token.end;
+      continue;
+    }
+    if (token.value !== "{") continue;
+
+    const closingIndex = closingTokenIndex(tokens, index, "{", "}");
+    const closing = tokens[closingIndex];
+    const prelude = source.slice(statementStart, token.start).trim();
+    const bodyEnd = closing?.start ?? source.length;
+    const body = source.slice(token.end, bodyEnd);
+    const name = atRuleName(prelude);
+
+    if (groupingAtRules.has(name)) rules.push(...collectRulesFromCss(body, file));
+    else if (prelude.length > 0) {
+      rules.push({ file, selector: prelude, declarations: parseCssDeclarations(body) });
+    }
+
+    statementStart = closing?.end ?? source.length;
+    index = closingIndex;
+  }
+
+  return rules;
 };
 
 const collectCssRules = (distRoot) =>
   collectTextBuildFiles(distRoot)
     .filter((file) => file.endsWith(".css"))
-    .flatMap((file) => {
-      const content = fs.readFileSync(file, "utf8").replaceAll(/\/\*[\s\S]*?\*\//g, "");
-      const rules = [];
-      const blockPattern = /([^{}]+)\{([^{}]*)\}/g;
-      let match;
+    .flatMap((file) => collectRulesFromCss(fs.readFileSync(file, "utf8"), file));
 
-      while ((match = blockPattern.exec(content)) !== null) {
-        rules.push({ file, selector: match[1].trim(), declarations: match[2] });
-      }
+const declarationValue = (declarations, property) => {
+  const customProperty = property.startsWith("--");
+  let value;
 
-      return rules;
-    });
+  for (const declaration of declarations) {
+    const matches = customProperty
+      ? declaration.property === property
+      : declaration.property.toLowerCase() === property.toLowerCase();
+    if (matches) value = declaration.value;
+  }
+
+  return value;
+};
+
+const selectorHasBodyElement = (selector) => {
+  let attributeDepth = 0;
+  let functionDepth = 0;
+  let compoundStart = true;
+
+  for (const token of lexCss(selector)) {
+    if (token.type === "symbol" && token.value === "[") {
+      attributeDepth += 1;
+      compoundStart = false;
+    } else if (token.type === "symbol" && token.value === "]" && attributeDepth > 0) {
+      attributeDepth -= 1;
+    } else if (attributeDepth > 0) {
+      continue;
+    } else if (token.type === "symbol" && token.value === "(") {
+      functionDepth += 1;
+      compoundStart = false;
+    } else if (token.type === "symbol" && token.value === ")" && functionDepth > 0) {
+      functionDepth -= 1;
+    } else if (functionDepth > 0) {
+      continue;
+    } else if (token.type === "space") {
+      compoundStart = true;
+    } else if (
+      token.type === "symbol" &&
+      (token.value === "," || token.value === ">" || token.value === "+" || token.value === "~")
+    ) {
+      compoundStart = true;
+    } else if (token.type === "ident") {
+      if (compoundStart && token.value.toLowerCase() === "body") return true;
+      compoundStart = false;
+    } else {
+      compoundStart = false;
+    }
+  }
+
+  return false;
+};
+
+const selectorHasPseudoClass = (selector, expectedName) => {
+  const tokens = lexCss(selector);
+  let attributeDepth = 0;
+  let functionDepth = 0;
+
+  for (let index = 0; index < tokens.length; index += 1) {
+    const token = tokens[index];
+    if (token.type === "symbol" && token.value === "[") attributeDepth += 1;
+    else if (token.type === "symbol" && token.value === "]") attributeDepth -= 1;
+    else if (attributeDepth === 0 && token.type === "symbol" && token.value === "(") {
+      functionDepth += 1;
+    } else if (attributeDepth === 0 && token.type === "symbol" && token.value === ")") {
+      functionDepth -= 1;
+    } else if (
+      attributeDepth === 0 &&
+      functionDepth === 0 &&
+      token.type === "symbol" &&
+      token.value === ":"
+    ) {
+      const next = tokens.slice(index + 1).find(({ type }) => type !== "space");
+      if (next?.type === "ident" && next.value.toLowerCase() === expectedName) return true;
+    }
+  }
+
+  return false;
+};
+
+const selectorHasTheme = (selector, expectedTheme) => {
+  const tokens = lexCss(selector);
+
+  for (let index = 0; index < tokens.length; index += 1) {
+    if (tokens[index].type !== "symbol" || tokens[index].value !== "[") continue;
+    const closingIndex = closingTokenIndex(tokens, index, "[", "]");
+    const attribute = tokens.slice(index + 1, closingIndex).filter(({ type }) => type !== "space");
+    if (
+      attribute.length === 3 &&
+      attribute[0].type === "ident" &&
+      attribute[0].value.toLowerCase() === "data-theme" &&
+      attribute[1].type === "symbol" &&
+      attribute[1].value === "=" &&
+      (attribute[2].type === "ident" || attribute[2].type === "string") &&
+      attribute[2].value === expectedTheme
+    ) {
+      return true;
+    }
+    index = closingIndex;
+  }
+
+  return false;
+};
+
+const containsVarToken = (source, expectedToken) => {
+  const tokens = significantTokens(source);
+
+  return tokens.some(
+    (token, index) =>
+      token.type === "ident" &&
+      token.value.toLowerCase() === "var" &&
+      tokens[index + 1]?.value === "(" &&
+      tokens[index + 2]?.type === "ident" &&
+      tokens[index + 2].value === expectedToken &&
+      (tokens[index + 3]?.value === "," || tokens[index + 3]?.value === ")"),
+  );
+};
 
 const hasFontTokenUsage = (rules, token, selector = () => true) =>
-  rules.some(
-    (rule) =>
-      selector(rule.selector) &&
-      new RegExp(`font-family\\s*:\\s*var\\(\\s*${token}(?![\\w-])`, "i").test(rule.declarations),
-  );
+  rules.some((rule) => {
+    const fontFamily = declarationValue(rule.declarations, "font-family");
+    return (
+      selector(rule.selector) && fontFamily !== undefined && containsVarToken(fontFamily, token)
+    );
+  });
 
-const hasBodyElementSelector = (selector) =>
-  selector.split(",").some((part) => /(?:^|[\s>+~])body(?=$|[\s>+~:#.[])/i.test(part.trim()));
+const normalizeFontFamily = (value) => {
+  const tokens = lexCss(splitCssAtTopLevel(value, ",")[0]);
+  if (tokens.find(({ type }) => type !== "space")?.type === "string") {
+    return tokens.find(({ type }) => type === "string").value.toLowerCase();
+  }
+
+  let normalized = "";
+  let needsSpace = false;
+  for (const token of tokens) {
+    if (token.type === "space") needsSpace = normalized.length > 0;
+    else {
+      if (needsSpace) normalized += " ";
+      normalized += token.value;
+      needsSpace = false;
+    }
+  }
+  return normalized.trim().toLowerCase();
+};
 
 const collectFontFaces = (rules) =>
   rules
-    .filter((rule) => rule.selector.toLowerCase() === "@font-face")
+    .filter((rule) => atRuleName(rule.selector) === "font-face")
     .map((rule) => ({ ...rule, family: declarationValue(rule.declarations, "font-family") }))
     .filter(({ family }) => family !== undefined);
 
+const collectCssUrls = (source) => {
+  const tokens = significantTokens(source);
+  const urls = [];
+
+  for (let index = 0; index < tokens.length; index += 1) {
+    if (
+      tokens[index].type !== "ident" ||
+      tokens[index].value.toLowerCase() !== "url" ||
+      tokens[index + 1]?.value !== "("
+    ) {
+      continue;
+    }
+
+    if (tokens[index + 2]?.type === "string" && tokens[index + 3]?.value === ")") {
+      urls.push(tokens[index + 2].value);
+      index += 3;
+      continue;
+    }
+
+    const closingIndex = tokens.findIndex(
+      (token, candidate) => candidate > index + 1 && token.type === "symbol" && token.value === ")",
+    );
+    if (closingIndex === -1) continue;
+    urls.push(
+      tokens
+        .slice(index + 2, closingIndex)
+        .map(({ value }) => value)
+        .join("")
+        .trim(),
+    );
+    index = closingIndex;
+  }
+
+  return urls;
+};
+
 const woff2Urls = (source) =>
-  [...source.matchAll(/url\(\s*(?:"([^"]+)"|'([^']+)'|([^\s)]+))\s*\)/gi)]
-    .map((match) => match[1] ?? match[2] ?? match[3])
-    .filter((url) => /\.woff2(?:[?#].*)?$/i.test(url));
+  collectCssUrls(source).filter((url) => url.split(/[?#]/, 1)[0].toLowerCase().endsWith(".woff2"));
 
 const isOutsideRoot = (relative) =>
   relative.length === 0 ||
@@ -172,7 +526,7 @@ const fontChainFindings = (distRoot, rules) => {
     {
       label: "body",
       token: "--font-body",
-      used: hasFontTokenUsage(rules, "--font-body", hasBodyElementSelector),
+      used: hasFontTokenUsage(rules, "--font-body", selectorHasBodyElement),
     },
     {
       label: "display",
@@ -187,10 +541,12 @@ const fontChainFindings = (distRoot, rules) => {
       continue;
     }
 
-    const tokenValue = rules
-      .filter((rule) => rule.selector.includes(":root"))
-      .map((rule) => declarationValue(rule.declarations, token))
-      .find((value) => value !== undefined);
+    let tokenValue;
+    for (const rule of rules) {
+      if (!selectorHasPseudoClass(rule.selector, "root")) continue;
+      const value = declarationValue(rule.declarations, token);
+      if (value !== undefined) tokenValue = value;
+    }
 
     if (tokenValue === undefined) {
       findings.push(`${label}-font-token-missing`);
@@ -205,27 +561,22 @@ const fontChainFindings = (distRoot, rules) => {
       continue;
     }
 
-    const faceUrls = matchingFaces.flatMap((face) =>
-      woff2Urls(declarationValue(face.declarations, "src") ?? "").map((url) => ({
-        file: face.file,
-        url,
-      })),
-    );
+    for (const face of matchingFaces) {
+      const faceUrls = woff2Urls(declarationValue(face.declarations, "src") ?? "");
+      if (faceUrls.length === 0) {
+        findings.push(`${label}-font-face-woff2-missing`);
+        continue;
+      }
 
-    if (faceUrls.length === 0) {
-      findings.push(`${label}-font-face-woff2-missing`);
-      continue;
-    }
+      for (const url of faceUrls) {
+        const target = resolveLocalWoff2Target(distRoot, face.file, url);
+        if (target.target !== undefined) continue;
 
-    const targets = faceUrls
-      .map(({ file, url }) => resolveLocalWoff2Target(distRoot, file, url))
-      .filter(({ target }) => target === undefined);
-
-    for (const target of targets) {
-      if (target.reason === "missing") {
-        findings.push(`${label}-woff2-target-missing: ${target.relative}`);
-      } else {
-        findings.push(`${label}-woff2-target-invalid: ${target.reason}`);
+        if (target.reason === "missing") {
+          findings.push(`${label}-woff2-target-missing: ${target.relative}`);
+        } else {
+          findings.push(`${label}-woff2-target-invalid: ${target.reason}`);
+        }
       }
     }
   }
@@ -235,10 +586,19 @@ const fontChainFindings = (distRoot, rules) => {
 
 export const assertProductionUiFoundations = (distRoot) => {
   const rules = collectCssRules(distRoot);
-  const css = rules.map((rule) => `${rule.selector}{${rule.declarations}}`).join("\n");
-  const missing = themeFoundationChecks
-    .filter(([, isPresent]) => !isPresent(css))
-    .map(([name]) => name)
+  const themes = [
+    ["night-chart-theme", "night-chart"],
+    ["vellum-study-theme", "vellum-study"],
+  ];
+  const missing = themes
+    .filter(([, theme]) =>
+      rules.every(
+        (rule) =>
+          !selectorHasTheme(rule.selector, theme) ||
+          declarationValue(rule.declarations, "--color-surface-canvas") === undefined,
+      ),
+    )
+    .map(([finding]) => finding)
     .concat(fontChainFindings(distRoot, rules))
     .sort((left, right) => left.localeCompare(right));
 
