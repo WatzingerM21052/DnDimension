@@ -41,27 +41,140 @@ test("finds UI lab markers in production text assets and chunk names", () => {
   }
 });
 
-test("requires production CSS to retain font faces, font files, and both theme foundations", () => {
-  const completeDist = createDist({
-    "assets/app.css": `
-      @font-face { font-family: Test; src: url("/assets/test.woff2") format("woff2"); }
-      :root, [data-theme="night-chart"] { --font-body: Test; --color-surface-canvas: #000; }
-      [data-theme="vellum-study"] { --color-surface-canvas: #fff; }
-    `,
-  });
-  const incompleteDist = createDist({
-    "assets/app.css": ":root { --font-body: Test; --color-surface-canvas: #000; }",
+const completeFoundationCss = `
+  @font-face { font-family: "Body Face"; src: url("/assets/body.woff2") format("woff2"); }
+  @font-face { font-family: "Display Face"; src: url("/assets/display.woff2") format("woff2"); }
+  :root, [data-theme="night-chart"] {
+    --font-body: "Body Face", serif;
+    --font-display: "Display Face", serif;
+    --color-surface-canvas: #000;
+  }
+  [data-theme="vellum-study"] { --color-surface-canvas: #fff; }
+  body { font-family: var(--font-body); }
+  .title { font-family: var(--font-display); }
+`;
+
+const createFoundationDist = (css = completeFoundationCss, files = {}) =>
+  createDist({
+    "assets/app.css": css,
+    "assets/body.woff2": "body font",
+    "assets/display.woff2": "display font",
+    ...files,
   });
 
+const removeDist = (distRoot) => fs.rmSync(distRoot, { force: true, recursive: true });
+
+test("accepts linked body and display token font chains with emitted WOFF2 files", () => {
+  const distRoot = createFoundationDist();
+
   try {
-    assert.doesNotThrow(() => assertProductionUiFoundations(completeDist));
+    assert.doesNotThrow(() => assertProductionUiFoundations(distRoot));
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects CSS when body does not use the body font token", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace("font-family: var(--font-body)", "font-family: serif"),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /body-font-usage-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects CSS when a token family has no matching font face", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace(
+      '@font-face { font-family: "Body Face"; src: url("/assets/body.woff2") format("woff2"); }',
+      "",
+    ),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /body-font-face-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects a WOFF2 URL outside the matching font face block", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace(
+      'src: url("/assets/body.woff2") format("woff2")',
+      'src: local("Body Face")',
+    ),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /body-font-face-woff2-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects a matching font face when its WOFF2 target is absent from dist", () => {
+  const distRoot = createFoundationDist();
+  fs.rmSync(path.join(distRoot, "assets/body.woff2"));
+
+  try {
     assert.throws(
-      () => assertProductionUiFoundations(incompleteDist),
-      /Production UI foundations missing: font-face, woff2-url, night-chart-theme, vellum-study-theme/,
+      () => assertProductionUiFoundations(distRoot),
+      /body-woff2-target-missing: assets\/body\.woff2/,
     );
   } finally {
-    fs.rmSync(completeDist, { force: true, recursive: true });
-    fs.rmSync(incompleteDist, { force: true, recursive: true });
+    removeDist(distRoot);
+  }
+});
+
+test("rejects matching font-face URLs that escape the production dist", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace('url("/assets/body.woff2")', 'url("../../outside.woff2")'),
+  );
+
+  try {
+    assert.throws(
+      () => assertProductionUiFoundations(distRoot),
+      /body-woff2-target-invalid: path-outside-dist/,
+    );
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects adversarial unlinked font fragments", () => {
+  const distRoot = createFoundationDist(`
+    @font-face { }
+    .unused { background: url("/assets/body.woff2"); }
+    :root, [data-theme="night-chart"] {
+      --font-body: "Body Face", serif;
+      --font-display: "Display Face", serif;
+      --color-surface-canvas: #000;
+    }
+    [data-theme="vellum-study"] { --color-surface-canvas: #fff; }
+    body { font-family: serif; }
+    .title { font-family: serif; }
+  `);
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /body-font-usage-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects CSS when display text does not use the display font token", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace("font-family: var(--font-display)", "font-family: serif"),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /display-font-usage-missing/);
+  } finally {
+    removeDist(distRoot);
   }
 });
 

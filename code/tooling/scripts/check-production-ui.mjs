@@ -60,10 +60,7 @@ export const assertProductionUiLabExcluded = (distRoot) => {
   }
 };
 
-const productionUiFoundationChecks = Object.freeze([
-  ["font-face", (css) => /@font-face\b/.test(css)],
-  ["woff2-url", (css) => /url\([^)]*\.woff2/.test(css)],
-  ["font-body-token", (css) => /--font-body\s*:/.test(css)],
+const themeFoundationChecks = Object.freeze([
   [
     "night-chart-theme",
     (css) =>
@@ -76,14 +73,156 @@ const productionUiFoundationChecks = Object.freeze([
   ],
 ]);
 
-export const assertProductionUiFoundations = (distRoot) => {
-  const css = collectTextBuildFiles(distRoot)
+const declarationValue = (declarations, property) => {
+  const escapedProperty = property.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = new RegExp(`(?:^|;)\\s*${escapedProperty}\\s*:\\s*([^;}]+)`, "i").exec(
+    declarations,
+  );
+
+  return match?.[1].trim();
+};
+
+const normalizeFontFamily = (value) => {
+  const firstFamily = value.trim().split(",", 1)[0].trim();
+  const unquoted = firstFamily.replace(/^(["'])(.*)\1$/, "$2");
+
+  return unquoted.toLowerCase();
+};
+
+const collectCssRules = (distRoot) =>
+  collectTextBuildFiles(distRoot)
     .filter((file) => file.endsWith(".css"))
-    .map((file) => fs.readFileSync(file, "utf8"))
-    .join("\n");
-  const missing = productionUiFoundationChecks
+    .flatMap((file) => {
+      const content = fs.readFileSync(file, "utf8").replaceAll(/\/\*[\s\S]*?\*\//g, "");
+      const rules = [];
+      const blockPattern = /([^{}]+)\{([^{}]*)\}/g;
+      let match;
+
+      while ((match = blockPattern.exec(content)) !== null) {
+        rules.push({ file, selector: match[1].trim(), declarations: match[2] });
+      }
+
+      return rules;
+    });
+
+const hasFontTokenUsage = (rules, token, selector = () => true) =>
+  rules.some(
+    (rule) =>
+      selector(rule.selector) &&
+      new RegExp(`font-family\\s*:\\s*var\\(\\s*${token}\\b`, "i").test(rule.declarations),
+  );
+
+const collectFontFaces = (rules) =>
+  rules
+    .filter((rule) => rule.selector.toLowerCase() === "@font-face")
+    .map((rule) => ({ ...rule, family: declarationValue(rule.declarations, "font-family") }))
+    .filter(({ family }) => family !== undefined);
+
+const woff2Urls = (source) =>
+  [...source.matchAll(/url\(\s*(?:"([^"]+)"|'([^']+)'|([^\s)]+))\s*\)/gi)]
+    .map((match) => match[1] ?? match[2] ?? match[3])
+    .filter((url) => /\.woff2(?:[?#].*)?$/i.test(url));
+
+const resolveLocalWoff2Target = (distRoot, cssFile, url) => {
+  const pathname = url.split(/[?#]/, 1)[0].replaceAll("\\", "/");
+
+  if (/^[a-z][a-z\d+.-]*:/i.test(pathname) || pathname.startsWith("//")) {
+    return { reason: "non-local-url" };
+  }
+
+  const target = pathname.startsWith("/")
+    ? path.resolve(distRoot, `.${pathname}`)
+    : path.resolve(path.dirname(cssFile), pathname);
+  const relative = path.relative(distRoot, target);
+
+  if (relative.length === 0 || relative.startsWith("..") || path.isAbsolute(relative)) {
+    return { reason: "path-outside-dist" };
+  }
+
+  try {
+    if (!fs.lstatSync(target).isFile()) return { reason: "not-a-regular-file" };
+  } catch {
+    return { relative: relative.replaceAll("\\", "/"), reason: "missing" };
+  }
+
+  return { target };
+};
+
+const fontChainFindings = (distRoot, rules) => {
+  const findings = [];
+  const fontFaces = collectFontFaces(rules);
+  const chains = [
+    {
+      label: "body",
+      token: "--font-body",
+      used: hasFontTokenUsage(rules, "--font-body", (selector) => /\bbody\b/i.test(selector)),
+    },
+    {
+      label: "display",
+      token: "--font-display",
+      used: hasFontTokenUsage(rules, "--font-display"),
+    },
+  ];
+
+  for (const { label, token, used } of chains) {
+    if (!used) {
+      findings.push(`${label}-font-usage-missing`);
+      continue;
+    }
+
+    const tokenValue = rules
+      .filter((rule) => rule.selector.includes(":root"))
+      .map((rule) => declarationValue(rule.declarations, token))
+      .find((value) => value !== undefined);
+
+    if (tokenValue === undefined) {
+      findings.push(`${label}-font-token-missing`);
+      continue;
+    }
+
+    const family = normalizeFontFamily(tokenValue);
+    const matchingFaces = fontFaces.filter((face) => normalizeFontFamily(face.family) === family);
+
+    if (matchingFaces.length === 0) {
+      findings.push(`${label}-font-face-missing`);
+      continue;
+    }
+
+    const faceUrls = matchingFaces.flatMap((face) =>
+      woff2Urls(declarationValue(face.declarations, "src") ?? "").map((url) => ({
+        file: face.file,
+        url,
+      })),
+    );
+
+    if (faceUrls.length === 0) {
+      findings.push(`${label}-font-face-woff2-missing`);
+      continue;
+    }
+
+    const targets = faceUrls.map(({ file, url }) => resolveLocalWoff2Target(distRoot, file, url));
+    if (targets.some(({ target }) => target !== undefined)) continue;
+
+    for (const target of targets) {
+      if (target.reason === "missing") {
+        findings.push(`${label}-woff2-target-missing: ${target.relative}`);
+      } else {
+        findings.push(`${label}-woff2-target-invalid: ${target.reason}`);
+      }
+    }
+  }
+
+  return findings;
+};
+
+export const assertProductionUiFoundations = (distRoot) => {
+  const rules = collectCssRules(distRoot);
+  const css = rules.map((rule) => `${rule.selector}{${rule.declarations}}`).join("\n");
+  const missing = themeFoundationChecks
     .filter(([, isPresent]) => !isPresent(css))
-    .map(([name]) => name);
+    .map(([name]) => name)
+    .concat(fontChainFindings(distRoot, rules))
+    .sort((left, right) => left.localeCompare(right));
 
   if (missing.length > 0) {
     throw new Error(`Production UI foundations missing: ${missing.join(", ")}`);
