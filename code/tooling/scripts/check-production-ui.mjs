@@ -109,8 +109,11 @@ const hasFontTokenUsage = (rules, token, selector = () => true) =>
   rules.some(
     (rule) =>
       selector(rule.selector) &&
-      new RegExp(`font-family\\s*:\\s*var\\(\\s*${token}\\b`, "i").test(rule.declarations),
+      new RegExp(`font-family\\s*:\\s*var\\(\\s*${token}(?![\\w-])`, "i").test(rule.declarations),
   );
+
+const hasBodyElementSelector = (selector) =>
+  selector.split(",").some((part) => /(?:^|[\s>+~])body(?=$|[\s>+~:#.[])/i.test(part.trim()));
 
 const collectFontFaces = (rules) =>
   rules
@@ -122,6 +125,12 @@ const woff2Urls = (source) =>
   [...source.matchAll(/url\(\s*(?:"([^"]+)"|'([^']+)'|([^\s)]+))\s*\)/gi)]
     .map((match) => match[1] ?? match[2] ?? match[3])
     .filter((url) => /\.woff2(?:[?#].*)?$/i.test(url));
+
+const isOutsideRoot = (relative) =>
+  relative.length === 0 ||
+  relative === ".." ||
+  relative.startsWith(`..${path.sep}`) ||
+  path.isAbsolute(relative);
 
 const resolveLocalWoff2Target = (distRoot, cssFile, url) => {
   const pathname = url.split(/[?#]/, 1)[0].replaceAll("\\", "/");
@@ -135,12 +144,20 @@ const resolveLocalWoff2Target = (distRoot, cssFile, url) => {
     : path.resolve(path.dirname(cssFile), pathname);
   const relative = path.relative(distRoot, target);
 
-  if (relative.length === 0 || relative.startsWith("..") || path.isAbsolute(relative)) {
+  if (isOutsideRoot(relative)) {
     return { reason: "path-outside-dist" };
   }
 
   try {
-    if (!fs.lstatSync(target).isFile()) return { reason: "not-a-regular-file" };
+    const realDistRoot = fs.realpathSync(distRoot);
+    const realTarget = fs.realpathSync(target);
+    const realRelative = path.relative(realDistRoot, realTarget);
+
+    if (isOutsideRoot(realRelative)) {
+      return { reason: "path-outside-real-dist" };
+    }
+
+    if (!fs.statSync(realTarget).isFile()) return { reason: "not-a-regular-file" };
   } catch {
     return { relative: relative.replaceAll("\\", "/"), reason: "missing" };
   }
@@ -155,7 +172,7 @@ const fontChainFindings = (distRoot, rules) => {
     {
       label: "body",
       token: "--font-body",
-      used: hasFontTokenUsage(rules, "--font-body", (selector) => /\bbody\b/i.test(selector)),
+      used: hasFontTokenUsage(rules, "--font-body", hasBodyElementSelector),
     },
     {
       label: "display",
@@ -200,8 +217,9 @@ const fontChainFindings = (distRoot, rules) => {
       continue;
     }
 
-    const targets = faceUrls.map(({ file, url }) => resolveLocalWoff2Target(distRoot, file, url));
-    if (targets.some(({ target }) => target !== undefined)) continue;
+    const targets = faceUrls
+      .map(({ file, url }) => resolveLocalWoff2Target(distRoot, file, url))
+      .filter(({ target }) => target === undefined);
 
     for (const target of targets) {
       if (target.reason === "missing") {

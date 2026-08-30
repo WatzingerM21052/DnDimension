@@ -86,6 +86,35 @@ test("rejects CSS when body does not use the body font token", () => {
   }
 });
 
+test("rejects token usage on a body-named class when body uses a serif fallback", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss
+      .replace("body { font-family: var(--font-body); }", "body { font-family: serif; }")
+      .concat(".body-copy { font-family: var(--font-body); }"),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /body-font-usage-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects body and display token prefixes instead of the exact token names", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss
+      .replace("var(--font-body)", "var(--font-body-alt)")
+      .replace("var(--font-display)", "var(--font-display-alt)"),
+  );
+
+  try {
+    assert.throws(() => assertProductionUiFoundations(distRoot), /body-font-usage-missing/);
+    assert.throws(() => assertProductionUiFoundations(distRoot), /display-font-usage-missing/);
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
 test("rejects CSS when a token family has no matching font face", () => {
   const distRoot = createFoundationDist(
     completeFoundationCss.replace(
@@ -139,6 +168,56 @@ test("rejects matching font-face URLs that escape the production dist", () => {
     assert.throws(
       () => assertProductionUiFoundations(distRoot),
       /body-woff2-target-invalid: path-outside-dist/,
+    );
+  } finally {
+    removeDist(distRoot);
+  }
+});
+
+test("rejects font targets reached through an external linked assets directory", (t) => {
+  const distRoot = createFoundationDist();
+  const externalRoot = fs.mkdtempSync(path.join(os.tmpdir(), "dndimension-external-fonts-"));
+  const linkedAssets = path.join(distRoot, "assets");
+  const externalAssets = path.join(externalRoot, "assets");
+  fs.mkdirSync(externalAssets);
+  fs.writeFileSync(path.join(externalAssets, "body.woff2"), "external body font");
+  fs.writeFileSync(path.join(externalAssets, "display.woff2"), "external display font");
+  fs.renameSync(path.join(linkedAssets, "app.css"), path.join(distRoot, "app.css"));
+  fs.rmSync(linkedAssets, { force: true, recursive: true });
+
+  try {
+    fs.symlinkSync(externalAssets, linkedAssets, process.platform === "win32" ? "junction" : "dir");
+  } catch (error) {
+    removeDist(distRoot);
+    fs.rmSync(externalRoot, { force: true, recursive: true });
+    t.skip(`Could not create a directory link: ${error instanceof Error ? error.message : error}`);
+    return;
+  }
+
+  try {
+    assert.throws(
+      () => assertProductionUiFoundations(distRoot),
+      /body-woff2-target-invalid: path-outside-real-dist/,
+    );
+  } finally {
+    removeDist(distRoot);
+    fs.rmSync(externalRoot, { force: true, recursive: true });
+  }
+});
+
+test("rejects a missing WOFF2 sibling even when another matching face target exists", () => {
+  const distRoot = createFoundationDist(
+    completeFoundationCss.replace(
+      '@font-face { font-family: "Display Face"; src: url("/assets/display.woff2") format("woff2"); }',
+      `@font-face { font-family: "Display Face"; src: url("/assets/display.woff2") format("woff2"); }
+      @font-face { font-family: "Display Face"; src: url("/assets/display-missing.woff2") format("woff2"); }`,
+    ),
+  );
+
+  try {
+    assert.throws(
+      () => assertProductionUiFoundations(distRoot),
+      /display-woff2-target-missing: assets\/display-missing\.woff2/,
     );
   } finally {
     removeDist(distRoot);
