@@ -33,3 +33,8 @@
 .map-search-row {display:flex;gap:8px;}
 .map-search input {min-width:0;flex:1;min-height:44px;border:1px solid var(--line);border-radius:5px;padding:10px 14px;background:var(--slate);color:var(--paper);}
 .map-search .small {margin:8px 0 0;}
+.map-directions {display:flex;gap:6px;flex-shrink:0;}
+.map-directions button {min-width:44px;padding:10px;}
+.map-directions button:disabled {opacity:.4;cursor:default;}
+@media(max-width:760px){.map-directions{margin:12px 0;}}
+@media(max-width:360px){nav{padding-inline:4px;}nav a{padding-inline:6px;}}

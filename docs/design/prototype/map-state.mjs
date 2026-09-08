@@ -19,6 +19,10 @@ export function moveMap(state, event, {width, height}) {
   } else if (event.type === 'focus') {
     x = width / 2 - event.point.x * width * zoom;
     y = height / 2 - event.point.y * height * zoom;
+  } else if (event.type === 'step') {
+    const delta = {west:[60,0],east:[-60,0],north:[0,60],south:[0,-60]}[event.direction];
+    if (!delta) return state;
+    x += delta[0]; y += delta[1];
   } else if (event.type === 'pan') {
     x += event.dx;
     y += event.dy;

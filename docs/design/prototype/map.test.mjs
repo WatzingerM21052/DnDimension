@@ -4,6 +4,19 @@ const {moveMap} = await import('./map-state.mjs').catch(() => ({}));
 const initial = {x:0,y:0,zoom:1};
 const size = {width:1000,height:600};
 
+test('direction controls move the viewport in the requested direction', () => {
+  const state={x:-300,y:-200,zoom:2};
+  for(const [direction,x,y] of [['west',-240,-200],['east',-360,-200],['north',-300,-140],['south',-300,-260]]) {
+    assert.deepEqual(moveMap(state,{type:'step',direction},size),{x,y,zoom:2});
+  }
+});
+test('direction controls stop at edges and ignore unknown directions', () => {
+  const state={x:0,y:0,zoom:2};
+  assert.deepEqual(moveMap(state,{type:'step',direction:'north'},size),state);
+  assert.deepEqual(moveMap(state,{type:'step',direction:'unknown'},size),state);
+  assert.deepEqual(moveMap({x:-980,y:-590,zoom:2},{type:'step',direction:'east'},size),{x:-1000,y:-590,zoom:2});
+});
+
 test('focus centers a map point without changing zoom', () => {
   assert.deepEqual(moveMap({x:0,y:0,zoom:2},{type:'focus',point:{x:0.6,y:0.7}},size),{x:-700,y:-540,zoom:2});
 });

@@ -6,6 +6,7 @@ export function attachMap() {
   const plus = document.getElementById('map-in');
   const minus = document.getElementById('map-out');
   const output = document.getElementById('map-zoom');
+  const directions = [...document.querySelectorAll('[data-map-direction]')];
   let state = {x:0, y:0, zoom:1};
   let pointer = null;
   let suppressClick = false;
@@ -43,7 +44,12 @@ export function attachMap() {
     if (output.textContent !== label) output.textContent = label;
     plus.disabled = state.zoom >= 4;
     minus.disabled = state.zoom <= 1;
+    for (const button of directions) {
+      const next = moveMap(state,{type:'step',direction:button.dataset.mapDirection},{width:viewport.clientWidth,height:viewport.clientHeight});
+      button.disabled = next.x === state.x && next.y === state.y;
+    }
   }
+  for (const button of directions) button.addEventListener('click', () => update({type:'step',direction:button.dataset.mapDirection}));
   plus.addEventListener('click', () => update({type:'zoom', factor:1.25}));
   minus.addEventListener('click', () => update({type:'zoom', factor:0.8}));
   document.getElementById('map-reset').addEventListener('click', () => update({type:'reset'}));
@@ -57,8 +63,8 @@ export function attachMap() {
   viewport.addEventListener('keydown', event => {
     if (event.target !== viewport || event.ctrlKey || event.metaKey || event.altKey) return;
     const actions = {
-      ArrowLeft:{type:'pan',dx:60,dy:0}, ArrowRight:{type:'pan',dx:-60,dy:0},
-      ArrowUp:{type:'pan',dx:0,dy:60}, ArrowDown:{type:'pan',dx:0,dy:-60},
+      ArrowLeft:{type:'step',direction:'west'}, ArrowRight:{type:'step',direction:'east'},
+      ArrowUp:{type:'step',direction:'north'}, ArrowDown:{type:'step',direction:'south'},
       '+':{type:'zoom',factor:1.25}, '=':{type:'zoom',factor:1.25},
       '-':{type:'zoom',factor:0.8}, Home:{type:'reset'}
     };
@@ -97,9 +103,12 @@ export function attachMap() {
   // Keyboard focus must never disappear on an off-screen marker after panning.
   layer.addEventListener('focusin', event => {
     if (!event.target.matches('.map-marker')) return;
+    viewport.scrollLeft = 0; viewport.scrollTop = 0;
     const rect = event.target.getBoundingClientRect();
     const bounds = viewport.getBoundingClientRect();
-    if (rect.left < bounds.left || rect.right > bounds.right || rect.top < bounds.top || rect.bottom > bounds.bottom) update({type:'reset'});
+    if (rect.left < bounds.left || rect.right > bounds.right || rect.top < bounds.top || rect.bottom > bounds.bottom) {
+      update({type:'focus',point:{x:event.target.offsetLeft / viewport.clientWidth,y:event.target.offsetTop / viewport.clientHeight}});
+    }
     viewport.scrollLeft = 0; viewport.scrollTop = 0;
   });
   new ResizeObserver(() => update({type:'resize'})).observe(viewport);

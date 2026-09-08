@@ -32,7 +32,13 @@ node --check docs/design/prototype/state.mjs
 node --check docs/design/prototype/serve.mjs
 ```
 
-Prüfstand einschließlich Ortssuche (2026-09-08):
+Prüfstand einschließlich Richtungssteuerung (2026-09-08):
+
+- 20 Node-Tests bestanden; neue Richtungstests vor Implementierung mit zwei erwarteten Fehlern ausgeführt. Alle vier Richtungen, Randbegrenzung und unbekannte Richtung abgedeckt.
+- Browser: Ost-Button verschiebt um 60 px, Pfeil links kehrt zur vorherigen Position zurück. Bei 305 % Zoom bleibt Nordtor nach Tab-Fokus innerhalb der Karte und der Zoom erhalten.
+- Richtungstasten am jeweiligen Rand deaktiviert, nach Reset alle vier deaktiviert. Mobile 320-Pixel-Stichprobe: vier Trefferflächen je 44 × 44 px. Einen 1-px-Überlauf der Stationsnavigation reproduziert und korrigiert; danach Dokument- und Inhaltsbreite jeweils 305 px. Abschließendes Browserfehlerprotokoll leer. Keine vollständige Accessibility-Abnahme.
+
+Vorheriger Suchstand:
 
 - 18 Node-Tests bestanden. Neu: Teilwortsuche unabhängig von Groß-/Kleinschreibung und äußerem Leerraum, leere/erfolglose Suche sowie Kamerafokus mit Zoom-Erhalt und Randbegrenzung. Nach TDD zuerst fünf erwartete Fehler beobachtet, dann implementiert.
 - Browser: „  STEG  “ liefert nur Alter Steg; Enter fokussiert den Treffer, weiteres Enter öffnet das Dossier. „Auf Karte zeigen“ schließt es und fokussiert die Karte bei weiterhin 125 % Zoom und verändertem Kartenausschnitt.
@@ -75,7 +81,8 @@ Bereits zuvor geprüft:
 - „Auf Karte zeigen“ im Dossier schließt den Kontext und richtet die Karte auf den gewählten Ort aus, soweit die Kartenränder dies zulassen. Zoom bleibt unverändert; bei 100 % bleibt die Gesamtkarte sichtbar. Keine animierte Kamerafahrt, kein zusätzlicher Bewegungsreiz.
 - Zoom 100–400 %, begrenztes Verschieben, Reset; Kamera bleibt beim Stationswechsel im Arbeitsspeicher erhalten. Neuladen setzt sie zurück.
 - Pfeiltasten verschieben die fokussierte Karte, + / − zoomen, Pos1 setzt zurück. Browser-Zoom-Tastenkürzel werden nicht abgefangen.
-- Ortsmarker behalten beim Zoomen ihre Bildschirmgröße. Die gleichwertige Ortsliste bleibt auch für außerhalb des Ausschnitts liegende Orte erreichbar. Tastaturfokus auf einen abgeschnittenen Marker stellt die Gesamtansicht wieder her.
+- Ortsmarker behalten beim Zoomen ihre Bildschirmgröße. Die gleichwertige Ortsliste bleibt auch für außerhalb des Ausschnitts liegende Orte erreichbar. Tastaturfokus auf einen abgeschnittenen Marker richtet den Ausschnitt auf diesen Ort aus und erhält den Zoom.
+- Vier beschriftete Richtungstasten unter der Karte bieten Verschieben ohne Drag-Geste. Sie bewegen den Ausschnitt um 60 Bildschirm-Pixel pro Aktivierung, wie die Pfeiltasten. Nicht mögliche Richtungen sind deaktiviert; bei Gesamtansicht muss zuerst vergrößert werden.
 - Ein Drag öffnet kein versehentliches Dossier. Escape schließt das nichtmodale Dossier und gibt den Fokus zurück.
 - Ruhiges Pergament, dunkler Rahmen und Messingdetails; keine dekorativen Daueranimationen und kein simuliertes Reisen. Alle Orte sind öffentliche synthetische Beispieldaten.
 - Neues Asset: [08-world-terrain.png](../assets/08-world-terrain.png), erzeugt mit dem eingebauten Imagegen-Werkzeug als eigenständige Ableitung von `03-world-map.png`; ursprüngliche Studie unverändert. Keine Handbuchgrafiken verwendet.
