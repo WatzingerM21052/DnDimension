@@ -1,4 +1,5 @@
 import {createState, transition} from './state.mjs';
+import {attachMap} from './map.mjs';
 let state=createState();
 let returnFocus=null;
 let chroniclePosition=0;
@@ -17,7 +18,7 @@ function render() {
   document.body.classList.toggle('reading',state.reading);
   byId('draft').value=state.draft;
   byId('place-title').textContent=state.place??'';
-  byId('place-text').textContent=state.place==='Nordtor'?'Ausgangspunkt der alten Handelsroute. Hier wartet Mira Venn.':'Ein alter Übergang über den Fluss. Sein Zustand ist der Gruppe nicht bekannt.';
+  byId('place-text').textContent=({'Nordtor':'Ausgangspunkt der alten Handelsroute. Hier wartet Mira Venn.','Alter Steg':'Ein alter Übergang über den Fluss. Sein Zustand ist der Gruppe nicht bekannt.','Observatorium':'Ein alter Sternenturm auf den Hügeln nordöstlich der Stadt. Sein Messingdach ist von der Handelsroute aus sichtbar.','Tannwald':'Ein dichter Wald östlich der Handelsroute. Welche Wege heute noch passierbar sind, weiß die Gruppe nicht.'})[state.place]??'';
   byId('proposal').textContent=state.draft;
   for(const button of document.querySelectorAll('[data-place]')) button.setAttribute('aria-pressed',String(button.dataset.place===state.place));
 }
@@ -71,4 +72,4 @@ byId('action-form').addEventListener('submit',event=>{
 const preference=matchMedia('(prefers-reduced-motion: reduce)');
 byId('motion').checked=preference.matches;
 function motion(){document.body.classList.toggle('reduced',byId('motion').checked||preference.matches);}
-byId('motion').addEventListener('change',motion);preference.addEventListener('change',motion);motion();navigate(true);
+byId('motion').addEventListener('change',motion);preference.addEventListener('change',motion);motion();navigate(true);attachMap();
