@@ -4,6 +4,8 @@ Dieser Index ist der Einstieg in die Projektunterlagen. Er unterscheidet Produkt
 
 ## Aktuelle Designplanung – September 2026
 
+- [Bevorzugte Bildentwürfe, Nutzerfeedback und Bedienkonzept](design/2026-09-08-visual-direction-and-interaction.md)
+
 - [Lebendiger Kampagnenraum: Erlebnis, Bildschirme und Bewegung](superpowers/specs/2026-09-08-immersive-experience-design.md)
 - [Sternenbruch: sechs Wireframes und durchgehendes Storyboard](superpowers/specs/2026-09-08-campaign-room-storyboard.md)
 - [Ausbauplan und überprüfbare Arbeitspakete](delivery/2026-09-08-experience-plan.md)

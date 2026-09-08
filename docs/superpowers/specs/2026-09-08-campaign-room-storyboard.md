@@ -6,6 +6,8 @@ Vertiefung von [EXP-01](../../delivery/2026-09-08-experience-plan.md) und dem [E
 
 ## Gemeinsame Regie
 
+**Aktueller Bildstand:** [Bevorzugte Designstudien und Bedienkonzept](../../design/2026-09-08-visual-direction-and-interaction.md). Die folgenden Low-Fidelity-Wireframes bleiben Ablaufreferenz; die spätere Sessiongestaltung verwendet bedarfsweise Panels und eine erweiterbare Chronik statt eines stets sichtbaren Kontextbuchs.
+
 **Stilpräzisierung nach Nutzerfeedback:** mittelalterliches Observatorium mit zurückhaltendem Clockwork. Steinbögen, dunkles Holz, Leder, Pergament und graviertes Messing prägen alle sechs Bilder. Die [Stil- und Stationsregie samt Übergangsvertrag](2026-09-08-immersive-experience-design.md) ist dafür maßgeblich. Kein neues Layout, kein industrieller Steampunk und keine ständig laufenden Zahnräder.
 
 Für Bild 01/04 sind Kompassring, Buchschließe und Chronik die wiedererkennbaren Anker. Bild 02/03 übernimmt nur Foliantkante, Register und ruhige Papierfläche; die Formulare bleiben klar. Bild 05/06 nutzt eine schmale Messingfassung und Papierregister, während Szene, Aktionen und Sichtbarkeitsstatus Vorrang haben. Nur der Übergang bewegt den Mechanismus, nicht das anschließende Lesen oder Spielen.

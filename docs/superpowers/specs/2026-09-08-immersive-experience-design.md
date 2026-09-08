@@ -8,6 +8,8 @@
 
 ## 1. Produktversprechen
 
+**Visuelles Folge-Review:** Die [gesicherten bevorzugten Designstudien und das präzisierte Bedienkonzept](../../design/2026-09-08-visual-direction-and-interaction.md) dokumentieren neueres Nutzerfeedback: freier Kartenbereich statt obligatorischem Atlasrahmen sowie szenenbetonte Sitzung statt dauerhaftem Dashboard. Die Bilder ersetzen keine fachlichen Abnahmen.
+
 DnDimension soll sich wie der eigene Ort für Abenteuer anfühlen: Man kehrt in eine Kampagne zurück, versteht die aktuelle Situation und kann unmittelbar weiterspielen. Regeln, Charakter, Welt und Chronik sind miteinander verbunden. Die App vermittelt Neulingen im jeweiligen Moment, was sie tun können und welche Folgen eine Entscheidung hat.
 
 Die räumliche Oberfläche stellt reale Aufgaben dar: ein Buch für die Figur, ein Kartentisch für die Welt, ein Spielleiterschirm für Vorbereitung und ein Journal für gespielte Ereignisse. Beschriftungen wie „Charaktere“ bleiben sichtbar; niemand muss die Metapher erraten.
