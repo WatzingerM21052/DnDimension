@@ -29,3 +29,6 @@ test('panels replace rather than stack, close, and unknown events do nothing', (
   s = module.transition(s, {type:'panel', panel:null});
   assert.equal(s.panel, null); assert.equal(module.transition(s, {type:'unknown'}), s);
 });
+test('all prototype stations have direct routes',()=>{
+  for(const route of ['campaign','bestiary','inventory','journal']) assert.equal(module.transition(module.createState(),{type:'navigate',route}).route,route);
+});

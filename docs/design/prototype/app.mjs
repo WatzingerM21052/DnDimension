@@ -1,5 +1,7 @@
 import {createState, transition} from './state.mjs';
 import {attachMap} from './map.mjs';
+import {attachSuite} from './suite.mjs';
+attachSuite();
 let state=createState();
 let returnFocus=null;
 let chroniclePosition=0;
@@ -32,7 +34,7 @@ function navigate(initial=false){
   const view=document.querySelector(`[data-view="${state.route}"]`);
   for(const item of document.querySelectorAll('[data-view]')) item.classList.remove('enter','from-room');
   if(!initial){void view.offsetWidth;view.classList.add('enter');if(previous==='room')view.classList.add('from-room');}
-  const focus=state.route==='room'&&previous!=='room'?byId(`station-${previous}`):view.querySelector('h1');
+  const focus=(state.route==='room'&&previous!=='room'?byId(`station-${previous}`):null)??view.querySelector('h1');
   focus?.focus({preventScroll:true});
   if(state.route==='session')chronicle.scrollTop=chroniclePosition;
   if(!initial)window.scrollTo({top:0,behavior:'instant'});

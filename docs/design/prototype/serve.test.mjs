@@ -15,12 +15,13 @@ test('server serves demo and rejects outside files, malformed paths and writes',
   });
   assert.equal((await request('/prototype/')).status, 200);
   assert.match((await request('/prototype/state.mjs')).type, /javascript/);
-  for (const path of ['map-state.mjs','map.mjs']) {
+  for (const path of ['map-state.mjs','map.mjs','suite-state.mjs','suite.mjs']) {
     const response = await request(`/prototype/${path}`);
     assert.equal(response.status, 200);
     assert.match(response.type, /javascript/);
   }
   assert.match((await request('/prototype/map.css')).type, /css/);
+  assert.match((await request('/prototype/suite.css')).type, /css/);
   for (const path of ['/../README.md','/%2e%2e/README.md','/private-library/test.pdf','/prototype/missing','/%zz']) {
     assert.notEqual((await request(path)).status, 200, path);
   }

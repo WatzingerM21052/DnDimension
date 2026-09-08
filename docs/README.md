@@ -4,7 +4,8 @@ Dieser Index ist der Einstieg in die Projektunterlagen. Er unterscheidet Produkt
 
 ## Aktuelle Designplanung – September 2026
 
-- [Klickbare lokale Navigationsdemo: Start und geprüfter Umfang](design/prototype/README.md)
+- [Bedienbarer Kampagnenprototyp: Start und geprüfter Umfang](design/prototype/README.md)
+- [Acht Stationen: vollständiger Demo-Durchlauf und ehrliche Funktionsgrenzen](design/prototype/full-prototype.md)
 
 - [Konkrete Übergänge, Zustandserhalt und Prüfszenarien](design/2026-09-08-transition-flows.md)
 

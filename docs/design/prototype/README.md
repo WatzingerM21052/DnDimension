@@ -1,6 +1,8 @@
-# DnDimension – lokale Navigationsdemo
+# DnDimension – lokaler Kampagnenprototyp
 
-Ein funktionaler Durchstich, **keine fertige App und keine bildgetreue Umsetzung**. Die Weltkarte besitzt eine echte verschiebbare Kartenfläche mit HTML-Ortsmarkern. Die übrigen Bildstudien bleiben nicht-interaktive Referenzen.
+Ein zusammenhängender Prototyp mit **acht bedienbaren Stationen**, keine fertige D&D-App oder vollständige Regelumsetzung. Observatorium, Figurenbuch, Weltkarte, Kampagnenvorbereitung, Bestiarium, Inventar, Journal und Spieltisch sind verbunden. Die alten Bildstudien bleiben separat gekennzeichnete Referenzen.
+
+**Aktueller Umfang und vollständiger Testdurchlauf:** [Kampagnen-Demo – Funktionen, Grenzen und Abnahme](full-prototype.md). Dieser Stand erweitert den unten dokumentierten früheren Karten-/Navigationsdurchstich.
 
 ## Start
 
@@ -14,14 +16,14 @@ Dann [lokale Demo öffnen](http://127.0.0.1:4178/prototype/). Port 4178, ausschl
 
 ## Durchklicken
 
-1. Raum → Figurenbuch; eine Idee zu Neris eingeben.
+1. Raum → Figurenbuch; drei Kapitel bearbeiten und „Figur übernehmen“ wählen.
 2. Weltkarte → vergrößern, ziehen, Nordtor/Alter Steg/Observatorium/Tannwald öffnen und Dossier schließen. „Gesamte Karte“ setzt die Ansicht zurück.
-3. Sitzung → Handlung schreiben, Figuren öffnen/schließen, Lesefokus wechseln.
+3. Kampagne → Titel, Ziel und Auftakt übernehmen; Gegner → Wesen zur Begegnung hinzufügen.
 4. Andere Station wählen und per Browser-Zurück zurückkehren: Eingaben bleiben erhalten.
-5. „Auflösung vorbereiten“ zeigt ausschließlich eine Textvorschau ohne Spielfolgen.
+5. Inventar und Journal bearbeiten. Sitzung → frei würfeln, manuelle Begegnung starten, Züge und TP ändern. „Auflösung vorbereiten“ zeigt einen Vorschlag; nur ausdrücklich übernommene eigene Erzählungen ergänzen die Demo-Chronik.
 6. „Weniger Bewegung“ aktivieren; die Betriebssystempräferenz wird zusätzlich respektiert.
 
-Eingaben existieren nur im Arbeitsspeicher des geöffneten Dokuments. **Neuladen verwirft sie.** Keine echten oder sensiblen Spielstände eingeben. Ein unvollständiger Charaktereditor oder Würfelautomat wird nicht simuliert.
+Eingaben existieren nur im Arbeitsspeicher des geöffneten Dokuments. **Neuladen verwirft sie.** Keine echten oder sensiblen Spielstände eingeben. Charaktereditor, Würfel und Kampfwerkzeuge sind ausdrücklich begrenzte Demo-Funktionen, keine regelvalidierte Erstellung oder automatische Spielleitung.
 
 ## Verifikation
 
@@ -32,7 +34,9 @@ node --check docs/design/prototype/state.mjs
 node --check docs/design/prototype/serve.mjs
 ```
 
-Prüfstand einschließlich seitlichem Ortsdossier (2026-09-08):
+Aktueller Prüfstand: 27 Node-Tests bestanden, alle acht Stationen bei 320 px geprüft; vollständige Browserabläufe im [aktuellen Prüfbericht](full-prototype.md).
+
+Historischer Prüfstand einschließlich seitlichem Ortsdossier (2026-09-08):
 
 - Ab 1100 px Browserbreite feste Dossierspalte neben der Karte. Ein ruhiger Hinweis belegt den Platz ohne geöffnetes Dossier; Öffnen/Schließen verändert die Kartenbreite nicht. Darunter bleibt das nichtmodale Dossier im Inhaltsfluss unter der Karte.
 - Vorher im Browser bestätigt: Dossier lag unterhalb der Karte. Nachher: rechts daneben, Kartenbreite vor/nach Öffnen jeweils 849,5 px im geprüften Desktopfenster. Nordtor → Observatorium sowie Escape-Fokusrückgabe geprüft.
@@ -74,12 +78,14 @@ Bereits zuvor geprüft:
 - Eigene optimierte Szene-/Portraitassets statt vollständiger UI-Referenzbilder; echte Raumkamerafahrten. Aktuell nur kurze Einblendung/Versetzung (220 ms, aus Raum 400 ms).
 - Finale Foundation-Schriften/-Komponenten: hier lokale Georgia-/Segoe-UI-Fallbacks, keine zweite Produktions-Designbibliothek.
 - Mobile Kontextpanels sind im Inhaltsfluss **nicht modal**. Bildschirmtastatur und native Gerätegesten sind nicht getestet.
-- Chronik bewahrt derzeit numerische Scrollposition; semantischer Leseanker bei Textumbruch/Viewportwechsel bleibt offen. Keine Synchronisation oder neu eintreffenden Ereignisse implementiert.
+- Chronik bewahrt derzeit numerische Scrollposition; semantischer Leseanker bei Textumbruch/Viewportwechsel bleibt offen. Eigene bestätigte Demo-Erzählungen können ergänzt und über „Neueste Erzählung anzeigen“ aufgerufen werden; keine Synchronisation.
 - Keine Produktionspersistenz, Speicherfehler-Simulation, Rollen-/Rechtesystem oder Geheimnisprojektionen. Es werden ausschließlich öffentliche synthetische Daten geladen.
 - Keine vollständige Tastatur-/Screenreader-, Forced-Colors-, 200%-Zoom-, 320-Pixel- oder Performanceprüfung. Kein pauschales Bestehen der TR-01–12-Szenarien.
 - Keine Behauptung, dass EXP-02 insgesamt abgeschlossen ist.
 
 ## Struktur
+
+`suite-state.mjs` ergänzt den getesteten Demo-Kampagnenzustand, `suite.mjs` die neuen Stationen und ihre Interaktionen, `suite.css` ihre Gestaltung. `suite.test.mjs` prüft Erstellung, Inventar, Journal, Vorbereitung, Chronik, Kampf und Würfel.
 
 `state.mjs` enthält den Demo-Zustand, `app.mjs` bindet ihn an die Oberfläche. `map-state.mjs` berechnet begrenzte Kamerakoordinaten und Suchtreffer, `map.mjs` bindet Suche und Pointer-/Tastatureingaben. `map.css` ergänzt die Darstellung. Vier Testdateien prüfen echte Funktionen beziehungsweise HTTP-Antworten, ohne neue Testpakete.
 
