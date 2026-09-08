@@ -6,6 +6,10 @@ Vertiefung von [EXP-01](../../delivery/2026-09-08-experience-plan.md) und dem [E
 
 ## Gemeinsame Regie
 
+**Stilpräzisierung nach Nutzerfeedback:** mittelalterliches Observatorium mit zurückhaltendem Clockwork. Steinbögen, dunkles Holz, Leder, Pergament und graviertes Messing prägen alle sechs Bilder. Die [Stil- und Stationsregie samt Übergangsvertrag](2026-09-08-immersive-experience-design.md) ist dafür maßgeblich. Kein neues Layout, kein industrieller Steampunk und keine ständig laufenden Zahnräder.
+
+Für Bild 01/04 sind Kompassring, Buchschließe und Chronik die wiedererkennbaren Anker. Bild 02/03 übernimmt nur Foliantkante, Register und ruhige Papierfläche; die Formulare bleiben klar. Bild 05/06 nutzt eine schmale Messingfassung und Papierregister, während Szene, Aktionen und Sichtbarkeitsstatus Vorrang haben. Nur der Übergang bewegt den Mechanismus, nicht das anschließende Lesen oder Spielen.
+
 Ein eigener Ort statt einer Ansammlung unabhängiger Werkzeuge: Der warme Kartentisch bleibt der visuelle Anker. Das Figurenbuch liegt links, die Chronik rechts; der Sternenbogen im Hintergrund rahmt den Kampagnentitel. Arbeitsflächen übernehmen diese Materialien sparsam, ohne Text auf unruhige Illustrationen zu legen.
 
 Desktop-Entwurfsfläche: 1440 × 900 CSS-Pixel. Kopfzeile 64 Pixel, Rand 32 Pixel, Rasterabstand 24 Pixel. Formulare erhalten links etwa 208 Pixel für Kapitel und rechts etwa 280 Pixel für die Vorschau; der Inhalt dazwischen wächst. Diese Maße sind Entwurfswerte, keine starren Mindestbreiten.

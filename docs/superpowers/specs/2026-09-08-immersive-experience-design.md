@@ -39,7 +39,32 @@ Die vorhandenen semantischen Farben und die Schriftrollen von Alegreya Sans SC u
 
 Die genaue Raumstimmung ist eine Annahme des Entwurfs. Eine warme Gilde oder ein düsterer Turm können dieselbe Informationsarchitektur nutzen. Thematische Unterschiede dürfen Navigation, Fokus und Statusbedeutung nicht verändern.
 
-### Bildregie
+### Stilpräzisierung: mittelalterliches Clockwork
+
+Nutzerfeedback vom 2026-09-08: mittelalterlicher Flair und etwas Clockwork, bei sauberer, flüssiger und hochwertiger Navigation. Diese Richtung konkretisiert das Observatorium; sie ist keine Freigabe zur Produktimplementierung.
+
+Leitmotiv: **die Werkstatt eines arkanen Kartografen in einem mittelalterlichen Observatorium**. Handwerkliche Materialien bilden die Basis, präzise Instrumentenmechanik setzt Akzente. Kein industrieller Steampunk mit Rohrleitungen und Dampfmaschinen; keine futuristischen Hologramme oder dominanten Neonflächen. Dies ist Fantasy-Art-Direction, kein Anspruch historischer Rekonstruktion.
+
+- Architektur: steinerne Bögen, dunkle Holzflächen, geschmiedete Halterungen und warmes, ruhiges Licht.
+- Arbeitsobjekte: ledergebundene Bücher, helle Pergamentflächen, graviertes Messing, Astrolabien und feine Teilungsmarken.
+- Clockwork: plausible Gelenke, Buchschließen und konzentrische Instrumentenringe. Zahnräder nur an erkennbaren Mechanismen, nicht an jedem Button.
+- Oberfläche: wenige feine Rahmen und klare Abstände. Texturen bleiben schwach und außerhalb dichter Tabellen oder Fließtexte; Gebrauchsspuren dürfen nicht wie deaktivierte Bedienelemente aussehen.
+- Typografie und semantische Farben bleiben aus der Foundation erhalten. Keine Frakturschrift für Navigation, Regeln oder Werte; Türkis bleibt ein sparsamer Aktionsakzent ohne flächiges Leuchten.
+
+### Stationen als zusammenhängendes Ensemble
+
+| Station | Eigenes Motiv | Übergang zur Arbeitsansicht |
+|---|---|---|
+| Charaktere | Lederfoliant mit einer Messingschließe | Schließe löst sich, Annäherung; ruhige Formularfläche übernimmt |
+| Welt | Kartenholz mit eingelassenem Kompassring | kleiner Ring richtet sich aus; Karte öffnet sich ohne Rotation des Textes |
+| Vorbereitung | geschnitzter Spielleiterschirm mit Papierregistern | Register hebt sich; vorbereitete Inhalte erscheinen ohne private Vorschau im Raum |
+| Journal | gebundene Chronik mit Stofflesezeichen | Lesezeichen markiert das Ziel; Eintragsliste erscheint |
+| Sitzung | freier Platz am zentralen Spieltisch | kurze Annäherung; Szene und stabile Aktionsleiste übernehmen |
+| Kampagnenwechsel | astronomischer Index am Sternenbogen | markierter Indexwechsel; klare Kampagnenauswahl, kein Pflicht-Rätsel |
+
+Alle Stationen teilen Materialfamilie, Lichtquelle, Beschriftungslogik und Auswahlzustände. Ihre Namen bleiben die verständlichen Navigationsbegriffe, nicht nur poetische Objektnamen. Der Raum bekommt keine dauerhaft rotierenden Mechanismen; im Ruhezustand ruht auch das Uhrwerk.
+
+### Bildaufbau
 
 Desktop: Blick leicht erhöht auf einen zentralen Kartentisch; links Figurenbuch und Ausrüstung, rechts Chronik und Vorbereitung, im Hintergrund der Sternenbogen als Kampagnenwechsel. Ein Hauptlicht und wenige sekundäre Lichtakzente erzeugen lesbare Hierarchie. Keine notwendige Aktion liegt hinter einem Vordergrundobjekt.
 
@@ -166,6 +191,21 @@ Im Raum sind feste Kamerapositionen vorgesehen. Mehrfaches Klicken startet keine
 `prefers-reduced-motion`, eine jederzeit erreichbare Darstellungseinstellung und ein einfacher Modus regeln Bewegung. In reduzierter Darstellung entfallen Kamerafahrt, Parallax, Bildschirmerschütterung und Partikel. Optionale Geräusche starten erst nach bewusster Aktivierung; sie tragen keine exklusive Information.
 
 ## 8. Räumliche Navigation und technische Verträge
+
+### Qualitätsvertrag für Navigation und Übergänge
+
+„High end“ bedeutet hier nachvollziehbare Kontinuität, präzise Reaktion und stabile Bedienung. Die folgenden Kriterien ergänzen die Bewegungsbudgets; sie sind noch keine gemessenen Resultate.
+
+1. **Direkt erreichbar:** Jede Station besitzt denselben klaren Link in der permanenten Navigation. Ein Wechsel zwischen Arbeitsansichten verlangt keine Rückfahrt durch den Raum.
+2. **Eine Bewegung:** Pro Navigation eine zusammenhängende Bewegung mit sanftem Anfahren und Abbremsen, ohne federndes Überschwingen, Kamerarollen oder zufällige Flugbahnen. Mechanik und Panel laufen innerhalb desselben Budgets, nicht nacheinander als zusätzliche Wartezeit.
+3. **Kurze Hierarchie:** Raum → Station 350–450 ms als bevorzugter Zielbereich, harte Obergrenze 600 ms; Arbeitsansicht → Arbeitsansicht 180–240 ms ohne Raumtour. Bei Direktlink/Reload zuerst nutzbaren Inhalt zeigen, keine nachträgliche Ankunftsanimation.
+4. **Eingabe bleibt führend:** Auswahlfeedback innerhalb des bestehenden 100-ms-Ziels. Ein neues Navigationsziel ersetzt das alte; die Animation blockiert keine Eingaben. Ein Dialog zum Schutz ungespeicherter Änderungen darf den Wechsel dagegen bewusst anhalten.
+5. **Klare Ankunft:** Aktive Navigation, Überschrift, URL und sichtbarer Inhalt stimmen überein. Nach dem Wechsel geht der Fokus sinnvoll an die Zielüberschrift; beim Schließen eines Panels zurück an seinen Auslöser. Kein Fokus auf bereits ausgeblendete Elemente.
+6. **Ruhige Arbeitsfläche:** Texte und Formulare sind im Endzustand scharf und unbewegt. Kameraanimationen transformieren nicht dauerhaft die lesbare Oberfläche; keine Layoutsprünge beim Nachladen von Ornamenten oder Schrift.
+7. **Fehler ohne Inszenierung:** Langsames Laden zeigt reservierte Inhaltsflächen und einen ehrlichen Status. Fehlende Szene wechselt zur einfachen Darstellung, ohne erneuten Klick oder Verlust des Entwurfs. Eine Endlosschleife von Zahnrädern ersetzt keine Fehlerbehandlung.
+8. **Gleichwertige Alternative:** Reduced Motion entfernt Kamera-, Ring- und Schließenbewegung vollständig. Orientierung bleibt durch Beschriftung, Auswahlmarker und Status erhalten. Sound ist optional, ausgehend deaktiviert und nie die einzige Rückmeldung.
+
+Vor visueller Abnahme sind mindestens zu prüfen: zehn schnelle Stationswechsel, Browser-Zurück während einer Fahrt, Direktlink auf eine Station, Rückkehr zu einem langen Formular, fehlendes Raumasset, reine Tastaturbedienung, Reduced Motion und DM-/Spielervorschauwechsel. Erwartet werden jeweils das zuletzt erlaubte Navigationsziel, korrekter Fokus, keine doppelten Änderungen und keine geheimen Übergangsbilder. Die Performance-Messbedingungen aus Abschnitt 10 gelten weiterhin.
 
 Die akzeptierte React-/TypeScript-PWA, React Aria, semantische Tokens und CSS Modules bleiben die Grundlage. Ein Präsentationsadapter bildet freigegebene Navigationsziele auf Raumobjekte ab. Er erhält nur erlaubte Read Models und kann nicht direkt in Persistenz oder Regelzustand schreiben.
 
