@@ -132,6 +132,8 @@ Am Ende erscheinen Rückblick, offene Folgen, Fortschritt und zu übernehmende �
 
 ## 6. Storyboard für den ersten visuellen Nachweis
 
+Die [sechs ausgearbeiteten Wireframes](2026-09-08-campaign-room-storyboard.md) konkretisieren diese Sequenz einschließlich mobiler Anordnung, Fehlerzuständen und Sichtbarkeitsgrenzen. Sie sind noch keine ausillustrierten oder getesteten Screens.
+
 Eigene Beispielkampagne: **Sternenbruch**. Ein verlassenes Observatorium sendet wieder Lichtsignale, während eine Handelsroute unterbrochen ist. Namen, Orte und Konflikte werden eigens für den Test verfasst.
 
 | Bild | Aktion | Sichtbares Ergebnis | Was geprüft wird |

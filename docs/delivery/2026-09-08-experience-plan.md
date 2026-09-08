@@ -78,4 +78,6 @@ Ein Vorziehen der KI benötigt einen eigenen Scope-Entscheid. Technisch muss KI 
 
 ## 9. Empfohlener nächster Schritt
 
+Fortschritt EXP-01: [sechs Low-Fidelity-Wireframes mit konkretem Ablauf](../superpowers/specs/2026-09-08-campaign-room-storyboard.md) sind ausgearbeitet. Layoutreview, ausillustrierte Ansichten und Nutzertest sind nicht als abgeschlossen zu verstehen.
+
 EXP-01: sechs konkrete Ansichten ausarbeiten und Raum versus Atlas sichtbar vergleichen. Danach kann ein eng begrenzter Navigationsprototyp umgesetzt werden. Die September-Dokumente sind das prüfbare Planungsergebnis; neue Produktimplementierung wurde hierfür nicht vorgenommen.
