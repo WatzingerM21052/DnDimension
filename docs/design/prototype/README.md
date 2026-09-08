@@ -32,7 +32,15 @@ node --check docs/design/prototype/state.mjs
 node --check docs/design/prototype/serve.mjs
 ```
 
-Prüfstand einschließlich Richtungssteuerung (2026-09-08):
+Prüfstand einschließlich seitlichem Ortsdossier (2026-09-08):
+
+- Ab 1100 px Browserbreite feste Dossierspalte neben der Karte. Ein ruhiger Hinweis belegt den Platz ohne geöffnetes Dossier; Öffnen/Schließen verändert die Kartenbreite nicht. Darunter bleibt das nichtmodale Dossier im Inhaltsfluss unter der Karte.
+- Vorher im Browser bestätigt: Dossier lag unterhalb der Karte. Nachher: rechts daneben, Kartenbreite vor/nach Öffnen jeweils 849,5 px im geprüften Desktopfenster. Nordtor → Observatorium sowie Escape-Fokusrückgabe geprüft.
+- Bei 390 und 320 px Browserbreite bleibt das geöffnete Dossier unterhalb der Karte; Dokumentbreite entspricht jeweils der verfügbaren Breite (375 bzw. 305 px). „Auf Karte zeigen“ mobil bedient, Dossiertitel erhält Fokus. Abschließendes Browserfehlerprotokoll leer.
+- Bestehende 20 Node-Tests weiterhin bestanden; Layoutänderung direkt im Browser geprüft, keine neue Spiellogik. Kein Versprechen einer vollständig scrollfreien Bedienung: außerhalb des sichtbaren Bereichs liegende Inhalte werden weiterhin über die bestehende Fokus-/Scrollführung erreichbar gemacht.
+- Gestaltung: vorhandene Pergament-/Messingfarben und Schriftrollen unverändert; separate schmale Wissensspalte statt Kartenüberlagerung. Keine zusätzliche Bewegung, auch bei Reduced Motion keine neue Animation.
+
+Vorheriger Richtungsstand:
 
 - 20 Node-Tests bestanden; neue Richtungstests vor Implementierung mit zwei erwarteten Fehlern ausgeführt. Alle vier Richtungen, Randbegrenzung und unbekannte Richtung abgedeckt.
 - Browser: Ost-Button verschiebt um 60 px, Pfeil links kehrt zur vorherigen Position zurück. Bei 305 % Zoom bleibt Nordtor nach Tab-Fokus innerhalb der Karte und der Zoom erhalten.

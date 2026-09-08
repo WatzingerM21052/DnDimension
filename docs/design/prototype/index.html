@@ -25,6 +25,7 @@
     <p id="place-search-status" class="small" role="status">4 bekannte Orte. Die Suche filtert die Ortsliste, nicht die Karte.</p>
   </div>
   <div id="place-results" class="tools map-places" role="group" aria-label="Bekannte Orte als Liste"><span class="eyebrow">Orte öffnen</span><button data-place="Nordtor" aria-controls="place-panel">Nordtor</button><button data-place="Alter Steg" aria-controls="place-panel">Alter Steg</button><button data-place="Observatorium" aria-controls="place-panel">Observatorium</button><button data-place="Tannwald" aria-controls="place-panel">Tannwald</button></div>
+  <div class="world-workspace">
   <div class="map-frame">
     <div class="map-toolbar" role="group" aria-label="Kartenbedienung">
       <span class="eyebrow">Sternenbruch · Region</span>
@@ -42,7 +43,11 @@
     </div>
     <div class="map-bottom"><p id="map-help">Verschieben durch Ziehen oder Richtungstasten. Erst vergrößern, um einen Ausschnitt zu bewegen. Tastatur auf der Karte: Pfeile, + / −, Pos1. Optional: Alt + Mausrad.</p><div class="map-directions" role="group" aria-label="Kartenausschnitt verschieben"><button data-map-direction="west" aria-label="Ausschnitt nach Westen">←</button><button data-map-direction="north" aria-label="Ausschnitt nach Norden">↑</button><button data-map-direction="south" aria-label="Ausschnitt nach Süden">↓</button><button data-map-direction="east" aria-label="Ausschnitt nach Osten">→</button></div><span>Illustration · kein kalibrierter Maßstab</span></div>
   </div>
-  <aside id="place-panel" class="paper panel" hidden aria-labelledby="place-title"><button class="close" data-close aria-label="Ortsdossier schließen">×</button><p class="eyebrow">Bekannter Ort · Beispieldaten</p><h2 id="place-title" tabindex="-1"></h2><p id="place-text"></p><div class="tools"><button id="place-show-map" data-close>Auf Karte zeigen</button><a href="#session">Zur Sitzung →</a></div></aside>
+  <div class="dossier-slot">
+    <div class="dossier-empty"><p class="eyebrow">Ortsdossier</p><h2>Jeder Ort hat eine Geschichte.</h2><p>Wähle einen Marker oder einen Ort aus der Liste. Hier findest du das Wissen deiner Gruppe – die Karte bleibt daneben im Blick.</p><span class="dossier-seal" aria-hidden="true">✧</span></div>
+    <aside id="place-panel" class="paper panel" hidden aria-labelledby="place-title"><button class="close" data-close aria-label="Ortsdossier schließen">×</button><p class="eyebrow">Bekannter Ort · Beispieldaten</p><h2 id="place-title" tabindex="-1"></h2><p id="place-text"></p><div class="tools"><button id="place-show-map" data-close>Auf Karte zeigen</button><a href="#session">Zur Sitzung →</a></div></aside>
+  </div>
+  </div>
 </section>
 <section data-view="session" hidden>
   <div class="heading"><div><p class="eyebrow">Sitzung 03 · menschlich geleitet</p><h1 tabindex="-1">Am Nordtor</h1></div><a href="#room">Zur Übersicht</a></div>
