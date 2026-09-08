@@ -1,4 +1,5 @@
 import {createCampaign,changeCampaign,enemies,rollDice} from './suite-state.mjs';
+import {attachSnapshots} from './snapshot-ui.mjs';
 
 const heading=(eyebrow,title)=>`<div class="heading"><div><p class="eyebrow">${eyebrow}</p><h1 tabindex="-1">${title}</h1></div><a href="#room">Zum Observatorium</a></div>`;
 const field=(id,label,type='text',extra='')=>`<label for="${id}">${label}</label><input id="${id}" type="${type}" ${extra}>`;
@@ -61,8 +62,11 @@ export function attachSuite() {
   function chapterView(){for(const section of document.querySelectorAll('[data-chapter]'))section.hidden=Number(section.dataset.chapter)!==chapter;byId('chapter-back').disabled=chapter===0;byId('chapter-next').hidden=chapter===2;byId('character-save').hidden=chapter!==2;byId('chapter-label').textContent=`Kapitel ${chapter+1} von 3 · ${['Identität','Grundwerte','Geschichte'][chapter]}`;}
   byId('chapter-next').addEventListener('click',()=>{const inputs=[...document.querySelector(`[data-chapter="${chapter}"]`).querySelectorAll('input,select,textarea')];if(inputs.every(e=>e.reportValidity())){chapter++;chapterView();document.querySelector(`[data-chapter="${chapter}"] input, [data-chapter="${chapter}"] textarea`)?.focus();}});
   byId('chapter-back').addEventListener('click',()=>{chapter=Math.max(0,chapter-1);chapterView();});
-  for(const [id,value] of Object.entries({'hero-name':campaign.character.name,'hero-edition':campaign.character.edition,'hero-class':campaign.character.archetype,'hero-origin':campaign.character.origin,'hero-hp':campaign.character.maxHp,'character-note':campaign.character.notes,'campaign-title':campaign.preparation.title,'campaign-objective':campaign.preparation.objective,'campaign-scene':campaign.preparation.scene}))byId(id).value=value;
-  campaign.character.attributes.forEach((v,i)=>byId(`attribute-${i}`).value=v);
+  function syncForms(){
+    for(const [id,value] of Object.entries({'hero-name':campaign.character.name,'hero-edition':campaign.character.edition,'hero-class':campaign.character.archetype,'hero-origin':campaign.character.origin,'hero-hp':campaign.character.maxHp,'character-note':campaign.character.notes,'campaign-title':campaign.preparation.title,'campaign-objective':campaign.preparation.objective,'campaign-scene':campaign.preparation.scene}))byId(id).value=value;
+    campaign.character.attributes.forEach((v,i)=>byId(`attribute-${i}`).value=v);
+  }
+  syncForms();
   byId('character-form').addEventListener('submit',e=>{e.preventDefault();send({type:'character',value:{name:byId('hero-name').value,edition:byId('hero-edition').value,archetype:byId('hero-class').value,origin:byId('hero-origin').value,maxHp:Number(byId('hero-hp').value),notes:byId('character-note').value,attributes:Array.from({length:6},(_,i)=>Number(byId(`attribute-${i}`).value))}},'character-status','Figur in die Demo übernommen. Der Bogen ist aktualisiert.');});
   byId('preparation-form').addEventListener('submit',e=>{e.preventDefault();send({type:'prepare',value:{title:byId('campaign-title').value,objective:byId('campaign-objective').value,scene:byId('campaign-scene').value}},'preparation-status','Auftakt und Kampagnenraum aktualisiert.');});
   byId('item-form').addEventListener('submit',e=>{e.preventDefault();if(send({type:'item-add',name:byId('item-name').value,quantity:Number(byId('item-quantity').value)},'inventory-status','Gegenstand eingepackt.')){byId('item-name').value='';byId('item-name').focus();}});
@@ -72,4 +76,5 @@ export function attachSuite() {
   byId('dice-form').addEventListener('submit',e=>{e.preventDefault();try{const result=rollDice(Number(byId('dice-count').value),Number(byId('dice-sides').value),Number(byId('dice-modifier').value));const message=`${result.rolls.length}W${result.sides}: ${result.rolls.join(' + ')} ${result.modifier>=0?'+':'−'} ${Math.abs(result.modifier)} = ${result.total}`;byId('dice-result').textContent=message;byId('dice-history').prepend(node('li',message));while(byId('dice-history').children.length>5)byId('dice-history').lastElementChild.remove();}catch(error){byId('dice-result').textContent=error.message;}});
   byId('resolution-form').addEventListener('submit',e=>{e.preventDefault();if(send({type:'resolve',intent:byId('draft').value,text:byId('resolution-text').value},'resolution-status','Erzählung ergänzt. Du kannst oben in der Chronik weiterlesen.'))byId('resolution-text').value='';});
   chapterView();render();
+  attachSnapshots(()=>campaign,value=>{campaign=value;syncForms();render();});
 }

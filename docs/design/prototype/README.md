@@ -4,6 +4,8 @@ Ein zusammenhängender Prototyp mit **acht bedienbaren Stationen**, keine fertig
 
 **Aktueller Umfang und vollständiger Testdurchlauf:** [Kampagnen-Demo – Funktionen, Grenzen und Abnahme](full-prototype.md). Dieser Stand erweitert den unten dokumentierten früheren Karten-/Navigationsdurchstich.
 
+**Neu: manuelle Sicherung.** Unter Kampagne → „Kampagnendaten sichern“ lassen sich übernommene Daten als JSON exportieren und nach Prüfung/Vorschau wieder laden. Import kann bis zum Neuladen einmal auf den vorherigen Stand zurückgesetzt werden. Kein Autosave. Nicht enthalten sind unübernommene Formulare, Handlungsvorschlag, Würfelhistorie oder Kartenausschnitt.
+
 ## Start
 
 Im Repository mit Node.js 24:
@@ -23,7 +25,7 @@ Dann [lokale Demo öffnen](http://127.0.0.1:4178/prototype/). Port 4178, ausschl
 5. Inventar und Journal bearbeiten. Sitzung → frei würfeln, manuelle Begegnung starten, Züge und TP ändern. „Auflösung vorbereiten“ zeigt einen Vorschlag; nur ausdrücklich übernommene eigene Erzählungen ergänzen die Demo-Chronik.
 6. „Weniger Bewegung“ aktivieren; die Betriebssystempräferenz wird zusätzlich respektiert.
 
-Eingaben existieren nur im Arbeitsspeicher des geöffneten Dokuments. **Neuladen verwirft sie.** Keine echten oder sensiblen Spielstände eingeben. Charaktereditor, Würfel und Kampfwerkzeuge sind ausdrücklich begrenzte Demo-Funktionen, keine regelvalidierte Erstellung oder automatische Spielleitung.
+Ohne manuellen Export existieren Eingaben nur im Arbeitsspeicher. **Neuladen verwirft den ungesicherten Stand.** Nur heruntergeladene oder kopierte Sicherungen können später wieder importiert werden. Keine echten oder sensiblen Spielstände eingeben. Charaktereditor, Würfel und Kampfwerkzeuge sind ausdrücklich begrenzte Demo-Funktionen, keine regelvalidierte Erstellung oder automatische Spielleitung.
 
 ## Verifikation
 
@@ -34,7 +36,7 @@ node --check docs/design/prototype/state.mjs
 node --check docs/design/prototype/serve.mjs
 ```
 
-Aktueller Prüfstand: 27 Node-Tests bestanden, alle acht Stationen bei 320 px geprüft; vollständige Browserabläufe im [aktuellen Prüfbericht](full-prototype.md).
+Aktueller Prüfstand: 32 Node-Tests bestanden, alle acht Stationen und die Sicherungsoberfläche bei 320 px geprüft; vollständige Browserabläufe im [aktuellen Prüfbericht](full-prototype.md).
 
 Historischer Prüfstand einschließlich seitlichem Ortsdossier (2026-09-08):
 

@@ -1,4 +1,5 @@
 nav {flex-wrap:wrap;}nav a {padding-inline:16px;}
+.snapshot-tools {margin-top:32px;}.snapshot-tools label {margin-top:20px;}.snapshot-tools input[type=file] {display:block;max-width:100%;min-height:44px;}.snapshot-tools textarea {margin-bottom:14px;}.snapshot-tools hr {border:0;border-top:1px solid var(--line);margin:30px 0;}.snapshot-tools a {margin:12px 0;}.snapshot-tools p {max-width:85ch;}
 main h1,main h2,main h3,main p {overflow-wrap:anywhere;}
 .campaign {max-width:28ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .room-hero {display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:440px;gap:40px;border-bottom:1px solid var(--line);padding:30px 0 50px;}

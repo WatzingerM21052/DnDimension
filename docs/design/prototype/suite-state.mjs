@@ -38,7 +38,7 @@ export function changeCampaign(state,event) {
       const e=enemies.find(e=>e.id===event.template);if(!e)throw new Error('Unbekannte Vorlage.');
       s.actors.push({...e,id:++s.serial,hp:e.maxHp});break;
     }
-    case 'enemy-remove':if(s.combat.active)throw new Error('Beende zuerst die laufende Demo-Begegnung.');s.actors=s.actors.filter(a=>a.id===0||a.id!==event.id);break;
+    case 'enemy-remove':if(s.combat.active)throw new Error('Beende zuerst die laufende Demo-Begegnung.');s.actors=s.actors.filter(a=>a.id===0||a.id!==event.id);s.combat.turn=Math.min(s.combat.turn,s.actors.length-1);break;
     case 'initiative':if(s.combat.active)throw new Error('Initiative ist während der Begegnung gesperrt.');s.actors=s.actors.map(a=>a.id===event.id?{...a,initiative:integer(event.value,-20,99)}:a);break;
     case 'combat-start':if(s.combat.active)throw new Error('Begegnung läuft bereits.');s.actors.sort((a,b)=>b.initiative-a.initiative);s.combat={active:true,round:1,turn:0};break;
     case 'combat-next':if(!s.combat.active)throw new Error('Starte zuerst die Begegnung.');s.combat.turn=(s.combat.turn+1)%s.actors.length;if(s.combat.turn===0)s.combat.round++;break;

@@ -15,7 +15,25 @@ Stand: 2026-09-08 · Branch `codex/navigation-demo` · isoliert von `code/` und 
 | Journal | Textnotizen anlegen, archivieren, einblenden und wiederherstellen | Keine geheimen DM-Notizen, Synchronisation oder dauerhafte Speicherung |
 | Sitzung | Vorbereiteter Auftakt, Chronik, Handlungsvorschlag, manuell bestätigte Erzählung, Figurenkontext, Lesefokus, freier Würfeltisch und manuelle Begegnung | Keine KI-Antwort, Angriffs-/Zauberautomatik, Ressourcenverrechnung oder vollständige Kampfregeln |
 
-Alle Änderungen leben nur im Speicher dieses Browserdokuments. Browser-Navigation zwischen Stationen erhält sie; Neuladen beginnt neu. UI weist dauerhaft darauf hin. Kein LocalStorage, Upload, externer Dienst oder zusätzlicher Paketdownload.
+Alle Änderungen leben zunächst im Speicher dieses Browserdokuments. Browser-Navigation zwischen Stationen erhält sie; Neuladen beginnt neu. Übernommene Kampagnendaten können jetzt manuell als JSON-Datei gesichert und importiert werden. Kein Autosave, LocalStorage, Upload, externer Dienst oder zusätzlicher Paketdownload.
+
+## Manuelle Sicherung und Import
+
+Unter **Kampagne → Kampagnendaten sichern**:
+
+1. „Export vorbereiten“ erzeugt eine geprüfte Sicherung. Erst „Datei herunterladen“ bzw. Kopieren des JSON-Textes sichert sie außerhalb des Tabs. Die App behauptet nicht, dass ein vorbereiteter Download bereits gespeichert wurde.
+2. Datei auswählen oder JSON einfügen. Die Prüfung begrenzt die Größe auf 1.000.000 UTF-8-Bytes, Sammlungen auf 500 Einträge und einzelne Texte auf 20.000 Zeichen. Formatkennung und Version müssen passen.
+3. Vorschau zeigt Titel, Figur, Notiz- und Beteiligtenzahl. Unbekannte Felder, doppelte IDs, ungültige Werte/Flags, inkonsistente Figur/Begegnung und ungültige Zugpositionen werden abgelehnt. Keine Datenzusammenführung, kein Ausführen von Inhalten.
+4. Erst „Diesen Stand übernehmen“ ersetzt die Kampagnendaten und synchronisiert die Figuren-/Vorbereitungsformulare. Abbrechen lässt den Stand unverändert. Änderungen am JSON verwerfen die vorherige Prüfvorschau.
+5. „Stand vor Import zurückholen“ stellt den vorigen Kampagnenzustand wieder her; dabei gehen auch spätere Kampagnenänderungen seit dem Import verloren. Sichtbarer Hinweis, nur ein Rücknahmestand bis zum Neuladen.
+
+Enthalten: übernommene Figur, Vorbereitung, Inventar, Journal inklusive Archiv, bestätigte Chronik, Beteiligte und Kampfzustand. Nicht enthalten: offene Formulare, Handlungsvorschlag, letzte Würfe, Karte/Suche oder Leseposition. Andere offene Formulare und Karten-/Würfelkontext bleiben beim Import bestehen; sie gehören nicht zur Sicherung.
+
+Dateiformat: `dndimension-demo`, Version 1. Kein Format für produktive oder fremde D&D-Spielstände. Keine Verschlüsselung: nur synthetische Demo-Daten verwenden.
+
+Zusätzlich verifiziert: 32 Node-Tests insgesamt. Export/Import-Rundlauf inklusive laufender Begegnung; beschädigtes JSON, zukünftige Version, Übergröße, HP/IDs/Zugpositionen/Flags und unbekannte Felder. Fehler nach Gegnerentfernung reproduziert und korrigiert: alte Zugposition wird jetzt auf die verbleibenden Beteiligten begrenzt.
+
+Browser: Export-JSON und Download-Blob erzeugt, ungültiges JSON ohne Datenänderung abgewiesen, Vorschau ohne Übernahme geprüft, Sicherung übernommen und vorherigen Titel erfolgreich zurückgeholt. Bearbeitung des JSON versteckt die alte Vorschau. Bei 320 px Dokument- und Inhaltsbreite 305 px, keine Browserfehler. Der tatsächliche OS-Download-/Dateiauswahldialog wurde nicht automatisiert abgenommen; Import wurde über denselben Parser mit eingefügtem Export-JSON geprüft.
 
 ## Vollständiger Durchlauf
 
@@ -45,7 +63,7 @@ Die Armillarsphäre ist ein ruhiges, mit CSS gebautes Instrument, kein interakti
 
 ## Tatsächlich verifiziert
 
-- 27 Node-Tests bestanden: bisherige Navigation/HTTP/Kartentests plus zusätzliche Routen, Charaktervalidierung, unveränderliche Übernahme, Mengenbegrenzung, Ausrüstungsmarkierung, Journal/Klartext/Archiv, Vorbereitung, Chronik, Initiative/Runden/TP, Sperre laufender Begegnungen und Würfelgrenzen.
+- Vor der Sicherungserweiterung: 27 Node-Tests bestanden; bisherige Navigation/HTTP/Kartentests plus zusätzliche Routen, Charaktervalidierung, unveränderliche Übernahme, Mengenbegrenzung, Ausrüstungsmarkierung, Journal/Klartext/Archiv, Vorbereitung, Chronik, Initiative/Runden/TP, Sperre laufender Begegnungen und Würfelgrenzen. Aktuell 32 Tests einschließlich Sicherungen, siehe oben.
 - Vor der Implementierung fehlende Kernfunktionen und Routen mit fehlgeschlagenen Tests nachgewiesen; danach grün. Syntaxcheck für `suite.mjs`, bestehende HTTP-Allowlist um die expliziten neuen Dateien erweitert.
 - Browser-Durchlauf: Elara angelegt, Stärke 16 und eigene Geschichte übernommen; anschließend Kampagne „Die Uhr des Nebels“ und eigener Auftakt. Figur/Auftakt am Spieltisch korrekt übernommen.
 - Messingwächter aus Bestiarium übernommen; Begegnung gestartet, Zug von Elara zum Wächter gewechselt, TP 18 → 17, Begegnung beendet. Würfelergebnis mit Einzelwurf und Summe sichtbar.

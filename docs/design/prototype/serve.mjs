@@ -4,7 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const publicFiles = new Set(['index.html','styles.css','app.mjs','state.mjs','map.css','map.mjs','map-state.mjs','suite.css','suite.mjs','suite-state.mjs']);
+const publicFiles = new Set(['index.html','styles.css','app.mjs','state.mjs','map.css','map.mjs','map-state.mjs','suite.css','suite.mjs','suite-state.mjs','snapshot.mjs','snapshot-ui.mjs']);
 const mime = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.png':'image/png'};
 export function createServer() {
   return http.createServer(async (req, res) => {

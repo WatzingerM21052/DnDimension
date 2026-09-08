@@ -15,7 +15,7 @@ test('server serves demo and rejects outside files, malformed paths and writes',
   });
   assert.equal((await request('/prototype/')).status, 200);
   assert.match((await request('/prototype/state.mjs')).type, /javascript/);
-  for (const path of ['map-state.mjs','map.mjs','suite-state.mjs','suite.mjs']) {
+  for (const path of ['map-state.mjs','map.mjs','suite-state.mjs','suite.mjs','snapshot.mjs','snapshot-ui.mjs']) {
     const response = await request(`/prototype/${path}`);
     assert.equal(response.status, 200);
     assert.match(response.type, /javascript/);
