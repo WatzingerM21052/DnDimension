@@ -88,4 +88,6 @@ test('unknown routes recover to the room', () => {
 
 ## Abgrenzung zu EXP-02
 
+**Ausführungsstand:** Erster Durchstich auf `codex/navigation-demo` umgesetzt. Zustandskern, lokale Auslieferung und grundlegende Browserabläufe geprüft; Details und Grenzen im [Prüfbericht](../../design/prototype/README.md). Die ursprüngliche Checkliste bleibt als Zielumfang erhalten und ist nicht pauschal abgehakt: vollständige Mobile-/Accessibility-Prüfung und semantische Leseanker fehlen noch.
+
 Dieser erste Durchstich prüft Navigation und einfache Zustandskontinuität. Eine bildgetreue, vollständig responsive Oberfläche, echte Kartenbedienung, mobile Modalfokusführung und Speicherfehler-Simulation bleiben gesonderte nächste Teilaufgaben. EXP-02 wird dadurch nicht pauschal als abgeschlossen markiert.
