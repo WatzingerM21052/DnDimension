@@ -1,4 +1,4 @@
-import {moveMap} from './map-state.mjs';
+import {moveMap, findPlaces} from './map-state.mjs';
 
 export function attachMap() {
   const viewport = document.getElementById('map-viewport');
@@ -9,6 +9,32 @@ export function attachMap() {
   let state = {x:0, y:0, zoom:1};
   let pointer = null;
   let suppressClick = false;
+  const search = document.getElementById('place-search');
+  const results = [...document.querySelectorAll('#place-results [data-place]')];
+  function filterPlaces() {
+    const matches = findPlaces(results.map(button => button.dataset.place), search.value);
+    for (const button of results) button.hidden = !matches.includes(button.dataset.place);
+    document.getElementById('place-search-status').textContent = matches.length
+      ? `${matches.length} ${matches.length === 1 ? 'Ort gefunden' : 'Orte gefunden'}. Die Karte zeigt weiterhin alle bekannten Orte.`
+      : 'Kein bekannter Ort gefunden. Verkürze die Suche oder leere das Suchfeld.';
+  }
+  search.addEventListener('input', filterPlaces);
+  document.getElementById('place-search-clear').addEventListener('click', () => {
+    search.value = ''; filterPlaces(); search.focus();
+  });
+  search.addEventListener('keydown', event => {
+    if (event.key === 'Enter' && !event.isComposing) {
+      event.preventDefault();
+      results.find(button => !button.hidden)?.focus();
+    }
+  });
+  document.getElementById('place-show-map').addEventListener('click', () => {
+    const marker = layer.querySelector('[aria-pressed="true"]');
+    if (!marker) return;
+    update({type:'focus',point:{x:marker.offsetLeft / viewport.clientWidth,y:marker.offsetTop / viewport.clientHeight}});
+    viewport.focus({preventScroll:true});
+    viewport.scrollIntoView({block:'center',behavior:'instant'});
+  });
   function update(event) {
     state = moveMap(state, event, {width:viewport.clientWidth, height:viewport.clientHeight});
     layer.style.transform = `translate(${state.x}px, ${state.y}px) scale(${state.zoom})`;

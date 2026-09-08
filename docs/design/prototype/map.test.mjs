@@ -4,6 +4,13 @@ const {moveMap} = await import('./map-state.mjs').catch(() => ({}));
 const initial = {x:0,y:0,zoom:1};
 const size = {width:1000,height:600};
 
+test('focus centers a map point without changing zoom', () => {
+  assert.deepEqual(moveMap({x:0,y:0,zoom:2},{type:'focus',point:{x:0.6,y:0.7}},size),{x:-700,y:-540,zoom:2});
+});
+test('focus near edges stays within the map', () => {
+  assert.deepEqual(moveMap({x:-250,y:-150,zoom:2},{type:'focus',point:{x:0.01,y:0.99}},size),{x:0,y:-600,zoom:2});
+});
+
 test('zoom preserves the point under the cursor', () => {
   assert.equal(typeof moveMap, 'function');
   assert.deepEqual(moveMap(initial,{type:'zoom',factor:2,anchor:{x:250,y:150}},size),{x:-250,y:-150,zoom:2});

@@ -19,6 +19,12 @@
 </section>
 <section data-view="world" hidden>
   <div class="heading"><div><p class="eyebrow">Bekanntes Wissen</p><h1 tabindex="-1">Die alte Handelsroute</h1></div><a href="#room">Zur Übersicht</a></div>
+  <div class="map-search">
+    <label for="place-search">Bekannte Orte durchsuchen</label>
+    <div class="map-search-row"><input id="place-search" type="search" placeholder="Zum Beispiel: Alter Steg" aria-controls="place-results" aria-describedby="place-search-status" autocomplete="off"><button id="place-search-clear" type="button">Suche leeren</button></div>
+    <p id="place-search-status" class="small" role="status">4 bekannte Orte. Die Suche filtert die Ortsliste, nicht die Karte.</p>
+  </div>
+  <div id="place-results" class="tools map-places" role="group" aria-label="Bekannte Orte als Liste"><span class="eyebrow">Orte öffnen</span><button data-place="Nordtor" aria-controls="place-panel">Nordtor</button><button data-place="Alter Steg" aria-controls="place-panel">Alter Steg</button><button data-place="Observatorium" aria-controls="place-panel">Observatorium</button><button data-place="Tannwald" aria-controls="place-panel">Tannwald</button></div>
   <div class="map-frame">
     <div class="map-toolbar" role="group" aria-label="Kartenbedienung">
       <span class="eyebrow">Sternenbruch · Region</span>
@@ -36,8 +42,7 @@
     </div>
     <div class="map-bottom"><p id="map-help">Ziehen zum Verschieben · Zum Zoomen + / − nutzen. Tastatur auf der Karte: Pfeile, + / −, Pos1. Optional: Alt + Mausrad bei fokussierter Karte.</p><span>Illustration · kein kalibrierter Maßstab</span></div>
   </div>
-  <div class="tools map-places" role="group" aria-label="Bekannte Orte als Liste"><span class="eyebrow">Orte öffnen</span><button data-place="Nordtor" aria-controls="place-panel">Nordtor</button><button data-place="Alter Steg" aria-controls="place-panel">Alter Steg</button><button data-place="Observatorium" aria-controls="place-panel">Observatorium</button><button data-place="Tannwald" aria-controls="place-panel">Tannwald</button></div>
-  <aside id="place-panel" class="paper panel" hidden aria-labelledby="place-title"><button class="close" data-close aria-label="Ortsdossier schließen">×</button><p class="eyebrow">Bekannter Ort · Beispieldaten</p><h2 id="place-title" tabindex="-1"></h2><p id="place-text"></p><a href="#session">Zur Sitzung →</a></aside>
+  <aside id="place-panel" class="paper panel" hidden aria-labelledby="place-title"><button class="close" data-close aria-label="Ortsdossier schließen">×</button><p class="eyebrow">Bekannter Ort · Beispieldaten</p><h2 id="place-title" tabindex="-1"></h2><p id="place-text"></p><div class="tools"><button id="place-show-map" data-close>Auf Karte zeigen</button><a href="#session">Zur Sitzung →</a></div></aside>
 </section>
 <section data-view="session" hidden>
   <div class="heading"><div><p class="eyebrow">Sitzung 03 · menschlich geleitet</p><h1 tabindex="-1">Am Nordtor</h1></div><a href="#room">Zur Übersicht</a></div>

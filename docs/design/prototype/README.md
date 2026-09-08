@@ -32,7 +32,13 @@ node --check docs/design/prototype/state.mjs
 node --check docs/design/prototype/serve.mjs
 ```
 
-Prüfstand einschließlich interaktiver Karte (2026-09-08):
+Prüfstand einschließlich Ortssuche (2026-09-08):
+
+- 18 Node-Tests bestanden. Neu: Teilwortsuche unabhängig von Groß-/Kleinschreibung und äußerem Leerraum, leere/erfolglose Suche sowie Kamerafokus mit Zoom-Erhalt und Randbegrenzung. Nach TDD zuerst fünf erwartete Fehler beobachtet, dann implementiert.
+- Browser: „  STEG  “ liefert nur Alter Steg; Enter fokussiert den Treffer, weiteres Enter öffnet das Dossier. „Auf Karte zeigen“ schließt es und fokussiert die Karte bei weiterhin 125 % Zoom und verändertem Kartenausschnitt.
+- Erfolglose Suche und „Suche leeren“ geprüft; alle vier Treffer kommen zurück. Mobile Stichprobe 390 × 844: Suche nach Tannwald, Dossier und Kartenrückweg bedient; Dokumentbreite 375 px ohne horizontalen Überlauf. Abschließendes Browserfehlerprotokoll leer.
+
+Vorheriger Kartenstand:
 
 - 13 Node-Tests bestanden. Zusätzlich zum ursprünglichen Durchstich: Zoom-Anker, Zoomgrenzen, Pan-Grenzen, Größenwechsel und ungültige Eingaben; neue Browsermodule durch HTTP-Test abgedeckt.
 - Im Browser: Zoom 100 → 125 %, Pfeiltasten-Pan, Maus-Drag mit geändertem Transform, Reset, Marker → Dossier → Escape mit Fokusrückgabe, Zoom-Erhalt beim Stationswechsel.
@@ -49,7 +55,7 @@ Bereits zuvor geprüft:
 
 ## Noch offen / bewusste Grenzen
 
-- Kartensuche, Kalibrierung und Atlaswechsel. Pan/Zoom und vier Marker sind implementiert, aber keine Reise-, Entfernungs- oder Sichtbarkeitsregeln.
+- Kalibrierung und Atlaswechsel. Ortssuche, Pan/Zoom und vier Marker sind implementiert, aber keine Reise-, Entfernungs- oder Sichtbarkeitsregeln. Suche umfasst ausschließlich die vier öffentlichen Demo-Ortsnamen, keine Volltext-/Tippfehlersuche.
 - Touch nutzt Einfinger-Verschieben und Zoom-Buttons; kein Pinch-Zoom. Native Gerätegesten wurden nicht geprüft. Die mobile Browseransicht ist keine physische Geräteabnahme.
 - Eigene optimierte Szene-/Portraitassets statt vollständiger UI-Referenzbilder; echte Raumkamerafahrten. Aktuell nur kurze Einblendung/Versetzung (220 ms, aus Raum 400 ms).
 - Finale Foundation-Schriften/-Komponenten: hier lokale Georgia-/Segoe-UI-Fallbacks, keine zweite Produktions-Designbibliothek.
@@ -61,10 +67,12 @@ Bereits zuvor geprüft:
 
 ## Struktur
 
-`state.mjs` enthält den Demo-Zustand, `app.mjs` bindet ihn an die Oberfläche. `map-state.mjs` berechnet begrenzte Kamerakoordinaten, `map.mjs` bindet Pointer-/Tastatureingaben. `map.css` ergänzt die Darstellung. Drei Testdateien prüfen echte Funktionen beziehungsweise HTTP-Antworten, ohne neue Testpakete.
+`state.mjs` enthält den Demo-Zustand, `app.mjs` bindet ihn an die Oberfläche. `map-state.mjs` berechnet begrenzte Kamerakoordinaten und Suchtreffer, `map.mjs` bindet Suche und Pointer-/Tastatureingaben. `map.css` ergänzt die Darstellung. Vier Testdateien prüfen echte Funktionen beziehungsweise HTTP-Antworten, ohne neue Testpakete.
 
 ## Kartenbedienung und Gestaltung
 
+- Suche filtert nur die Ortsliste direkt unter dem Suchfeld; Marker bleiben zur Orientierung sichtbar. Enter im Suchfeld fokussiert den ersten Treffer, ohne ihn automatisch zu öffnen. Suchtext bleibt beim Stationswechsel erhalten und wird beim Neuladen verworfen.
+- „Auf Karte zeigen“ im Dossier schließt den Kontext und richtet die Karte auf den gewählten Ort aus, soweit die Kartenränder dies zulassen. Zoom bleibt unverändert; bei 100 % bleibt die Gesamtkarte sichtbar. Keine animierte Kamerafahrt, kein zusätzlicher Bewegungsreiz.
 - Zoom 100–400 %, begrenztes Verschieben, Reset; Kamera bleibt beim Stationswechsel im Arbeitsspeicher erhalten. Neuladen setzt sie zurück.
 - Pfeiltasten verschieben die fokussierte Karte, + / − zoomen, Pos1 setzt zurück. Browser-Zoom-Tastenkürzel werden nicht abgefangen.
 - Ortsmarker behalten beim Zoomen ihre Bildschirmgröße. Die gleichwertige Ortsliste bleibt auch für außerhalb des Ausschnitts liegende Orte erreichbar. Tastaturfokus auf einen abgeschnittenen Marker stellt die Gesamtansicht wieder her.

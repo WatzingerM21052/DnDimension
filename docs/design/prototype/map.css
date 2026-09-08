@@ -29,3 +29,7 @@
   .map-places .eyebrow {flex-basis:100%;}
 }
 @media(forced-colors:active){.map-marker[aria-pressed=true]{border:3px solid Highlight;}.map-frame{border:1px solid CanvasText;}}
+.map-search {max-width:640px;margin-bottom:20px;}
+.map-search-row {display:flex;gap:8px;}
+.map-search input {min-width:0;flex:1;min-height:44px;border:1px solid var(--line);border-radius:5px;padding:10px 14px;background:var(--slate);color:var(--paper);}
+.map-search .small {margin:8px 0 0;}
