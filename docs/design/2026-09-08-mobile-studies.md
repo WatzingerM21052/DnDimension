@@ -1,6 +1,6 @@
 # Mobile Karte und Sitzung – erste Bildstudien
 
-**Status:** neue statische Entwürfe zur Durchsicht, nicht vom Nutzer abgenommen, keine App-Implementierung. Ergänzung zur [Designreferenz](2026-09-08-visual-direction-and-interaction.md).
+**Status:** visuelle Richtung im Gespräch positiv aufgenommen; keine technische Abnahme oder App-Implementierung. Ergänzung zur [Designreferenz](2026-09-08-visual-direction-and-interaction.md). Die [Übergangsabläufe](2026-09-08-transition-flows.md) konkretisieren jetzt Kontextwechsel, Lesefokus und Tastaturverhalten; die folgenden Bildabweichungen bleiben offen.
 
 ## Karte
 

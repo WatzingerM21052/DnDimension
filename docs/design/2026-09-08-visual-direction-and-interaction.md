@@ -44,6 +44,8 @@ Positiv aufgenommen: kleinere, weiterhin präsente Szene; mehr Chronikfläche; s
 
 ## 3. Navigation ohne Umwege
 
+Die [konkreten Übergangsabläufe](2026-09-08-transition-flows.md) präzisieren Stationen, Panels, History, mobile Eingabe und Zustandserhalt einschließlich noch offener Prüfszenarien.
+
 | Bereich | Primärer Weg | Zurück und Kontext |
 |---|---|---|
 | Kampagnenraum | Station oder gleichwertiger beschrifteter Direktlink | letzter Kampagnenkontext; keine erneute Intro-Tour |
@@ -90,7 +92,7 @@ Es gelten die [vorhandenen Bewegungsbudgets und Qualitätskriterien](../superpow
 
 ## 7. Mobile Anordnung als eigener Entwurf
 
-**Fortschritt:** [Erste mobile Bildstudien](2026-09-08-mobile-studies.md) zeigen jetzt Karte und Sitzung. Sie sind noch nicht abgenommen; die dort dokumentierten Layoutabweichungen und offenen Tests bleiben zu bearbeiten.
+**Fortschritt:** [Erste mobile Bildstudien](2026-09-08-mobile-studies.md) zeigen jetzt Karte und Sitzung. Ihre visuelle Richtung wurde im Gespräch positiv aufgenommen; die dokumentierten Layoutabweichungen und offenen Tests bleiben zu bearbeiten. Eine technische Abnahme liegt nicht vor.
 
 Die Desktopbilder werden nicht einfach verkleinert. Folgende mobile Regeln sind vorgeschlagen, teilweise visualisiert und noch nicht getestet:
 
