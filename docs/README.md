@@ -2,6 +2,14 @@
 
 Dieser Index ist der Einstieg in die Projektunterlagen. Er unterscheidet Produktentscheidungen, operative Planung, Forschung und Vorlagen.
 
+## Aktuelle Designplanung – September 2026
+
+- [Lebendiger Kampagnenraum: Erlebnis, Bildschirme und Bewegung](superpowers/specs/2026-09-08-immersive-experience-design.md)
+- [Ausbauplan und überprüfbare Arbeitspakete](delivery/2026-09-08-experience-plan.md)
+- [Recherche, Bestandsprüfung und tatsächliche Lesetiefe](research/2026-09-08-experience-review.md)
+
+Diese Ergänzungen sind ausgearbeitete Vorschläge. Die akzeptierten Release-Gates bleiben maßgeblich; ein früher Designprototyp ist weder eine fertige Spielfunktion noch ein vorgezogenes 3D-/KI-Release.
+
 ## Autoritätsreihenfolge
 
 Bei Widersprüchen gilt:
