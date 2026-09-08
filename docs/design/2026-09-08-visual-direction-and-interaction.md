@@ -90,7 +90,9 @@ Es gelten die [vorhandenen Bewegungsbudgets und Qualitätskriterien](../superpow
 
 ## 7. Mobile Anordnung als eigener Entwurf
 
-Die Desktopbilder werden nicht einfach verkleinert. Folgende mobile Regeln sind vorgeschlagen, noch nicht visualisiert oder getestet:
+**Fortschritt:** [Erste mobile Bildstudien](2026-09-08-mobile-studies.md) zeigen jetzt Karte und Sitzung. Sie sind noch nicht abgenommen; die dort dokumentierten Layoutabweichungen und offenen Tests bleiben zu bearbeiten.
+
+Die Desktopbilder werden nicht einfach verkleinert. Folgende mobile Regeln sind vorgeschlagen, teilweise visualisiert und noch nicht getestet:
 
 | Ansicht | Mobile Priorität | Kontext und Rückkehr |
 |---|---|---|
