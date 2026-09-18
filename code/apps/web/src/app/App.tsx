@@ -3,6 +3,8 @@ import { Stack, Surface, Text } from "@dndimension/ui";
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
 
+const StorageLab = import.meta.env.DEV ? lazy(() => import("./StorageLab")) : null;
+
 const buildInfo = parseBuildInfo({ version: "0.1.0", commit: "local" });
 const DevelopmentUiLab = import.meta.env.DEV
   ? lazy(() => import("../dev/ui-lab/UiLab").then(({ UiLab }) => ({ default: UiLab })))
@@ -55,6 +57,16 @@ export const App = () => (
         element={
           <Suspense fallback={null}>
             <DevelopmentUiLab />
+          </Suspense>
+        }
+      />
+    )}
+    {StorageLab && (
+      <Route
+        path="/dev/storage"
+        element={
+          <Suspense fallback={<p>Lädt …</p>}>
+            <StorageLab />
           </Suspense>
         }
       />

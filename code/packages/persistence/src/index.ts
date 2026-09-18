@@ -1,4 +1,5 @@
 import { Dexie, type Table } from "dexie";
+import { encodeBackup, decodeBackup, type ProcessedCommand } from "./backup";
 import {
   prepareAggregateCommand,
   type AggregateStore,
@@ -6,13 +7,10 @@ import {
   type AuditRecord,
 } from "@dndimension/core";
 
-interface ProcessedCommand {
-  commandId: string;
-  fingerprint: string;
-  revision: number;
-}
 export interface IndexedDbAggregateStore extends AggregateStore {
   close(): void;
+  exportBackup(): Promise<string>;
+  restoreBackup(text: string): Promise<void>;
 }
 
 /** Experimental P-02 schema, not the production campaign/character schema. */
@@ -27,6 +25,24 @@ export const createIndexedDbAggregateStore = (name: string): IndexedDbAggregateS
   const events: Table<AuditRecord, [string, number]> = db.table("events");
   const commands: Table<ProcessedCommand, string> = db.table("commands");
   return {
+    async exportBackup() {
+      const snapshot = await db.transaction("r", aggregates, events, commands, async () => ({
+        aggregates: await aggregates.toArray(),
+        events: await events.toArray(),
+        commands: await commands.toArray(),
+      }));
+      return encodeBackup(snapshot);
+    },
+    async restoreBackup(text) {
+      const snapshot = await decodeBackup(text);
+      await db.transaction("rw", aggregates, events, commands, async () => {
+        if ((await aggregates.count()) || (await events.count()) || (await commands.count()))
+          throw new Error("Restore requires an empty database");
+        await aggregates.bulkAdd(snapshot.aggregates);
+        await events.bulkAdd(snapshot.events);
+        await commands.bulkAdd(snapshot.commands);
+      });
+    },
     async commit(input) {
       const prepared = prepareAggregateCommand(input);
       if (!prepared) return { status: "invalid-command" };
