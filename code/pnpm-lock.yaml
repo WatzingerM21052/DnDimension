@@ -68,6 +68,9 @@ importers:
       '@dndimension/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@dndimension/persistence':
+        specifier: workspace:*
+        version: link:../../packages/persistence
       react:
         specifier: 19.2.8
         version: 19.2.8

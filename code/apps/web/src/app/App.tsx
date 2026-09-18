@@ -1,5 +1,8 @@
 import { parseBuildInfo } from "@dndimension/core";
 import { Route, Routes } from "react-router";
+import { lazy, Suspense } from "react";
+
+const StorageLab = import.meta.env.DEV ? lazy(() => import("./StorageLab")) : null;
 
 const buildInfo = parseBuildInfo({ version: "0.1.0", commit: "local" });
 
@@ -30,5 +33,15 @@ export const App = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/health" element={<Health />} />
+    {StorageLab && (
+      <Route
+        path="/dev/storage"
+        element={
+          <Suspense fallback={<p>Lädt …</p>}>
+            <StorageLab />
+          </Suspense>
+        }
+      />
+    )}
   </Routes>
 );
