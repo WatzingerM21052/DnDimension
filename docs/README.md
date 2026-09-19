@@ -2,6 +2,24 @@
 
 Dieser Index ist der Einstieg in die Projektunterlagen. Er unterscheidet Produktentscheidungen, operative Planung, Forschung und Vorlagen.
 
+## Aktuelle Designplanung – September 2026
+
+- [Bedienbarer Kampagnenprototyp: Start und geprüfter Umfang](design/prototype/README.md)
+- [Acht Stationen: vollständiger Demo-Durchlauf und ehrliche Funktionsgrenzen](design/prototype/full-prototype.md)
+
+- [Konkrete Übergänge, Zustandserhalt und Prüfszenarien](design/2026-09-08-transition-flows.md)
+
+- [Mobile Karte und Sitzung: erste Bildstudien und offene Prüfungen](design/2026-09-08-mobile-studies.md)
+
+- [Bevorzugte Bildentwürfe, Nutzerfeedback und Bedienkonzept](design/2026-09-08-visual-direction-and-interaction.md)
+
+- [Lebendiger Kampagnenraum: Erlebnis, Bildschirme und Bewegung](superpowers/specs/2026-09-08-immersive-experience-design.md)
+- [Sternenbruch: sechs Wireframes und durchgehendes Storyboard](superpowers/specs/2026-09-08-campaign-room-storyboard.md)
+- [Ausbauplan und überprüfbare Arbeitspakete](delivery/2026-09-08-experience-plan.md)
+- [Recherche, Bestandsprüfung und tatsächliche Lesetiefe](research/2026-09-08-experience-review.md)
+
+Diese Ergänzungen sind ausgearbeitete Vorschläge. Die akzeptierten Release-Gates bleiben maßgeblich; ein früher Designprototyp ist weder eine fertige Spielfunktion noch ein vorgezogenes 3D-/KI-Release.
+
 ## Autoritätsreihenfolge
 
 Bei Widersprüchen gilt:

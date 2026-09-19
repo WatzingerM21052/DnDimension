@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DnDimension · Kampagnenprototyp</title><link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./map.css"><link rel="stylesheet" href="./suite.css"><script type="module" src="./app.mjs"></script></head>
+<body>
+<a class="skip" href="#content">Zum Inhalt</a>
+<div class="notice">Design-Demo – keine echten Spielstände <span>· Kein Autosave · Sicherung unter „Kampagne“</span></div>
+<header><a class="brand" href="#room"><span aria-hidden="true">✧</span> DnDimension</a><span class="campaign">Sternenbruch</span><label class="motion"><input id="motion" type="checkbox"> Weniger Bewegung</label></header>
+<nav aria-label="Stationen"><a href="#room">Übersicht</a><a href="#character">Figurenbuch</a><a href="#world">Weltkarte</a><a href="#session">Sitzung</a></nav>
+<noscript><p>Diese lokale Navigationsdemo benötigt JavaScript. Die Bilder allein sind nicht interaktiv.</p></noscript>
+<main id="content">
+<section data-view="room">
+  <div class="heading"><div><p class="eyebrow">Das Observatorium</p><h1 tabindex="-1">Dein nächstes Abenteuer wartet.</h1></div><a class="primary" href="#session">Sitzung fortsetzen <span aria-hidden="true">→</span></a></div>
+  <figure><img src="../assets/01-observatory-concept.png" alt="Gestaltungsreferenz: das mittelalterliche Observatorium mit Figurenbuch und Kartentisch"><figcaption>Statische Bildreferenz · Die abgebildeten Bedienelemente sind nicht anklickbar. Nutze die Stationen darunter.</figcaption></figure>
+  <div class="stations"><a id="station-character" href="#character"><span class="eyebrow">Der Foliant</span><h2>Figurenbuch</h2><p>Neris' Entwurf ansehen.</p><span aria-hidden="true">↗</span></a><a id="station-world" href="#world"><span class="eyebrow">Der Kartentisch</span><h2>Weltkarte</h2><p>Orte und ihre Verbindungen.</p><span aria-hidden="true">↗</span></a><a id="station-session" href="#session"><span class="eyebrow">Am Nordtor</span><h2>Sitzung</h2><p>Lesen, nachschlagen, handeln.</p><span aria-hidden="true">↗</span></a></div>
+</section>
+<section data-view="character" hidden>
+  <div class="heading"><div><p class="eyebrow">Figurenbuch · Beispielentwurf</p><h1 tabindex="-1">Neris</h1></div><a href="#room">Zur Übersicht</a></div>
+  <div class="split"><figure><img loading="lazy" src="../assets/02-character-folio.png" alt="Statische Referenz des geöffneten Charakterfolianten"><figcaption>Bildstudie, kein funktionierender Charaktereditor.</figcaption></figure><aside class="paper"><p class="eyebrow">In diesem Durchstich</p><h2>Eine Figur nimmt Gestalt an.</h2><p>Die vollständige Erstellung folgt nach den Regel- und Inhaltsgrundlagen. Hier prüfen wir zuerst die Wege zwischen den Stationen.</p><label for="character-note">Idee zur Figur · nur Demo</label><textarea id="character-note" rows="4" placeholder="Was macht Neris besonders?"></textarea><p class="small">Bleibt beim Stationswechsel erhalten. Wird beim Neuladen verworfen.</p><a href="#world">Zum Kartentisch →</a></aside></div>
+</section>
+<section data-view="world" hidden>
+  <div class="heading"><div><p class="eyebrow">Bekanntes Wissen</p><h1 tabindex="-1">Die alte Handelsroute</h1></div><a href="#room">Zur Übersicht</a></div>
+  <div class="map-search">
+    <label for="place-search">Bekannte Orte durchsuchen</label>
+    <div class="map-search-row"><input id="place-search" type="search" placeholder="Zum Beispiel: Alter Steg" aria-controls="place-results" aria-describedby="place-search-status" autocomplete="off"><button id="place-search-clear" type="button">Suche leeren</button></div>
+    <p id="place-search-status" class="small" role="status">4 bekannte Orte. Die Suche filtert die Ortsliste, nicht die Karte.</p>
+  </div>
+  <div id="place-results" class="tools map-places" role="group" aria-label="Bekannte Orte als Liste"><span class="eyebrow">Orte öffnen</span><button data-place="Nordtor" aria-controls="place-panel">Nordtor</button><button data-place="Alter Steg" aria-controls="place-panel">Alter Steg</button><button data-place="Observatorium" aria-controls="place-panel">Observatorium</button><button data-place="Tannwald" aria-controls="place-panel">Tannwald</button></div>
+  <div class="world-workspace">
+  <div class="map-frame">
+    <div class="map-toolbar" role="group" aria-label="Kartenbedienung">
+      <span class="eyebrow">Sternenbruch · Region</span>
+      <div class="map-zoom"><button id="map-out" aria-label="Karte verkleinern">−</button><output id="map-zoom" aria-live="polite" aria-label="Kartenzoom">100 %</output><button id="map-in" aria-label="Karte vergrößern">+</button><button id="map-reset">Gesamte Karte</button></div>
+    </div>
+    <div id="map-viewport" class="map-viewport" tabindex="0" role="region" aria-label="Interaktive Karte von Sternenbruch" aria-describedby="map-help">
+      <div id="map-layer" class="map-layer">
+        <img src="../assets/08-world-terrain.png" alt="Handgezeichnete Region: Stadt im Westen, Observatorium im Nordosten, Tannwald im Osten und alter Flussübergang im Süden." draggable="false" width="1536" height="1024">
+        <button class="map-marker marker-town" data-place="Nordtor" aria-controls="place-panel"><span aria-hidden="true">◆</span><span>Nordtor</span></button>
+        <button class="map-marker marker-bridge" data-place="Alter Steg" aria-controls="place-panel"><span aria-hidden="true">◆</span><span>Alter Steg</span></button>
+        <button class="map-marker marker-tower" data-place="Observatorium" aria-controls="place-panel"><span aria-hidden="true">◆</span><span>Observatorium</span></button>
+        <button class="map-marker marker-forest" data-place="Tannwald" aria-controls="place-panel"><span aria-hidden="true">◆</span><span>Tannwald</span></button>
+      </div>
+      <span class="map-north" aria-hidden="true">N<br>✧</span>
+    </div>
+    <div class="map-bottom"><p id="map-help">Verschieben durch Ziehen oder Richtungstasten. Erst vergrößern, um einen Ausschnitt zu bewegen. Tastatur auf der Karte: Pfeile, + / −, Pos1. Optional: Alt + Mausrad.</p><div class="map-directions" role="group" aria-label="Kartenausschnitt verschieben"><button data-map-direction="west" aria-label="Ausschnitt nach Westen">←</button><button data-map-direction="north" aria-label="Ausschnitt nach Norden">↑</button><button data-map-direction="south" aria-label="Ausschnitt nach Süden">↓</button><button data-map-direction="east" aria-label="Ausschnitt nach Osten">→</button></div><span>Illustration · kein kalibrierter Maßstab</span></div>
+  </div>
+  <div class="dossier-slot">
+    <div class="dossier-empty"><p class="eyebrow">Ortsdossier</p><h2>Jeder Ort hat eine Geschichte.</h2><p>Wähle einen Marker oder einen Ort aus der Liste. Hier findest du das Wissen deiner Gruppe – die Karte bleibt daneben im Blick.</p><span class="dossier-seal" aria-hidden="true">✧</span></div>
+    <aside id="place-panel" class="paper panel" hidden aria-labelledby="place-title"><button class="close" data-close aria-label="Ortsdossier schließen">×</button><p class="eyebrow">Bekannter Ort · Beispieldaten</p><h2 id="place-title" tabindex="-1"></h2><p id="place-text"></p><div class="tools"><button id="place-show-map" data-close>Auf Karte zeigen</button><a href="#session">Zur Sitzung →</a></div></aside>
+  </div>
+  </div>
+</section>
+<section data-view="session" hidden>
+  <div class="heading"><div><p class="eyebrow">Sitzung 03 · menschlich geleitet</p><h1 tabindex="-1">Am Nordtor</h1></div><a href="#room">Zur Übersicht</a></div>
+  <details class="reference"><summary>Gestaltungsreferenz ansehen</summary><figure><img loading="lazy" src="../assets/04-session-immersive.png" alt="Statische Referenz der szenenbetonten Sitzung"><figcaption>Bildreferenz, keine interaktiven Bedienelemente im Bild.</figcaption></figure></details>
+  <div class="tools"><button id="reading" aria-pressed="false">Lesefokus einschalten</button><button id="figures" aria-expanded="false" aria-controls="figures-panel">Figuren öffnen</button></div>
+  <div class="session-layout"><article id="chronicle" tabindex="0" aria-label="Chronik" class="chronicle"><p class="eyebrow">Chronik</p><h2>Eine Karte im Laternenlicht</h2><p>Mira breitet ihre beschädigte Karte auf dem kalten Stein aus. Eine verblasste Linie führt vom Nordtor zum Fluss. Dort muss der alte Steg liegen.</p><p>Aus der Stadt dringen Stimmen und das Schlagen einer Glocke. Mira hält die Karte gegen das Laternenlicht. Am Rand erkennt ihr ein kleines Sternzeichen.</p><p>„Diesen Weg haben die Händler früher genommen“, sagt sie. „Ob der Steg noch steht, weiß ich nicht.“</p><p>Ein Windstoß zieht durch den Torbogen. Mira beschwert die Ecke der Karte mit einer Messingscheibe und deutet auf die Abzweigung vor dem Wald.</p><p>Ihr könnt sie nach dem Zeichen fragen, die Route genauer betrachten oder einen ganz anderen Plan verfolgen. Die App entscheidet nicht für euch.</p><p class="question">Offen: Welchen Weg nimmt die Gruppe?</p></article>
+  <aside id="figures-panel" class="panel context" hidden aria-labelledby="figures-title"><button class="close" data-close aria-label="Figurenpanel schließen">×</button><p class="eyebrow">Bekanntes Wissen</p><h2 id="figures-title" tabindex="-1">Mira Venn</h2><p>Kartografin. Kennt die alte Handelsroute.</p><h3>Verbindungen</h3><a href="#world">Nordtor · Weltkarte →</a><p class="small">Nur öffentliche Beispieldaten. Keine privaten DM-Notizen geladen.</p></aside></div>
+  <form id="action-form" class="composer"><label for="draft">Deine Handlung</label><div class="input-row"><textarea id="draft" rows="2" placeholder="Ich frage Mira nach dem Sternzeichen." required></textarea><button class="primary" type="submit">Auflösung vorbereiten →</button></div><p class="small">Entwurf · noch nicht bestätigt · Neuladen verwirft diese Eingabe.</p></form>
+  <aside id="preview-panel" class="panel paper" hidden aria-labelledby="preview-title"><button class="close" data-close aria-label="Vorschau schließen">×</button><p class="eyebrow">Simulation – keine Spielfolgen</p><h2 id="preview-title" tabindex="-1">Vorschlag zur Prüfung</h2><p id="proposal"></p><p>Hier würde die Spielleitung die Auflösung vorbereiten. In dieser Demo werden weder gewürfelt noch Werte geändert.</p><button data-close>Zur Eingabe zurück</button></aside>
+</section>
+</main><footer>Lokaler Navigationsdurchstich <span>Keine KI · keine Regeln · kein Speichern</span></footer>
+</body></html>

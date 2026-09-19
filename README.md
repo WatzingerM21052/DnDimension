@@ -6,6 +6,9 @@ Eine geplante Web-App zur Unterstützung von D&D-5e-Spielern und Dungeon Mastern
 
 ## Einstieg
 
+- [September 2026: Der lebendige Kampagnenraum](docs/superpowers/specs/2026-09-08-immersive-experience-design.md) — neuer Designvorschlag mit Raum-Navigation, Bildschirmabläufen und Animationen
+- [Dazugehöriger Ausbau- und Prüfplan](docs/delivery/2026-09-08-experience-plan.md)
+
 - [Dokumentations-Hub](docs/README.md)
 - [Release-Roadmap](docs/product/roadmap.md)
 - [Projektantrag](docs/product/project-proposal.md)
