@@ -3,7 +3,13 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { test } from "node:test";
-import { evaluateBudget, formatMiB, measurePath, resolvePnpmStore } from "./disk-report.mjs";
+import {
+  createDiskReport,
+  evaluateBudget,
+  formatMiB,
+  measurePath,
+  resolvePnpmStore,
+} from "./disk-report.mjs";
 
 test("measures recursive file bytes and treats missing paths as zero", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "dndimension-disk-"));
@@ -26,6 +32,22 @@ test("formats MiB consistently", () => {
 test("warns only when a budget is exceeded", () => {
   assert.equal(evaluateBudget(10, 10), "pass");
   assert.equal(evaluateBudget(11, 10), "warning");
+});
+
+test("includes the UI declaration output in the production build measurement", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "dndimension-disk-"));
+  try {
+    const uiDeclaration = path.join(root, "packages/ui/dist/index.d.ts");
+    fs.mkdirSync(path.dirname(uiDeclaration), { recursive: true });
+    fs.writeFileSync(uiDeclaration, "declare const ui: true;");
+
+    const report = createDiskReport({ root, storePath: path.join(root, "store") });
+    const productionBuild = report.rows.find(({ label }) => label === "Production build");
+
+    assert.equal(productionBuild.bytes, fs.statSync(uiDeclaration).size);
+  } finally {
+    fs.rmSync(root, { force: true, recursive: true });
+  }
 });
 
 test("resolves the pnpm store through cmd on Windows", () => {

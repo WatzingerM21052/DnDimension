@@ -21,6 +21,9 @@
 node_modules/
 .pnpm-store/
 
+# Local isolated feature worktrees
+/.worktrees/
+
 # Build output
 dist/
 dev-dist/

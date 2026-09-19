@@ -31,8 +31,11 @@ export const evaluateDoctor = (facts) => {
     errors.push(`pnpm 11.19.0 is required; found ${facts.pnpmVersion}.`);
   }
   if (!facts.lockfileExists) errors.push("pnpm-lock.yaml is missing.");
-  if (!facts.workspacePackagesExist)
-    errors.push("A required workspace package manifest is missing.");
+  if (facts.missingWorkspacePackages.length > 0) {
+    errors.push(
+      `Required workspace package manifests are missing: ${facts.missingWorkspacePackages.join(", ")}`,
+    );
+  }
   if (!facts.edgeExists) warnings.push("Microsoft Edge was not found; no browser was downloaded.");
   if (facts.trackedSensitive.length > 0) {
     errors.push(`Private paths are tracked by Git: ${facts.trackedSensitive.join(", ")}`);
@@ -65,6 +68,11 @@ const findEdge = () => {
 
 export const collectDoctorFacts = (root = process.cwd()) => {
   const repositoryRoot = path.resolve(root, "..");
+  const requiredWorkspacePackages = [
+    "apps/web/package.json",
+    "packages/core/package.json",
+    "packages/ui/package.json",
+  ];
   const tracked = execFileSync(
     "git",
     ["-C", repositoryRoot, "ls-files", "--", "private-library", "tmp"],
@@ -78,8 +86,8 @@ export const collectDoctorFacts = (root = process.cwd()) => {
     referenceNodeVersion: fs.readFileSync(path.join(root, ".node-version"), "utf8").trim(),
     pnpmVersion: readPnpmVersion(root),
     lockfileExists: fs.existsSync(path.join(root, "pnpm-lock.yaml")),
-    workspacePackagesExist: ["apps/web/package.json", "packages/core/package.json"].every(
-      (relative) => fs.existsSync(path.join(root, relative)),
+    missingWorkspacePackages: requiredWorkspacePackages.filter(
+      (relative) => !fs.existsSync(path.join(root, relative)),
     ),
     edgeExists: findEdge(),
     trackedSensitive: tracked,
