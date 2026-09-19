@@ -16,15 +16,6 @@ test("allows public package imports", () => {
   assert.deepEqual(result.cycles, []);
 });
 
-test("allows the declared public UI stylesheet subpath", () => {
-  const result = analyzeFiles({
-    root,
-    sources: new Map([[webFile, 'import "@dndimension/ui/styles.css";']]),
-  });
-
-  assert.deepEqual(result.violations, []);
-});
-
 test("rejects package deep imports", () => {
   const result = analyzeFiles({
     root,

@@ -1,7 +1,0 @@
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --motion-fast: 1ms;
-    --motion-standard: 1ms;
-    scroll-behavior: auto;
-  }
-}

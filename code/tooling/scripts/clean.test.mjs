@@ -30,24 +30,6 @@ test("build cleanup removes build output and preserves source and other categori
   }
 });
 
-test("build and cache cleanup remove the UI package generated directories", () => {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), "dndimension-clean-"));
-  try {
-    const declaration = path.join(root, "packages/ui/dist/index.d.ts");
-    const cache = path.join(root, "packages/ui/.cache/state");
-    createFile(declaration);
-    createFile(cache);
-
-    cleanCategory({ root, category: "build" });
-    cleanCategory({ root, category: "cache" });
-
-    assert.equal(fs.existsSync(path.dirname(declaration)), false);
-    assert.equal(fs.existsSync(path.dirname(cache)), false);
-  } finally {
-    fs.rmSync(root, { force: true, recursive: true });
-  }
-});
-
 test("validates every target before deleting the first one", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "dndimension-clean-"));
   try {

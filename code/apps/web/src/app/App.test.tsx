@@ -26,15 +26,4 @@ describe("App", () => {
 
     expect(screen.getByRole("status")).toHaveTextContent("0.1.0");
   });
-
-  it("renders the development UI lab through its named route", async () => {
-    render(
-      <MemoryRouter initialEntries={["/dev/ui"]}>
-        <App />
-      </MemoryRouter>,
-    );
-
-    expect(await screen.findByRole("heading", { name: "DnDimension UI Lab" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Wegmarke anlegen" })).toBeInTheDocument();
-  });
 });

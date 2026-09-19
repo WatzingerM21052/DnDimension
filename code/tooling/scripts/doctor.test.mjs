@@ -7,7 +7,7 @@ const healthyFacts = {
   referenceNodeVersion: "24.20.0",
   pnpmVersion: "11.19.0",
   lockfileExists: true,
-  missingWorkspacePackages: [],
+  workspacePackagesExist: true,
   edgeExists: true,
   trackedSensitive: [],
 };
@@ -31,14 +31,4 @@ test("rejects incompatible runtimes and tracked private paths", () => {
   assert.equal(result.errors.length, 2);
   assert.match(result.errors.join(" "), /Node 24/);
   assert.match(result.errors.join(" "), /private-library/);
-});
-
-test("reports every missing required workspace package", () => {
-  const result = evaluateDoctor({
-    ...healthyFacts,
-    missingWorkspacePackages: ["packages/ui/package.json"],
-  });
-
-  assert.equal(result.ok, false);
-  assert.match(result.errors.join(" "), /packages\/ui\/package\.json/);
 });
