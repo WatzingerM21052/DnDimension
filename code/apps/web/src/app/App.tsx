@@ -1,34 +1,75 @@
 import { parseBuildInfo } from "@dndimension/core";
+import { Stack, Surface, Text } from "@dndimension/ui";
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
 
+const StorageLab = import.meta.env.DEV ? lazy(() => import("./StorageLab")) : null;
+
 const buildInfo = parseBuildInfo({ version: "0.1.0", commit: "local" });
+const DevelopmentUiLab = import.meta.env.DEV
+  ? lazy(() => import("../dev/ui-lab/UiLab").then(({ UiLab }) => ({ default: UiLab })))
+  : null;
 
 const Home = () => (
-  <main>
-    <p className="eyebrow">Project Foundation</p>
-    <h1>DnDimension</h1>
-    <p>Die technische Basis ist bereit. Produktfunktionen folgen als geprüfte Release-Slices.</p>
-  </main>
+  <Surface as="main" variant="canvas">
+    <Stack gap="md">
+      <Text variant="label">Project Foundation</Text>
+      <Text as="h1" variant="display">
+        DnDimension
+      </Text>
+      <Text>
+        Die technische Basis ist bereit. Produktfunktionen folgen als geprüfte Release-Slices.
+      </Text>
+    </Stack>
+  </Surface>
 );
 
 const Health = () =>
   buildInfo.ok ? (
-    <main>
-      <h1>Build Health</h1>
-      <p role="status">
-        Version {buildInfo.value.version}, Commit {buildInfo.value.commit}
-      </p>
-    </main>
+    <Surface as="main" variant="canvas">
+      <Stack gap="md">
+        <Text as="h1" variant="display">
+          Build Health
+        </Text>
+        <Text role="status">
+          Version {buildInfo.value.version}, Commit {buildInfo.value.commit}
+        </Text>
+      </Stack>
+    </Surface>
   ) : (
-    <main>
-      <h1>Build Health</h1>
-      <p role="alert">Build-Metadaten sind ungültig.</p>
-    </main>
+    <Surface as="main" variant="canvas">
+      <Stack gap="md">
+        <Text as="h1" variant="display">
+          Build Health
+        </Text>
+        <Text role="alert">Build-Metadaten sind ungültig.</Text>
+      </Stack>
+    </Surface>
   );
 
 export const App = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/health" element={<Health />} />
+    {StorageLab && (
+      <Route
+        path="/dev/storage"
+        element={
+          <Suspense fallback={<p>Lädt …</p>}>
+            <StorageLab />
+          </Suspense>
+        }
+      />
+    )}
+    {DevelopmentUiLab === null ? null : (
+      <Route
+        path="/dev/ui"
+        element={
+          <Suspense fallback={null}>
+            <DevelopmentUiLab />
+          </Suspense>
+        }
+      />
+    )}
   </Routes>
 );
