@@ -1,0 +1,63 @@
+.storage-lab {
+  --brass: #d4b77c;
+  --ink: #191f24;
+  --paper: #eee6d5;
+  color: var(--paper);
+}
+.storage-lab h1,
+.storage-lab legend {
+  font-family: Georgia, serif;
+}
+.storage-lab .eyebrow {
+  color: var(--brass);
+}
+.storage-lab fieldset {
+  border: 1px solid #6e634e;
+  margin-block: 1.5rem;
+  padding: 1.25rem;
+  background: var(--ink);
+}
+.storage-lab legend {
+  padding-inline: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--brass);
+}
+.storage-lab label {
+  display: block;
+  margin-block: 0.75rem;
+}
+.storage-lab input:not([type="checkbox"]),
+.storage-lab textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #8d8677;
+  background: #11171b;
+  color: var(--paper);
+  font: inherit;
+}
+.storage-lab textarea {
+  font:
+    0.8rem ui-monospace,
+    monospace;
+  resize: vertical;
+}
+.storage-lab button {
+  margin: 0.7rem 0.7rem 0.2rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--brass);
+  background: #30332e;
+  color: var(--paper);
+  font: inherit;
+  cursor: pointer;
+}
+.storage-lab button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.storage-lab [role="alert"] {
+  border-left: 3px solid #edaa91;
+  padding: 1rem;
+}
+.storage-lab p {
+  line-height: 1.6;
+}
