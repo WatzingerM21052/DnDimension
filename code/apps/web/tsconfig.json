@@ -7,5 +7,9 @@
     "types": ["vite/client", "vitest/globals"]
   },
   "include": ["src", "vite.config.ts"],
-  "references": [{ "path": "../../packages/core" }, { "path": "../../packages/persistence" }]
+  "references": [
+    { "path": "../../packages/core" },
+    { "path": "../../packages/persistence" },
+    { "path": "../../packages/ui" }
+  ]
 }

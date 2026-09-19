@@ -4,9 +4,23 @@ import { pathToFileURL } from "node:url";
 import { assertAllowedGeneratedPath } from "./safe-paths.mjs";
 
 const CATEGORY_TARGETS = Object.freeze({
-  build: ["dist", "dev-dist", "apps/web/dist", "apps/web/dev-dist", "packages/core/dist"],
+  build: [
+    "dist",
+    "dev-dist",
+    "apps/web/dist",
+    "apps/web/dev-dist",
+    "packages/core/dist",
+    "packages/ui/dist",
+  ],
   test: ["coverage", "playwright-report", "test-results", "blob-report"],
-  cache: [".vite", ".cache", "apps/web/.vite", "apps/web/.cache", "packages/core/.cache"],
+  cache: [
+    ".vite",
+    ".cache",
+    "apps/web/.vite",
+    "apps/web/.cache",
+    "packages/core/.cache",
+    "packages/ui/.cache",
+  ],
 });
 
 export const cleanTargets = ({ root, targets }) => {
