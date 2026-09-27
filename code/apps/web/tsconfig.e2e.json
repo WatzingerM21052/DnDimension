@@ -3,8 +3,13 @@
   "compilerOptions": {
     "composite": true,
     "noEmit": true,
-    "types": ["node"]
+    "jsx": "react-jsx",
+    "types": ["node", "vite/client"]
   },
-  "include": ["e2e", "../../playwright.config.ts"],
-  "references": [{ "path": "../../packages/persistence" }]
+  "include": ["e2e", "src/dev/ui-lab", "../../playwright.config.ts"],
+  "references": [
+    { "path": "../../packages/persistence" },
+    { "path": "../../packages/ui" },
+    { "path": "../../packages/core" }
+  ]
 }
