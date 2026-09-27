@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true,
+    "lib": ["ES2023"],
+    "types": ["node", "vitest/globals"],
+    // Build-time config only: vite-plugin-pwa ships Workbox typings that need the
+    // service-worker library and an optional peer. App code keeps full library checks.
+    "skipLibCheck": true
+  },
+  "include": ["vite.config.ts", "build-identity.ts", "build-identity.test.ts"]
+}

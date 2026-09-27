@@ -4,12 +4,12 @@
     "composite": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client", "vitest/globals"]
+    "types": ["node", "vite/client"]
   },
-  "include": ["src"],
+  "include": ["e2e", "src/dev/ui-lab", "../../playwright.config.ts"],
   "references": [
-    { "path": "../../packages/core" },
     { "path": "../../packages/persistence" },
-    { "path": "../../packages/ui" }
+    { "path": "../../packages/ui" },
+    { "path": "../../packages/core" }
   ]
 }

@@ -75,6 +75,7 @@ const semanticColors = (theme: ThemeValues) => ({
   statusDangerText: theme["--color-status-danger-text"],
   surfaceCanvas: theme["--color-surface-canvas"],
   surfaceReading: theme["--color-surface-reading"],
+  surfaceWorkspace: theme["--color-surface-workspace"],
   textOnReading: theme["--color-text-on-reading"],
   textPrimary: theme["--color-text-primary"],
 });
@@ -93,6 +94,9 @@ describe.each([
     expect(contrast(theme.textPrimary, theme.surfaceCanvas)).toBeGreaterThanOrEqual(4.5);
     expect(contrast(theme.textOnReading, theme.surfaceReading)).toBeGreaterThanOrEqual(7);
     expect(contrast(theme.accentActionText, theme.accentAction)).toBeGreaterThanOrEqual(4.5);
+    // Quiet buttons render the action accent as text directly on canvas and workspace.
+    expect(contrast(theme.accentAction, theme.surfaceCanvas)).toBeGreaterThanOrEqual(4.5);
+    expect(contrast(theme.accentAction, theme.surfaceWorkspace)).toBeGreaterThanOrEqual(4.5);
     expect(contrast(theme.statusDangerText, theme.statusDanger)).toBeGreaterThanOrEqual(4.5);
     expect(contrast(theme.borderFocus, theme.surfaceCanvas)).toBeGreaterThanOrEqual(3);
   });

@@ -70,6 +70,9 @@ Eine neue Entscheidung soll widersprechende ältere Aussagen nicht nur ergänzen
 
 - [Katalog der privaten Referenzbibliothek](research/reference-library-catalog.md)
 - [v0.1 Toolchain Validation Report](research/v0.1-toolchain-validation-report.md) — reproduzierbarer P-01-Nachweis mit Versionen, Tests und Speicherwerten
+- [v0.1 Persistence Spike Report](research/v0.1-persistence-spike-report.md) — P-02-Nachweis für atomare Commits, Tab-Koordination, Migration/Recovery und Speicherwerte
+- [v0.1 UI Quality Spike Report](research/v0.1-ui-quality-spike-report.md) — P-04-Nachweis für Kontrast, Touchziele, Dialog-Fokus und Reduced Motion im Browser
+- [v0.1 PWA Spike Report](research/v0.1-pwa-spike-report.md) — P-03-Nachweis für Offline-Start, Update-Sperre, Cachetrennung und Budgets
 - [AI-DM Quellenstrategie](research/ai-dm-source-strategy.md)
 
 ## Anleitungen und Vorlagen

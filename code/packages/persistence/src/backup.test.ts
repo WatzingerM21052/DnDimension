@@ -100,3 +100,22 @@ it("allows only one concurrent restore into an empty target", async () => {
   expect(results.filter((result) => result.status === "fulfilled")).toHaveLength(1);
   expect(await target.history("campaign")).toHaveLength(1);
 });
+
+it("stores only verified fields when a backup carries unknown row properties", async () => {
+  const source = open();
+  await source.commit(command);
+  const envelope = JSON.parse(await source.exportBackup());
+  const snapshot = JSON.parse(envelope.payload) as Snapshot;
+  Object.assign(snapshot.aggregates[0]!, { injected: "aggregate" });
+  Object.assign(snapshot.events[0]!, { injected: "event" });
+  Object.assign(snapshot.commands[0]!, { injected: "command" });
+  const target = open();
+  await target.restoreBackup(await encodeBackup(snapshot));
+  const exported = JSON.parse(JSON.parse(await target.exportBackup()).payload) as Snapshot;
+  expect(JSON.stringify(exported)).not.toContain("injected");
+  expect(await target.read("campaign")).toEqual({
+    aggregateId: "campaign",
+    revision: 1,
+    value: { name: "Coast" },
+  });
+});

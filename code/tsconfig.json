@@ -5,6 +5,8 @@
     { "path": "./packages/content" },
     { "path": "./packages/persistence" },
     { "path": "./packages/ui" },
-    { "path": "./apps/web" }
+    { "path": "./apps/web" },
+    { "path": "./apps/web/tsconfig.node.json" },
+    { "path": "./apps/web/tsconfig.e2e.json" }
   ]
 }
