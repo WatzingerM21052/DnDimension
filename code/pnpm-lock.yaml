@@ -100,6 +100,12 @@ importers:
         specifier: 7.4.1
         version: 7.4.1
 
+  packages/content:
+    dependencies:
+      '@dndimension/core':
+        specifier: workspace:*
+        version: link:../core
+
   packages/core: {}
 
   packages/domain:
@@ -120,6 +126,15 @@ importers:
       fake-indexeddb:
         specifier: 6.2.5
         version: 6.2.5
+
+  packages/rules:
+    dependencies:
+      '@dndimension/content':
+        specifier: workspace:*
+        version: link:../content
+      '@dndimension/core':
+        specifier: workspace:*
+        version: link:../core
 
   packages/ui:
     dependencies:
