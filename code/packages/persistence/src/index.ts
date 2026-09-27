@@ -7,6 +7,33 @@ import {
   type AuditRecord,
 } from "@dndimension/core";
 
+export interface IndexedDbAggregateStoreOptions {
+  /** Another tab or a newer app version wants to upgrade the schema; this connection closes. */
+  onVersionChange?: () => void;
+}
+
+const SCHEMA_VERSION = 1;
+// Dexie stores declared version n as native IndexedDB version n * 10.
+const NATIVE_SCHEMA_VERSION = SCHEMA_VERSION * 10;
+
+/** The database was upgraded by a newer app build than the code currently running. */
+export class NewerSchemaError extends Error {
+  override name = "NewerSchemaError";
+  constructor(readonly installedVersion: number) {
+    super(`Database schema ${installedVersion} is newer than supported ${NATIVE_SCHEMA_VERSION}`);
+  }
+}
+
+/**
+ * True when stored data belongs to a newer schema than this code knows. The data is intact;
+ * recovery means loading the newer app version, never deleting the database.
+ */
+export const isNewerSchemaError = (error: unknown): boolean =>
+  typeof error === "object" &&
+  error !== null &&
+  "name" in error &&
+  (error.name === "NewerSchemaError" || error.name === "VersionError");
+
 export interface IndexedDbAggregateStore extends AggregateStore {
   close(): void;
   exportBackup(): Promise<string>;
@@ -14,8 +41,18 @@ export interface IndexedDbAggregateStore extends AggregateStore {
 }
 
 /** Experimental P-02 schema, not the production campaign/character schema. */
-export const createIndexedDbAggregateStore = (name: string): IndexedDbAggregateStore => {
-  const db = new Dexie(name);
+export const createIndexedDbAggregateStore = (
+  name: string,
+  { onVersionChange }: IndexedDbAggregateStoreOptions = {},
+): IndexedDbAggregateStore => {
+  // Opened explicitly: Dexie 4 would otherwise re-create tables a newer build removed.
+  const db = new Dexie(name, { autoOpen: false });
+  db.on("versionchange", () => {
+    // Close so the other connection's upgrade is not blocked, then let the app react.
+    db.close();
+    onVersionChange?.();
+    return false;
+  });
   db.version(1).stores({
     aggregates: "aggregateId",
     events: "[aggregateId+revision], commandId",
@@ -24,8 +61,27 @@ export const createIndexedDbAggregateStore = (name: string): IndexedDbAggregateS
   const aggregates: Table<AggregateRecord, string> = db.table("aggregates");
   const events: Table<AuditRecord, [string, number]> = db.table("events");
   const commands: Table<ProcessedCommand, string> = db.table("commands");
+  const assertSchemaNotNewer = async () => {
+    const factory = Dexie.dependencies.indexedDB;
+    if (typeof factory?.databases !== "function") return;
+    const installed = (await factory.databases()).find((info) => info.name === name)?.version;
+    if (installed !== undefined && installed > NATIVE_SCHEMA_VERSION)
+      throw new NewerSchemaError(installed);
+  };
+  let opening: Promise<void> | undefined;
+  const ready = () =>
+    (opening ??= assertSchemaNotNewer()
+      .then(() => db.open())
+      .then(
+        () => undefined,
+        (error: unknown) => {
+          opening = undefined;
+          throw error;
+        },
+      ));
   return {
     async exportBackup() {
+      await ready();
       const snapshot = await db.transaction("r", aggregates, events, commands, async () => ({
         aggregates: await aggregates.toArray(),
         events: await events.toArray(),
@@ -35,6 +91,7 @@ export const createIndexedDbAggregateStore = (name: string): IndexedDbAggregateS
     },
     async restoreBackup(text) {
       const snapshot = await decodeBackup(text);
+      await ready();
       await db.transaction("rw", aggregates, events, commands, async () => {
         if ((await aggregates.count()) || (await events.count()) || (await commands.count()))
           throw new Error("Restore requires an empty database");
@@ -47,6 +104,7 @@ export const createIndexedDbAggregateStore = (name: string): IndexedDbAggregateS
       const prepared = prepareAggregateCommand(input);
       if (!prepared) return { status: "invalid-command" };
       const { command, fingerprint } = prepared;
+      await ready();
       return db.transaction("rw", aggregates, events, commands, async () => {
         const previous = await commands.get(command.commandId);
         if (previous)
@@ -69,9 +127,11 @@ export const createIndexedDbAggregateStore = (name: string): IndexedDbAggregateS
       });
     },
     async read(aggregateId) {
+      await ready();
       return aggregates.get(aggregateId);
     },
     async history(aggregateId) {
+      await ready();
       return events
         .where("[aggregateId+revision]")
         .between([aggregateId, 1], [aggregateId, Number.MAX_SAFE_INTEGER], true, true)

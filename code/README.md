@@ -13,10 +13,13 @@ Alle Befehle werden aus `code/` ausgeführt:
 
 ```powershell
 pnpm install --frozen-lockfile
+pnpm exec playwright install chromium   # einmalig für pnpm test:e2e
 pnpm verify
 pnpm run doctor
 pnpm disk:report
 pnpm --filter @dndimension/web dev
 ```
+
+`pnpm verify` baut die App und führt danach die Playwright-Tests (`pnpm test:e2e`) gegen den Production-Build aus, inklusive Offline-Start und Updatefluss der PWA. Mit einem bereits installierten Chromium genügt `PLAYWRIGHT_CHROMIUM_EXECUTABLE=<Pfad>` statt des Browser-Downloads.
 
 Zusätzliche Frameworks, Browser-Runtimes oder native SDKs werden nur aufgenommen, wenn ein konkreter Release-Slice sie benötigt.

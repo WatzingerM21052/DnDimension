@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router";
 
 const StorageLab = import.meta.env.DEV ? lazy(() => import("./StorageLab")) : null;
 
-const buildInfo = parseBuildInfo({ version: "0.1.0", commit: "local" });
+const buildInfo = parseBuildInfo(__DNDIMENSION_BUILD__);
 const DevelopmentUiLab = import.meta.env.DEV
   ? lazy(() => import("../dev/ui-lab/UiLab").then(({ UiLab }) => ({ default: UiLab })))
   : null;
