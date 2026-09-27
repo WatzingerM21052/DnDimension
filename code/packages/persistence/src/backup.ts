@@ -62,7 +62,7 @@ export const decodeBackup = async (text: string): Promise<Snapshot> => {
     throw new Error("Invalid backup data");
   const reference = createMemoryAggregateStore();
   const seenCommands = new Set<string>();
-  const preparedCommands: { input: AggregateCommand; revision: number }[] = [];
+  const preparedCommands: { input: AggregateCommand; fingerprint: string; revision: number }[] = [];
   for (const row of snapshot.commands) {
     if (!row || typeof row.fingerprint !== "string" || seenCommands.has(row.commandId))
       throw new Error("Invalid command history");
@@ -75,7 +75,11 @@ export const decodeBackup = async (text: string): Promise<Snapshot> => {
     )
       throw new Error("Invalid command history");
     seenCommands.add(row.commandId);
-    preparedCommands.push({ input: prepared.command, revision: row.revision });
+    preparedCommands.push({
+      input: prepared.command,
+      fingerprint: prepared.fingerprint,
+      revision: row.revision,
+    });
   }
   preparedCommands.sort((a, b) => a.revision - b.revision);
   for (const { input } of preparedCommands) {
@@ -141,5 +145,20 @@ export const decodeBackup = async (text: string): Promise<Snapshot> => {
         throw new Error("Invalid audit history");
     }
   }
-  return snapshot;
+  // Return rows rebuilt from the verified history so no unknown fields reach the database.
+  const aggregates: AggregateRecord[] = [];
+  const events: AuditRecord[] = [];
+  for (const aggregateId of ids) {
+    aggregates.push((await reference.read(aggregateId))!);
+    events.push(...(await reference.history(aggregateId)));
+  }
+  return {
+    aggregates,
+    events,
+    commands: preparedCommands.map(({ input, fingerprint, revision }) => ({
+      commandId: input.commandId,
+      fingerprint,
+      revision,
+    })),
+  };
 };

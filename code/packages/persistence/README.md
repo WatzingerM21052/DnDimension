@@ -25,6 +25,6 @@ On 2026-09-08: 34 Vitest tests and 15 tooling tests passed; formatting, lint, bo
 - Startup recovery markers, pre-migration backup, failed/interrupted migration and restoration evidence.
 - Explicit persistent-storage permission and quota estimates in real browsers.
 - Real database-size fixtures and final object-store/index decisions.
-- Portable backups and destructive restore confirmation before use for valuable campaign data.
+- Portable backups and destructive restore confirmation before use for valuable campaign data. (Restore already writes only rows rebuilt from the verified history; unknown fields in a backup file are dropped.)
 
 No production UI imports this package yet. The existing web build size therefore does not measure the adapter's eventual browser-bundle cost. No handbook text, PDF or real campaign data is included. Issue #20 remains open.
