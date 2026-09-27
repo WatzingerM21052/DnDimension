@@ -33,7 +33,8 @@ export interface AggregateStore {
   history(aggregateId: string): Promise<AuditRecord[]>;
 }
 
-const canonicalJson = (value: JsonValue): string => {
+/** Deterministic JSON with sorted object keys; throws for non-finite or non-plain values. */
+export const canonicalJson = (value: JsonValue): string => {
   if (value === null || typeof value === "string" || typeof value === "boolean") {
     return JSON.stringify(value);
   }

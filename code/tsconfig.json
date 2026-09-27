@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     { "path": "./packages/core" },
+    { "path": "./packages/content" },
     { "path": "./packages/persistence" },
     { "path": "./packages/ui" },
     { "path": "./apps/web" }
