@@ -1,3 +1,14 @@
 # Reproducible toolchain inputs across Windows and CI checkouts
 code/** text eol=lf
 .github/workflows/** text eol=lf
+
+# Binary assets must never be line-ending normalized (a PNG signature contains CRLF).
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary

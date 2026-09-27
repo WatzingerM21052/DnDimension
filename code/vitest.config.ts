@@ -1,6 +1,8 @@
 import { defineConfig } from "vitest/config";
+import { buildIdentityDefine } from "./apps/web/build-identity";
 
 export default defineConfig({
+  define: buildIdentityDefine(),
   test: {
     clearMocks: true,
     environment: "node",

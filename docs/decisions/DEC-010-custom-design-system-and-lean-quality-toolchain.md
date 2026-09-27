@@ -32,6 +32,10 @@ Der Qualitätsstack verwendet TypeScript strict, ESLint, Prettier, Vitest, React
 - Der lokale Toolchain bleibt klein; CI übernimmt teure Browserkombinationen.
 - Ein späteres Tool darf ergänzt werden, wenn gemessene Wartungs- oder Qualitätsvorteile seinen Speicher-, Build- und Pflegeaufwand überwiegen.
 
+## Validierung
+
+Spike P-04 (#69) bestätigt die Entscheidung am 2026-09-27, siehe [P-04 Report](../research/v0.1-ui-quality-spike-report.md). Eine Browser-Probe prüft das UI-Lab in beiden Themes mit axe inklusive Kontrast, misst Touchziele gegen `--target-min`, testet Dialog-Tastaturbedienung und `prefers-reduced-motion`. Dabei wurde ein Kontrastfehler der `vellum-study`-Akzentfarbe gefunden und korrigiert; der Theme-Vertragstest deckt dieses Farbpaar jetzt ab.
+
 ## Ersetzt / ersetzt durch
 
 Keine vorherige Decision. Diese Entscheidung konkretisiert DEC-003 für die technische UI-Umsetzung.

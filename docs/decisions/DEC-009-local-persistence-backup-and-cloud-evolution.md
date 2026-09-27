@@ -37,6 +37,10 @@ Ab Accounts/Cloud wird relationale SQL-Persistenz hinter eigenen Adaptern ergän
 - D1-, PostgreSQL- oder Providerpreise werden unmittelbar vor Einführung neu bewertet.
 - Eine native Dateidatenbank kann später ergänzt werden, ohne das portable Domainmodell zu ersetzen.
 
+## Validierung
+
+Spike P-02 (#20) bestätigt die Entscheidung am 2026-09-27 mit Tests im echten Chromium und unter fake-indexeddb, siehe [P-02 Report](../research/v0.1-persistence-spike-report.md): atomare Commits, optimistische Tab-Koordination mit `BroadcastChannel`-Hinweis und Revisionsprüfung, verlustfreie Abbrüche von Schema-Upgrades, Backup vor jeder Migration und Messwerte zu Größe und Quota. `persist()` wurde in einem frischen Profil abgelehnt, was die Pflicht zu Backup/Restore bestätigt. Ein manueller Edge-Nachweis steht noch aus.
+
 ## Ersetzt / ersetzt durch
 
 Konkretisiert die offene Persistenzentscheidung aus v0.2 und DEC-006; ersetzt keine frühere Decision.

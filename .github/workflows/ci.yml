@@ -11,8 +11,13 @@ permissions:
 
 jobs:
   verify:
-    runs-on: windows-latest
-    timeout-minutes: 15
+    name: verify (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: code
@@ -28,5 +33,14 @@ jobs:
           install: false
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
       - name: Verify foundation
         run: pnpm verify
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report-${{ matrix.os }}
+          path: code/playwright-report/
+          retention-days: 7
