@@ -92,6 +92,12 @@ importers:
 
   packages/core: {}
 
+  packages/domain:
+    dependencies:
+      '@dndimension/core':
+        specifier: workspace:*
+        version: link:../core
+
   packages/persistence:
     dependencies:
       '@dndimension/core':
