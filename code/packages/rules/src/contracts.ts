@@ -1,4 +1,5 @@
 import type { SourceManifestRef } from "@dndimension/content";
+import type { AutomationGrade } from "@dndimension/core";
 import type { RuleProfileRef } from "./profile";
 
 export const abilities = [
@@ -28,8 +29,8 @@ export type ResolutionKind = (typeof implementedKinds)[number] | (typeof planned
 /** Three separate dimensions (spec §11): outcome, how it came about, whether dice were used. */
 export type ResolutionStatus =
   "resolved" | "pending_decision" | "rejected" | "conflict" | "unsupported";
-/** Same values as the domain automation grade (v0.2 spec §6.4). */
-export type AutomationGrade = "computed" | "assisted" | "manual_recorded";
+/** The shared automation grade (v0.2 spec §6.4), defined once in core. */
+export type { AutomationGrade };
 export type RollMode = "automatic_roll" | "manual_roll" | "controlled_roll" | "not_applicable";
 
 export type TraceVisibility = "public" | "player" | "dm" | "internal";
