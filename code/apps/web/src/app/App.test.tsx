@@ -24,7 +24,7 @@ describe("App", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("status")).toHaveTextContent("0.1.0");
+    expect(screen.getByRole("status")).toHaveTextContent(/^Version 0\.1\.0, Commit \S+$/);
   });
 
   it("renders the development UI lab through its named route", async () => {
