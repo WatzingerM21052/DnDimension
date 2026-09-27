@@ -4,11 +4,17 @@ import { expect, test, type Page } from "@playwright/test";
 import { build } from "vite";
 import { startStaticServer } from "./static-server";
 
-const probeDist = path.resolve(import.meta.dirname, "../../../test-results/persistence-probe");
-
 let server: Awaited<ReturnType<typeof startStaticServer>>;
 
 test.beforeAll(async () => {
+  // One probe build per worker: with fullyParallel, every worker runs this
+  // beforeAll, and a shared outDir + emptyOutDir let one worker wipe the build
+  // another was already serving ("No production build at ..."; seen on the
+  // Windows CI runner, where the file-system race is wide enough to hit).
+  const probeDist = path.resolve(
+    import.meta.dirname,
+    `../../../test-results/persistence-probe-${test.info().workerIndex}`,
+  );
   // Bundles the real @dndimension/persistence (Dexie included) for the browser.
   await build({
     configFile: false,
