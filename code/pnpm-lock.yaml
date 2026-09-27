@@ -111,6 +111,15 @@ importers:
         specifier: 6.2.5
         version: 6.2.5
 
+  packages/rules:
+    dependencies:
+      '@dndimension/content':
+        specifier: workspace:*
+        version: link:../content
+      '@dndimension/core':
+        specifier: workspace:*
+        version: link:../core
+
   packages/ui:
     dependencies:
       motion:
