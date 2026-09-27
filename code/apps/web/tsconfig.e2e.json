@@ -7,5 +7,9 @@
     "types": ["node", "vite/client"]
   },
   "include": ["e2e", "src/dev/ui-lab", "../../playwright.config.ts"],
-  "references": [{ "path": "../../packages/ui" }, { "path": "../../packages/core" }]
+  "references": [
+    { "path": "../../packages/persistence" },
+    { "path": "../../packages/ui" },
+    { "path": "../../packages/core" }
+  ]
 }

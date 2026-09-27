@@ -10,7 +10,18 @@ import {
 export interface IndexedDbAggregateStoreOptions {
   /** Another tab or a newer app version wants to upgrade the schema; this connection closes. */
   onVersionChange?: () => void;
+  /**
+   * Another tab committed to the same database. Tabs coordinate optimistically: the change
+   * is a hint to reload, and stale commands are still rejected by the revision check.
+   */
+  onExternalChange?: (change: ExternalChange) => void;
 }
+
+export type ExternalChange = Readonly<
+  { kind: "commit"; aggregateId: string; revision: number } | { kind: "restore" }
+>;
+
+const changeChannelName = (name: string) => `dndimension-persistence:${name}`;
 
 const SCHEMA_VERSION = 1;
 // Dexie stores declared version n as native IndexedDB version n * 10.
@@ -43,8 +54,13 @@ export interface IndexedDbAggregateStore extends AggregateStore {
 /** Experimental P-02 schema, not the production campaign/character schema. */
 export const createIndexedDbAggregateStore = (
   name: string,
-  { onVersionChange }: IndexedDbAggregateStoreOptions = {},
+  { onVersionChange, onExternalChange }: IndexedDbAggregateStoreOptions = {},
 ): IndexedDbAggregateStore => {
+  const channel =
+    typeof BroadcastChannel === "function" ? new BroadcastChannel(changeChannelName(name)) : null;
+  if (channel && onExternalChange)
+    channel.onmessage = (message: MessageEvent<ExternalChange>) => onExternalChange(message.data);
+  const announce = (change: ExternalChange) => channel?.postMessage(change);
   // Opened explicitly: Dexie 4 would otherwise re-create tables a newer build removed.
   const db = new Dexie(name, { autoOpen: false });
   db.on("versionchange", () => {
@@ -99,13 +115,14 @@ export const createIndexedDbAggregateStore = (
         await events.bulkAdd(snapshot.events);
         await commands.bulkAdd(snapshot.commands);
       });
+      announce({ kind: "restore" });
     },
     async commit(input) {
       const prepared = prepareAggregateCommand(input);
       if (!prepared) return { status: "invalid-command" };
       const { command, fingerprint } = prepared;
       await ready();
-      return db.transaction("rw", aggregates, events, commands, async () => {
+      const result = await db.transaction("rw", aggregates, events, commands, async () => {
         const previous = await commands.get(command.commandId);
         if (previous)
           return previous.fingerprint === fingerprint
@@ -125,6 +142,10 @@ export const createIndexedDbAggregateStore = (
         await commands.add({ commandId: command.commandId, fingerprint, revision });
         return { status: "committed" as const, revision };
       });
+      // Announce only after the transaction is durable, never from inside it.
+      if (result.status === "committed")
+        announce({ kind: "commit", aggregateId: command.aggregateId, revision: result.revision });
+      return result;
     },
     async read(aggregateId) {
       await ready();
@@ -138,7 +159,10 @@ export const createIndexedDbAggregateStore = (
         .toArray();
     },
     close() {
+      channel?.close();
       db.close();
     },
   };
 };
+
+export * from "./migration";
